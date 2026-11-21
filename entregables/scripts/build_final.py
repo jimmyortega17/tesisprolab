@@ -22,6 +22,18 @@ def build(pages=None):
         if p.text.startswith('La viabilidad se evalúa con un flujo'):
             for r in p.runs: r.text = r.text.replace('con la recuperación del capital de trabajo y el valor de rescate de los activos', 'con el valor de rescate de los activos (el capital de trabajo que se recupera es nulo en el caso base)')
     F = FDoc(doc); parte1(F); parte2(F)
+    FIG = '../figuras/'
+    def fig(key, texto, titulo, archivo):
+        F.at(key); n = F.nf + 1
+        F.p(texto.format(n=n)); F.figure(titulo, FIG + archivo, note='Elaboración propia con la plantilla de lienzos de la consultora de empresas.', width=5.6)
+    fig('l1', 'La Figura {n} presenta el lienzo blanco de relevancia: lo que resulta interesante de la solución, las críticas constructivas, las nuevas preguntas y las nuevas ideas.', 'Lienzo blanco de relevancia de Cosecha Viva', 'lienzo_1_blanco_relevancia.png')
+    fig('l1', 'La Figura {n} delimita el problema con el lienzo ¿Qué es? y ¿Qué no es?, que separa lo que es el problema de lo que no es.', 'Lienzo ¿Qué es? y ¿Qué no es? del problema', 'lienzo_2_que_es_que_no_es.png')
+    fig('l5', 'La Figura {n} resume al usuario-beneficiario en la matriz de meta-usuario de Rosa, una productora de café de Chanchamayo.', 'Matriz de meta-usuario: Rosa, productora de café', 'lienzo_4_meta_usuario.png')
+    fig('l8', 'La Figura {n} presenta el storyboard del productor en la situación actual, con sus pensamientos, emociones y la curva antes, durante y después.', 'Storyboard del productor en la situación actual', 'lienzo_3_storyboard_productor.png')
+    fig('c3b', 'La Figura {n} muestra el storyboard del consumidor con Cosecha Viva, con una curva emocional que sube a medida que ve el origen de su café.', 'Storyboard del consumidor con Cosecha Viva', 'lienzo_5_storyboard_consumidor.png')
+    fig('l9', 'La Figura {n} reproduce el lienzo 6x6 con las preguntas generadoras, sus ideas y la idea elegida para cada una.', 'Lienzo 6x6: preguntas generadoras e ideas', 'lienzo_6_lienzo_6x6.png')
+    fig('l10', 'La Figura {n} ubica las alternativas en la matriz costo-impacto; la alternativa D es la elegida.', 'Matriz costo-impacto de las alternativas', 'lienzo_7_costo_impacto.png')
+    fig('l12', 'La Figura {n} presenta el lienzo de la propuesta de valor, con el mapa de valor de Cosecha Viva frente al perfil del usuario.', 'Lienzo de la propuesta de valor', 'lienzo_8_propuesta_valor.png')
     anchors = {
         'c2': heading(doc, 'Capítulo III: Investigación del Usuario', 'Heading 1')._p,
         'c3a': heading(doc, '3.2 Mapa de Experiencia de Usuario', 'Heading 2')._p,
@@ -33,6 +45,12 @@ def build(pages=None):
         'c6b': heading(doc, 'Capítulo VII: Solución Sostenible', 'Heading 1')._p,
         'c7': heading(doc, 'Capítulo VIII: Decisión e Implementación', 'Heading 1')._p,
         'c8': heading(doc, '8.2 Conclusiones', 'Heading 2')._p,
+        'l1': find_par(doc, 'El lienzo muestra que actuar solo')._p,
+        'l5': find_par(doc, 'Los resultados de campo orientan el perfil')._p,
+        'l8': find_par(doc, 'El mapa muestra que los momentos críticos')._p,
+        'l9': find_par(doc, 'Las ideas se agruparon en cuatro alternativas')._p,
+        'l10': find_par(doc, 'La alternativa D se eligió')._p,
+        'l12': find_par(doc, 'El elemento central de la propuesta')._p,
         'END': None}
     # los grupos sin clave (introducción) se eliminan; 'END' se queda al final
     keep = {k: v for k, v in anchors.items() if k != 'END'}

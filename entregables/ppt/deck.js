@@ -66,6 +66,12 @@ async function badge(s, x, y, d, fill, iconName, iconHex = "FFFFFF") {
 function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: true, fontFace: "Calibri", color: C.text1 }, o)); }
 
 (async () => {
+  async function imageSlide(file, notes) {
+    const sl = pres.addSlide({ masterName: "DARK" });
+    sl.background = { color: "FFFFFF" };
+    sl.addImage({ path: IMG + file, x: 0, y: 0, w: 10, h: 5.625 });
+    sl.addNotes(notes);
+  }
   // =============== 1. PORTADA ===============
   {
     const s = pres.addSlide({ masterName: "DARK" });
@@ -138,64 +144,12 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     s.addNotes("El problema es un círculo: sin un comprador que asegure un mejor precio, el productor no tiene incentivos ni recursos para tecnificar; sin tecnificación no produce la calidad que ese comprador exigiría. Por eso la solución debe actuar sobre los dos extremos a la vez y con recursos de mercado, no con programas públicos.");
   }
 
-  // =============== 4. LIENZO EN DOS DIMENSIONES ===============
-  {
-    const s = content("Lienzo de relevancia en dos dimensiones");
-    const cols = ["Productivo", "Comercial", "Financiero", "Información", "Social"];
-    const rows = [
-      ["Núcleo crítico", HEX.red],
-      ["Muy importante", HEX.am],
-      ["Tomar en cuenta", HEX.gold],
-      ["Sugerencia", "8DA88A"],
-    ];
-    const cells = {
-      "0,0": "Rendimiento de 15 qq/ha frente a un potencial de 50",
-      "0,1": "Venta sin diferenciar al intermediario, a precio bajo y volátil",
-      "1,2": "Sin capital ni comprador garantizado; no invierte en abono ni secado",
-      "2,3": "El consumidor urbano no conoce al productor ni el proceso",
-      "3,4": "Migración de jóvenes y abandono de fincas",
-      "3,1": "Turismo cafetalero que beneficia a pocas fincas",
-    };
-    const x0 = 0.5, labW = 1.35, cw = 1.53, y0 = 1.45, hh = 0.38, rh = 0.76;
-    T(s, "Ámbito del problema  →", { x: x0 + labW, y: 1.1, w: 5, h: 0.3, fontSize: 11, bold: true, color: C.text3 });
-    for (let j = 0; j < 5; j++) {
-      s.addShape(S.RECTANGLE, { x: x0 + labW + j * cw, y: y0, w: cw - 0.04, h: hh, fill: { color: HEX.dk2 }, line: { color: HEX.dk2, width: 0 } });
-      T(s, cols[j], { x: x0 + labW + j * cw, y: y0, w: cw - 0.04, h: hh, fontSize: 12, bold: true, color: "FFFFFF", align: "center", valign: "middle" });
-    }
-    for (let i = 0; i < 4; i++) {
-      const y = y0 + hh + 0.05 + i * rh;
-      s.addShape(S.RECTANGLE, { x: x0, y, w: labW - 0.05, h: rh - 0.05, fill: { color: rows[i][1] }, line: { color: rows[i][1], width: 0 } });
-      T(s, rows[i][0], { x: x0 + 0.05, y, w: labW - 0.15, h: rh - 0.05, fontSize: 12, bold: true, color: i === 2 ? "1E1A16" : "FFFFFF", valign: "middle", align: "center" });
-      for (let j = 0; j < 5; j++) {
-        const key = i + "," + j; const has = !!cells[key];
-        s.addShape(S.RECTANGLE, { x: x0 + labW + j * cw, y, w: cw - 0.04, h: rh - 0.05, fill: { color: has ? "FFFFFF" : "F1F5EC" }, line: { color: has ? rows[i][1] : "DDE5D5", width: has ? 2 : 0.75 } });
-        if (has) T(s, cells[key], { x: x0 + labW + j * cw + 0.06, y: y + 0.02, w: cw - 0.16, h: rh - 0.09, fontSize: 10, valign: "middle" });
-      }
-    }
-    T(s, "Relevancia ↓", { x: 0.5, y: 1.1, w: 1.35, h: 0.3, fontSize: 11, bold: true, color: C.text3 });
-    source(s, "Elaboración propia a partir del Lienzo Blanco de Relevancia (Agraria.pe, 2019b, 2026; Gestión, 2025; trabajo de campo).");
-    s.addNotes("El lienzo ordena los factores en dos dimensiones: en vertical, su nivel de relevancia (núcleo crítico, muy importante, tomar en cuenta, sugerencia); en horizontal, el ámbito del problema (productivo, comercial, financiero, información y social). El núcleo crítico cae en lo productivo y lo comercial. Nota de edición: la tesis presenta el lienzo como tabla de niveles; la ubicación por ámbito proviene de la Tabla 2 (causas y consecuencias).");
-  }
+  // =============== 4. LIENZOS BLANCO DE RELEVANCIA Y QUÉ ES / QUÉ NO ES ===============
+  await imageSlide("lz1-1.png", "Lienzo blanco de relevancia con la plantilla de la consultora: cosas interesantes de la solución, críticas constructivas (riesgos), nuevas preguntas (las hipótesis del piloto) y nuevas ideas (tours, regalos corporativos, réplica en otras zonas).");
+  await imageSlide("lz2-2.png", "Lienzo ¿Qué es? y ¿Qué no es? del problema: es baja productividad, venta sin diferenciar, falta de capital y de comprador seguro, y migración de jóvenes; no es solo un problema de precio ni de productividad, ni lo resuelve el turismo cafetalero ni depende del Estado.");
 
   // =============== 5. LIENZO META-USUARIO ===============
-  {
-    const s = content("Lienzo del meta-usuario");
-    const hdr = (t, c) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: c }, fontSize: 13, align: "center", valign: "middle" } });
-    const lab = (t) => ({ text: t, options: { bold: true, color: HEX.dk2, fill: { color: HEX.lt2 }, fontSize: 12, valign: "middle" } });
-    const c = (t) => ({ text: t, options: { fontSize: 11, valign: "middle", color: HEX.dk1 } });
-    const rows = [
-      [hdr("", HEX.dk2), hdr("Pequeño productor de café", HEX.g), hdr("Consumidor de café de especialidad", HEX.br)],
-      [lab("Quién es"), c("Agricultor de 25 a 55 años, con unas 2 ha de café, que vive de la venta de pergamino"), c("Profesional de 25 a 55 años de Lima o la costa, que compra café en grano o molido cada mes")],
-      [lab("Qué hace"), c("Cultiva con manejo tradicional y vende al acopiador más cercano"), c("Compra en cafeterías, supermercados o tiendas en línea")],
-      [lab("Qué piensa y siente"), c("Incertidumbre por el precio; siente que su trabajo no se valora"), c("Quiere un café de calidad y que su compra sea justa con el productor")],
-      [lab("Qué dice"), c("“El intermediario pone el precio”; “no tengo plata para abonar”"), c("“No sé de dónde viene mi café”; “me gustaría conocer la finca”")],
-      [lab("Dolores"), c("Bajo rendimiento, precio volátil, falta de capital y de comprador seguro"), c("Desconfianza en el origen, café no siempre fresco, poca conexión con el productor")],
-      [lab("Ganancias esperadas"), c("Más producción, mejor precio y un comprador seguro"), c("Café fresco y trazable, impacto visible y experiencia en la finca")],
-    ];
-    s.addTable(rows, { x: 0.5, y: 1.2, w: 9.0, colW: [1.5, 3.75, 3.75], rowH: [0.38, 0.6, 0.5, 0.55, 0.5, 0.58, 0.5], border: { type: "solid", color: "DDE5D5", pt: 1 }, fontFace: "Calibri", margin: [0.04, 0.08, 0.04, 0.08] });
-    source(s, "Adaptado del trabajo de campo del equipo (20 productores y 25 turistas potenciales, abril y mayo de 2026).");
-    s.addNotes("El meta-usuario reúne a los dos usuarios del modelo: el productor, que es el beneficiario, y el consumidor de Lima, que es el cliente que paga. Sus dolores son complementarios: el productor necesita un comprador que pague por calidad y el consumidor necesita un café cuyo origen pueda ver.");
-  }
+  await imageSlide("lz4-4.png", "Matriz de meta-usuario de Rosa, una productora de café de 42 años de Chanchamayo con dos hectáreas. Sus dolores son el bajo rendimiento, el precio que fija el intermediario y la falta de capital; sus ganancias esperadas son más producción, mejor precio y un comprador seguro.");
 
   // =============== 6 y 7. MAPAS DE EMPATÍA ===============
   async function empathy(title, persona, sub, boxes, srcTxt, notes, color, iconName) {
@@ -238,63 +192,10 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     "Este mapa es una hipótesis: la encuesta de campo se hizo a turistas potenciales y no a compradores recurrentes de café de especialidad. Se valida en el piloto con la preventa real.", HEX.br, "FaUserTie");
 
   // =============== 8. MAPA EXPERIENCIA PRODUCTOR ===============
-  {
-    const s = content("Mapa de experiencia: el productor hoy");
-    const st = [
-      ["Preparación", "Limpia la parcela; abona poco o nada", "Preocupación", "No tiene dinero para fertilizantes", true],
-      ["Floración y crecimiento", "Controla plagas cuando puede", "Incertidumbre", "Roya y broca sin manejo técnico", false],
-      ["Cosecha", "Cosecha todo junto, maduro y verde", "Cansancio", "Mezcla de calidades; menor precio", false],
-      ["Beneficio y secado", "Seca en el patio o sobre plásticos", "Ansiedad", "Lluvia y humedad dañan el grano", false],
-      ["Venta", "Vende al acopiador más cercano", "Frustración", "El intermediario fija el precio", true],
-      ["Después de la venta", "Cubre deudas de la campaña", "Desánimo", "No le queda para invertir", false],
-    ];
-    const w = 1.45, g = 0.06, x0 = 0.5;
-    const rl = [["Qué hace", 2.0, 0.8], ["Qué siente", 2.9, 0.55], ["Dolor principal", 3.5, 0.85]];
-    for (let i = 0; i < 6; i++) {
-      const x = x0 + i * (w + g);
-      s.addShape(S.PENTAGON, { x, y: 1.2, w: w, h: 0.7, fill: { color: st[i][4] ? HEX.red : HEX.g }, line: { color: "FFFFFF", width: 0 } });
-      T(s, st[i][0], { x: x + 0.08, y: 1.2, w: w - 0.3, h: 0.7, fontSize: 11.5, bold: true, color: "FFFFFF", valign: "middle" });
-      s.addShape(S.ROUNDED_RECTANGLE, { x, y: 2.0, w, h: 0.8, rectRadius: 0.06, fill: { color: "FFFFFF" }, line: { color: "C9D4C0", width: 1 } });
-      T(s, st[i][1], { x: x + 0.08, y: 2.0, w: w - 0.16, h: 0.8, fontSize: 11, valign: "middle" });
-      s.addShape(S.ROUNDED_RECTANGLE, { x, y: 2.9, w, h: 0.55, rectRadius: 0.06, fill: { color: HEX.lt2 }, line: { color: HEX.lt2, width: 0 } });
-      T(s, st[i][2], { x: x + 0.08, y: 2.9, w: w - 0.16, h: 0.55, fontSize: 12, bold: true, italic: true, color: HEX.br, valign: "middle", align: "center" });
-      s.addShape(S.ROUNDED_RECTANGLE, { x, y: 3.55, w, h: 0.85, rectRadius: 0.06, fill: { color: "FBE9E7" }, line: { color: HEX.red, width: 1 } });
-      T(s, st[i][3], { x: x + 0.08, y: 3.55, w: w - 0.16, h: 0.85, fontSize: 11, valign: "middle" });
-    }
-    T(s, "En rojo, los momentos críticos: la preparación y la venta.", { x: 0.5, y: 4.5, w: 9.0, h: 0.4, fontSize: 12, bold: true, color: C.text2 });
-    source(s, "Adaptado del trabajo de campo del equipo y de Agraria.pe (2019b).");
-    s.addNotes("El recorrido de la campaña muestra dos momentos críticos que coinciden con el núcleo del problema: en la preparación, la falta de capital impide abonar; en la venta, el productor no tiene poder de negociación.");
-  }
+  await imageSlide("lz3-3.png", "Storyboard del productor en la situación actual, con diez momentos de la campaña, sus pensamientos y su curva emocional. Los puntos más bajos son la cosecha mezclada, el secado con lluvia y el momento posterior a la venta, cuando no queda dinero para abonar.");
 
   // =============== 9. MAPA EXPERIENCIA CONSUMIDOR ===============
-  {
-    const s = content("Mapa de experiencia: el consumidor");
-    const st = [
-      ["Descubre", "No sabe si el origen es real", "Video de la finca y ficha del productor"],
-      ["Decide", "Pagar por adelantado sin ver el producto", "Garantía de entrega, fecha de tueste y devolución"],
-      ["Compra", "Pago complicado o sin comprobante claro", "Pago en pocos pasos y confirmación inmediata"],
-      ["Espera", "Meses sin novedades", "Un video por etapa y aviso de cada avance"],
-      ["Recibe", "Retrasos o café fuera de punto", "Entrega en fecha y tueste reciente"],
-      ["Disfruta y comparte", "No sabe cómo preparar el grano", "Guía de preparación en el QR"],
-      ["Recompra y visita", "Falta de beneficios para quien repite", "Beneficio de recompra y reserva de visita"],
-    ];
-    const w = 1.22, g = 0.075, x0 = 0.5;
-    const icons = ["FaInstagram", "FaBalanceScale", "FaCreditCard", "FaVideo", "FaBoxOpen", "FaCoffee", "FaRedo"];
-    T(s, "Punto de dolor", { x: 0.5, y: 2.2, w: 3, h: 0.25, fontSize: 11, bold: true, color: HEX.red });
-    T(s, "Oportunidad de Cosecha Viva", { x: 0.5, y: 3.62, w: 4, h: 0.25, fontSize: 11, bold: true, color: HEX.g });
-    for (let i = 0; i < 7; i++) {
-      const x = x0 + i * (w + g);
-      s.addShape(S.PENTAGON, { x, y: 1.2, w, h: 0.9, fill: { color: HEX.br }, line: { color: "FFFFFF", width: 0 } });
-      s.addImage({ data: await ic(icons[i], "FFFFFF"), x: x + 0.1, y: 1.3, w: 0.28, h: 0.28 });
-      T(s, st[i][0], { x: x + 0.08, y: 1.6, w: w - 0.25, h: 0.45, fontSize: 11, bold: true, color: "FFFFFF", valign: "middle" });
-      s.addShape(S.ROUNDED_RECTANGLE, { x, y: 2.48, w, h: 1.08, rectRadius: 0.06, fill: { color: "FBE9E7" }, line: { color: HEX.red, width: 1 } });
-      T(s, st[i][1], { x: x + 0.07, y: 2.48, w: w - 0.14, h: 1.08, fontSize: 10.5, valign: "middle" });
-      s.addShape(S.ROUNDED_RECTANGLE, { x, y: 3.9, w, h: 1.0, rectRadius: 0.06, fill: { color: "E5F1E2" }, line: { color: HEX.g, width: 1 } });
-      T(s, st[i][2], { x: x + 0.07, y: 3.9, w: w - 0.14, h: 1.0, fontSize: 10.5, valign: "middle" });
-    }
-    source(s, "Elaboración propia. Los puntos de dolor son hipótesis que se confirman con las entrevistas del piloto (H5, H7 y H8).");
-    s.addNotes("El mapa del consumidor muestra siete etapas. En cada una hay un punto de dolor y una respuesta del modelo, y cada respuesta se mide en el piloto: visitas calificadas, conversión de 3%, recompra de 60% y reservas de tour de 5%.");
-  }
+  await imageSlide("lz5-5.png", "Storyboard del consumidor con Cosecha Viva: la curva sube a medida que Carla ve el origen del café, con una duda al decidir la compra por adelantado. Los puntos de dolor son hipótesis que se confirman en el piloto.");
 
   // =============== 10. EVIDENCIA DE CAMPO ===============
   {
@@ -315,6 +216,9 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     source(s, "Elaboración propia a partir del trabajo de campo del equipo (Apéndice A), abril y mayo de 2026.");
     s.addNotes("La evidencia de campo respalda tres hipótesis: H1, el consumidor valora que su pago beneficie al productor (92%); H2, paga S/ 100 o más por una experiencia (76%); y H3, el productor acepta visitas (85%). Son respuestas declaradas, de una muestra pequeña y por conveniencia, de modo que no sustituyen la prueba de compra real.");
   }
+
+  await imageSlide("lz6-6.png", "Lienzo 6x6: seis preguntas generadoras, una por necesidad, con tres ideas de solución cada una y la idea elegida en la fila final.");
+  await imageSlide("lz7-7.png", "Matriz costo-impacto de las cuatro alternativas. La alternativa D (tecnificación, compra asegurada, preventa con trazabilidad y tour) es la elegida porque actúa sobre las dos causas del núcleo crítico y se financia con el dinero del cliente.");
 
   // =============== 11. LA SOLUCIÓN: 4 PALANCAS ===============
   {
@@ -347,6 +251,8 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     source(s, "Fuente: tesis Cosecha Viva, capítulo IV. Precio del paquete S/ 140 con IGV.");
     s.addNotes("Cuatro palancas actúan a la vez sobre las causas del problema: la tecnificación ataca la baja productividad; la compra con prima ataca el precio bajo; la preventa resuelve el capital y la certeza de compra; y la trazabilidad con videos y QR cierra la brecha de información con el consumidor. El turismo es el segundo ingreso, no el centro del modelo.");
   }
+
+  await imageSlide("lz8-8.png", "Lienzo de la propuesta de valor: el mapa de valor de Cosecha Viva (productos y servicios, generadores de alegrías y mitigadores de dolor) frente al perfil del usuario (alegrías, temas del cliente y dolores).");
 
   // =============== 12. EL CICLO ===============
   {
