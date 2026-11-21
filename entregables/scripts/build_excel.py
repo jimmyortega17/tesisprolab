@@ -54,17 +54,26 @@ def sheet_head(ws, title, sub):
         c = ws.cell(4, 2 + i, y); sty(c, b=True, fill='E8EFE0')
 
 bs = wb.create_sheet('Beneficios Sociales')
-sheet_head(bs, 'Beneficios sociales', 'Estimación del flujo de beneficios sociales. Soles por año.')
+sheet_head(bs, 'Beneficios sociales', 'Un beneficio social por cada ODS declarado en la tesis (ODS 1, 2 y 8). Soles por año.')
 rows_b = [(5, 'DATOS BASE', None, True),
           (6, 'Productores con tecnificación madura', '=Demanda!{d}17', False),
           (7, 'Productores en su primera campaña', '=Demanda!{d}18', False),
-          (8, 'A) INGRESO INCREMENTAL DE PRODUCTORES CON TECNIFICACIÓN MADURA', None, True),
-          (9, 'Beneficio bruto incremental por productor (S/ por año)', '=Productor!$C$16', False),
-          (10, 'Beneficio social 1 (productores maduros)', '={c}6*{c}9', False),
-          (11, 'B) INGRESO INCREMENTAL DE PRODUCTORES EN SU PRIMERA CAMPAÑA', None, True),
-          (12, 'Beneficio bruto incremental por productor (S/ por año)', '=Productor!$D$16', False),
-          (13, 'Beneficio social 2 (productores en primera campaña)', '={c}7*{c}12', False),
-          (14, 'TOTAL DE BENEFICIOS SOCIALES', '={c}10+{c}13', True)]
+          (8, 'ODS 2 HAMBRE CERO (META 2.3): VALOR DE LA PRODUCCIÓN ADICIONAL', None, True),
+          (9, 'Producción adicional por productor maduro (qq por año)', '=Productor!$C$11-Productor!$B$11', False),
+          (10, 'Precio del intermediario (S/ por qq)', '=Productor!$B$8', False),
+          (11, 'Beneficio social 1 (ODS 2: más producción por mayor productividad)', '={c}6*{c}9*{c}10+{c}7*(Productor!$D$11-Productor!$B$11)*{c}10', True),
+          (12, 'ODS 1 FIN DE LA POBREZA (META 1.2): SOBREPRECIO DEL CAFÉ SELECTO', None, True),
+          (13, 'Café selecto por productor maduro (qq por año)', '=Productor!$C$11*Productor!$C$7', False),
+          (14, 'Café selecto por productor en su primera campaña (qq por año)', '=Productor!$D$11*Productor!$D$7', False),
+          (15, 'Sobreprecio por qq frente al intermediario (S/)', '=Productor!$C$9-Productor!$C$8', False),
+          (16, 'Beneficio social 2 (ODS 1: mayor ingreso por el sobreprecio)', '=({c}6*{c}13+{c}7*{c}14)*{c}15', True),
+          (17, 'ODS 8 TRABAJO DECENTE Y CRECIMIENTO ECONÓMICO (METAS 8.3 Y 8.9): EMPLEO E INGRESO LOCAL', None, True),
+          (18, 'Técnicos de campo contratados', '=Demanda!{d}23', False),
+          (19, 'Remuneración anual por técnico, con cargas laborales (S/)', '=CostosFijos!$B$10*12*(1+Supuestos!$B$48)', False),
+          (20, 'Beneficio social 3 (ODS 8: empleo calificado en el campo)', '={c}18*{c}19', True),
+          (21, 'Gasto local de los tours: transporte, guía, almuerzo y pago al productor (S/)', '=-EERR!{c}9', False),
+          (22, 'Beneficio social 4 (ODS 8: turismo en la finca)', '={c}21', True),
+          (23, 'TOTAL DE BENEFICIOS SOCIALES', '={c}11+{c}16+{c}20+{c}22', True)]
 for r_, lab, f_, b_ in rows_b:
     bs.cell(r_, 1, lab); sty(bs.cell(r_, 1), b=b_)
     if f_:
@@ -89,7 +98,7 @@ for r_, lab, f_, b_ in rows_c:
             c = cs.cell(r_, 2 + i, f_.format(c=L(2 + i))); sty(c, b=b_, nf=NUM)
 vs = wb.create_sheet('VAN Social')
 sheet_head(vs, 'VAN social', 'VAN social = beneficios sociales - costos sociales, descontados a la tasa social del MEF. No incluye el flujo de caja libre ni la inversión de la empresa.')
-vrows = [(5, 'Beneficios sociales totales', "='Beneficios Sociales'!{c}14"), (6, 'Costos sociales', "='Costos Sociales'!{c}14"), (7, 'Flujo social (beneficios - costos)', '={c}5-{c}6')]
+vrows = [(5, 'Beneficios sociales totales', "='Beneficios Sociales'!{c}23"), (6, 'Costos sociales', "='Costos Sociales'!{c}14"), (7, 'Flujo social (beneficios - costos)', '={c}5-{c}6')]
 for r_, lab, f_ in vrows:
     vs.cell(r_, 1, lab); sty(vs.cell(r_, 1), b=(r_ == 7))
     for i in range(5):

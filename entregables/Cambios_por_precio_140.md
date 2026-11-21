@@ -37,4 +37,12 @@ probar S/ 140, S/ 130 y S/ 120.
 
 ## Corrección del VAN social
 VAN social = beneficios sociales - costos sociales, descontados al 8%. No usa el flujo de caja libre ni la inversión.
-Hojas nuevas del Excel: Beneficios Sociales, Costos Sociales y VAN Social. Beneficios: S/ 3,741,400 en valor presente; costos: S/ 1,182,511; relación beneficio-costo social: 3.16.
+Hay un beneficio social por cada ODS declarado (1, 2 y 8). Los ODS 12 y 13 se quitaron de la tesis porque no generan un beneficio medido en el modelo.
+
+| ODS | Beneficio social | Año 5 (S/) |
+|---|---|---|
+| 2 Hambre cero (meta 2.3) | Valor de la producción adicional (20 qq por productor maduro x S/ 690) | 1,324,800 |
+| 1 Fin de la pobreza (meta 1.2) | Sobreprecio del café selecto (S/ 230 por qq) | 499,560 |
+| 8 Trabajo decente (metas 8.3 y 8.9) | Empleo de técnicos de campo y gasto local de los tours | 275,847 |
+
+VP de beneficios: S/ 4,462,364. VP de costos: S/ 1,182,511. **VAN social: S/ 3,279,853.** Relación beneficio-costo social: 3.77.

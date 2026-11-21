@@ -71,17 +71,29 @@ def actualizar_cifras(doc):
     from fb_insert import FDoc
     F_ = FDoc(doc)
     hdr = ['Concepto', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5']
-    filas = [['Beneficios sociales totales'] + [n0(v) for v in row(VS, 5, 2, 6)],
+    filas = [['Beneficio social 1 (ODS 2): valor de la producción adicional'] + [n0(v) for v in row(BS, 11, 2, 6)],
+             ['Beneficio social 2 (ODS 1): sobreprecio del café selecto'] + [n0(v) for v in row(BS, 16, 2, 6)],
+             ['Beneficio social 3 (ODS 8): empleo calificado de campo'] + [n0(v) for v in row(BS, 20, 2, 6)],
+             ['Beneficio social 4 (ODS 8): gasto local de los tours'] + [n0(v) for v in row(BS, 22, 2, 6)],
+             ['Total de beneficios sociales'] + [n0(v) for v in row(BS, 23, 2, 6)],
              ['Costos sociales'] + [n0(v) for v in row(VS, 6, 2, 6)],
              ['Flujo social (beneficios - costos)'] + [n0(v) for v in row(VS, 7, 2, 6)],
              ['Valor presente al 8%'] + [n0(VS.cell(11 + i, 2).value) for i in range(5)]]
-    nueva = F_._tbl(hdr, filas, [2.6, 1, 1, 1, 1, 1], 9)
+    nueva = F_._tbl(hdr, filas, [3.0, 0.9, 0.9, 0.9, 0.9, 0.9], 9)
     T[30]._tbl.addprevious(nueva); T[30]._tbl.getparent().remove(T[30]._tbl)
     for p in doc.paragraphs:
         if p.text.strip() == 'Componentes del VAN Social al 8%':
             p.runs[0].text = 'Beneficios Sociales, Costos Sociales y VAN Social al 8% (S/)'
         if p.text.strip() == 'Nota. Adaptado del modelo financiero (hoja Productor).':
             for r in p.runs[1:]: r.text = ' Adaptado del modelo financiero (hojas Beneficios Sociales, Costos Sociales y VAN Social). VAN social = suma de los valores presentes del flujo social; no incluye flujo de caja libre ni inversión.'
+    # ---- Tabla 29 (idx 28): solo los ODS declarados (1, 2 y 8), cada uno con su beneficio social
+    for rw in list(T[28].rows):
+        if rw.cells[0].text.startswith(('ODS 12', 'ODS 13')): T[28]._tbl.remove(rw._tr)
+    for j, rw in enumerate(T[28].rows):
+        t0 = rw.cells[0].text
+        if t0.startswith('ODS 1.'): setc(T[28], j, 2, 'Eleva el ingreso del productor con el sobreprecio de su café selecto'); setc(T[28], j, 3, 'Beneficio social 2: sobreprecio del café selecto (S/ por año)')
+        elif t0.startswith('ODS 2'): setc(T[28], j, 2, 'Duplicar la productividad y los ingresos de pequeños productores'); setc(T[28], j, 3, 'Beneficio social 1: valor de la producción adicional (de 15 a 25 qq/ha)')
+        elif t0.startswith('ODS 8'): setc(T[28], j, 2, 'Empleo calificado en el campo e ingreso local por los tours a las fincas'); setc(T[28], j, 3, 'Beneficios sociales 3 y 4: remuneración de técnicos de campo y gasto local de los tours')
     # ---- Tabla 39 (idx 38): supuesto de precio
     for j, rw in enumerate(T[38].rows):
         if rw.cells[0].text.startswith('Precio del paquete de cosecha'):
@@ -104,6 +116,10 @@ def actualizar_cifras(doc):
                 for p in c.paragraphs: rep(p)
 
     # ---- prosa
+    for p in doc.paragraphs:
+        for r in p.runs:
+            if ', al ODS 8 (trabajo decente y crecimiento económico) y al ODS 12 (producción y consumo responsables)' in r.text:
+                r.text = r.text.replace(', al ODS 8 (trabajo decente y crecimiento económico) y al ODS 12 (producción y consumo responsables)', ', y al ODS 8 (trabajo decente y crecimiento económico)')
     sens = {k: SEN.cell(r, 2).value for k, r in (('12', 28), ('28', 33))}
     vans = VS['B17'].value; vpb = VS['B18'].value; vpc = VS['B19'].value; bcs = VS['B20'].value
     m5 = EER['F22'].value
@@ -130,7 +146,7 @@ def actualizar_cifras(doc):
     S('El precio pagado por el cliente es', f"El precio pagado por el cliente sigue siendo la variable más sensible: el VAN se anula con una caída de 25.6%, es decir, con un precio de S/ 104, fuera del rango de ±20% de la Tabla 27. Con el precio de S/ 140 el VAN permanece positivo en todas las variaciones de ±20% de la tabla. La Tabla 28 combina varias variables en cuatro escenarios, incluido uno de estrés, con probabilidades asignadas por el equipo.")
     S('Los escenarios pesimista', f"Los cuatro escenarios dan VAN positivo, incluido el de estrés (S/ {V(SEN['B16'].value)}), que queda cerca de cero. El VAN esperado es de S/ {V(SEN['B17'].value)}. Estos escenarios mueven el precio solo entre 0% y -10% de S/ 140 (hasta S/ 126), por lo que no cubren el caso en que el consumidor no acepte pagar S/ 140. La conclusión es clara: el valor del proyecto depende de sostener el precio y el volumen de la preventa, y no debe invertirse a escala antes de validarlos.")
     S('El VANS asciende', f"El VAN social asciende a S/ {V(vans)}, con una relación beneficio-costo social de {bcs:.2f}: en valor presente al 8%, los beneficios suman S/ {V(vpb)} y los costos S/ {V(vpc)}. El resultado es una estimación: como los supuestos del productor provienen de referencias regionales, el VAN social debe recalcularse con los rendimientos y costos medidos en las fincas piloto.")
-    S('El flujo social se construyó', "El VAN social se calculó como la diferencia entre los beneficios sociales y los costos sociales, descontada a la tasa social del MEF de 8%. No incluye el flujo de caja libre ni la inversión de la empresa, porque mide el valor que se crea para la sociedad y no el retorno del inversionista. Los beneficios sociales son el ingreso bruto adicional de los productores frente a la situación sin el modelo (S/ 18,400 por año por productor con tecnificación madura y S/ 2,760 en su primera campaña), valorado a precios de mercado e incluida la prima que paga la empresa; los costos sociales son los recursos adicionales que el productor destina a insumos y cosecha selectiva (S/ 5,000 y S/ 2,500 por año). No se aplicaron precios sociales a la mano de obra ni a las divisas. La Tabla 31 presenta el cálculo.")
+    S('El flujo social se construyó', "El VAN social se calculó como la diferencia entre los beneficios sociales y los costos sociales, descontada a la tasa social del MEF de 8%. No incluye el flujo de caja libre ni la inversión de la empresa, porque mide el valor que se crea para la sociedad y no el retorno del inversionista. Cada ODS declarado en el capítulo I genera un beneficio social: el ODS 2 (meta 2.3) genera el valor de la producción adicional que logra el productor al pasar de 15 a 25 quintales por hectárea (20 quintales por productor con tecnificación madura, al precio del intermediario de S/ 690 por quintal); el ODS 1 (meta 1.2) genera el sobreprecio que recibe por su café selecto (S/ 230 por quintal frente al intermediario); y el ODS 8 (metas 8.3 y 8.9) genera la remuneración del empleo calificado de los técnicos de campo y el gasto local de los tours (transporte, guía, almuerzo y pago al productor). Los costos sociales son los recursos adicionales que el productor destina a insumos y cosecha selectiva (S/ 5,000 y S/ 2,500 por año). No se aplicaron precios sociales a la mano de obra ni a las divisas. La Tabla 31 presenta el cálculo.")
     S('Cuarto, con los', f"Cuarto, con los supuestos actuales el modelo es viable: el flujo de caja libre es positivo desde el primer año y, con un COK de 20.94%, el VAN es de S/ {V(base)}, la TIR de {pc(FCL['B24'].value)} y la relación beneficio-costo de {FCL['B29'].value:.2f}; el VAN esperado por escenarios es de S/ {V(SEN['B17'].value)}. Una simulación Monte Carlo de 10,000 iteraciones da una mediana de S/ {MCV['mediana']} y una probabilidad de VAN negativo de {MCV['p']}. El precio sigue siendo la variable crítica: el VAN se anula con un precio de S/ 104, y el precio de S/ 140 aún no se ha probado con compra real. Estos resultados son proyecciones condicionadas a la validación comercial.")
     S('Quinto, el modelo', f"Quinto, el modelo es socialmente rentable con los supuestos actuales: el ingreso neto estimado del productor sube en 64.7% con la tecnificación madura y el VAN social al 8% alcanza S/ {V(vans)}. Además, el modelo no depende del Estado en ninguna de sus etapas.")
     S('Se recomienda ejecutar', "Se recomienda ejecutar el piloto antes de la inversión completa y no escalar si la preventa de prueba no alcanza 3% de conversión y 300 paquetes, o si menos de la mitad de los productores invitados firma el acuerdo. El piloto debe probar el precio de S/ 140 frente a S/ 130 y S/ 120, y medir el costo real por visita calificada, porque el presupuesto del piloto (S/ 0.60 por visita) es cuatro veces menor que el del modelo (S/ 2.40). Con los resultados, se deben actualizar los supuestos del modelo financiero, las probabilidades de los escenarios, la simulación Monte Carlo y el VAN social.")

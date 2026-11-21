@@ -550,28 +550,26 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
 
   // =============== 19. ODS ===============
   {
-    const s = content("Contribución a los ODS");
+    const s = content("Cada ODS genera un beneficio social");
     const od = [
-      ["1", "Fin de la pobreza", "Meta 1.2", "Eleva el ingreso neto del productor", "Ingreso neto por productor (estimado +64.7%)", "E5243B"],
-      ["2", "Hambre cero", "Meta 2.3", "Duplicar la productividad e ingresos de pequeños productores", "Rendimiento de 15 a 25 qq/ha", "DDA63A"],
-      ["8", "Trabajo decente", "Meta 8.3", "Empleo calificado en el campo y en la ciudad", "Técnicos, cosecha selectiva y personal de la empresa", "A21942"],
-      ["12", "Producción y consumo responsables", "Meta 12.8", "El consumidor conoce y financia una producción sostenible", "Clientes con trazabilidad completa", "BF8B2E"],
-      ["13", "Acción por el clima", "Meta 13.1", "Fertirriego, secado solar y manejo de plagas mejoran la resiliencia", "Fincas con kit de tecnificación", "3F7E44"],
+      ["2", "Hambre cero", "Meta 2.3", "Duplicar la productividad y los ingresos de pequeños productores", "Beneficio 1: valor de la producción adicional", "De 15 a 25 qq/ha: +20 qq por productor maduro × S/ 690", "DDA63A"],
+      ["1", "Fin de la pobreza", "Meta 1.2", "Eleva el ingreso neto del productor", "Beneficio 2: sobreprecio del café selecto", "20 qq selectos × S/ 230 por qq sobre el intermediario", "E5243B"],
+      ["8", "Trabajo decente y crecimiento económico", "Metas 8.3 y 8.9", "Empleo calificado en el campo e ingreso local por turismo", "Beneficios 3 y 4: empleo de técnicos y gasto local de los tours", "Remuneración de técnicos (S/ 37,500 al año) y gasto local de los tours", "A21942"],
     ];
-    T(s, "ODS · meta", { x: 1.45, y: 1.05, w: 2.3, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
-    T(s, "Contribución de la solución", { x: 3.95, y: 1.05, w: 3.0, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
-    T(s, "Indicador", { x: 7.15, y: 1.05, w: 2.3, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
-    for (let i = 0; i < 5; i++) {
-      const y = 1.33 + i * 0.72;
-      s.addShape(S.ROUNDED_RECTANGLE, { x: 0.5, y, w: 9.0, h: 0.65, rectRadius: 0.06, fill: { color: i % 2 ? "FFFFFF" : HEX.lt2 }, line: { color: "DDE5D5", width: 0.75 } });
-      s.addShape(S.RECTANGLE, { x: 0.58, y: y + 0.06, w: 0.62, h: 0.53, fill: { color: od[i][5] }, line: { color: od[i][5], width: 0 } });
-      T(s, od[i][0], { x: 0.58, y: y + 0.06, w: 0.62, h: 0.53, fontSize: 22, bold: true, fontFace: "Cambria", color: "FFFFFF", align: "center", valign: "middle" });
-      T(s, [{ text: od[i][1] + "\n", options: { bold: true, fontSize: 12 } }, { text: od[i][2], options: { fontSize: 11, color: HEX.gray } }], { x: 1.35, y, w: 2.5, h: 0.65, valign: "middle" });
-      T(s, od[i][3], { x: 3.95, y, w: 3.05, h: 0.65, fontSize: 11.5, valign: "middle" });
-      T(s, od[i][4], { x: 7.15, y, w: 2.3, h: 0.65, fontSize: 11.5, valign: "middle", bold: true, color: C.text2 });
+    T(s, "ODS · meta", { x: 1.45, y: 1.05, w: 2.4, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
+    T(s, "Contribución de la solución", { x: 3.95, y: 1.05, w: 2.6, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
+    T(s, "Beneficio social en el VAN social", { x: 6.65, y: 1.05, w: 2.8, h: 0.25, fontSize: 10.5, bold: true, color: HEX.gray });
+    for (let i = 0; i < 3; i++) {
+      const y = 1.35 + i * 1.12;
+      s.addShape(S.ROUNDED_RECTANGLE, { x: 0.5, y, w: 9.0, h: 1.0, rectRadius: 0.06, fill: { color: i % 2 ? "FFFFFF" : HEX.lt2 }, line: { color: "DDE5D5", width: 0.75 } });
+      s.addShape(S.RECTANGLE, { x: 0.58, y: y + 0.1, w: 0.7, h: 0.8, fill: { color: od[i][6] }, line: { color: od[i][6], width: 0 } });
+      T(s, od[i][0], { x: 0.58, y: y + 0.1, w: 0.7, h: 0.8, fontSize: 28, bold: true, fontFace: "Cambria", color: "FFFFFF", align: "center", valign: "middle" });
+      T(s, [{ text: od[i][1] + "\n", options: { bold: true, fontSize: 13 } }, { text: od[i][2], options: { fontSize: 11, color: HEX.gray } }], { x: 1.4, y, w: 2.45, h: 1.0, valign: "middle" });
+      T(s, od[i][3], { x: 3.95, y, w: 2.55, h: 1.0, fontSize: 12, valign: "middle" });
+      T(s, [{ text: od[i][4] + "\n", options: { bold: true, fontSize: 12, color: C.text2 } }, { text: od[i][5], options: { fontSize: 11 } }], { x: 6.65, y, w: 2.75, h: 1.0, valign: "middle" });
     }
-    source(s, "Adaptado de Naciones Unidas (2015), Agenda 2030 (A/RES/70/1), y de la Tabla 29 de la tesis (capítulo VII).");
-    s.addNotes("Cinco ODS: 1 (fin de la pobreza), 2 (hambre cero, meta 2.3: duplicar la productividad y los ingresos de los productores en pequeña escala), 8 (trabajo decente), 12 (producción y consumo responsables) y 13 (acción por el clima). En el quinto año el modelo trabaja con 117 familias productoras y unos 11,000 clientes activos. Los colores de cada número son los colores oficiales del ODS; los logotipos oficiales no se reproducen.");
+    source(s, "Adaptado de Naciones Unidas (2015), Agenda 2030 (A/RES/70/1), y de la Tabla 29 de la tesis (capítulo VII). Hojas Beneficios Sociales y VAN Social del modelo v5.");
+    s.addNotes("La tesis declara tres ODS y cada uno genera un beneficio social que entra al VAN social. ODS 2, meta 2.3: el productor pasa de 15 a 25 quintales por hectárea, lo que da 20 quintales adicionales por productor maduro, valorados al precio del intermediario de S/ 690. ODS 1, meta 1.2: recibe S/ 230 más por quintal de café selecto frente al intermediario. ODS 8, metas 8.3 y 8.9: la remuneración del empleo calificado de los técnicos de campo y el gasto local de los tours. En el quinto año el modelo trabaja con 117 familias productoras y unos 11,000 clientes activos. Los colores de cada número son los oficiales del ODS; no se reproducen los logotipos.");
   }
 
   // =============== 20. RENTABILIDAD SOCIAL ===============
@@ -579,18 +577,19 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     const s = content("VAN social: beneficios menos costos");
     const yl = ["Año 1", "Año 2", "Año 3", "Año 4", "Año 5"];
     s.addChart(pres.charts.BAR, [
-      { name: "Beneficios sociales", labels: yl, values: [91080, 651360, 978880, 1469240, 1824360] },
-      { name: "Costos sociales", labels: yl, values: [82500, 205000, 315000, 432500, 532500] },
+      { name: "ODS 2: producción adicional", labels: yl, values: [0, 455400, 676200, 1062600, 1324800] },
+      { name: "ODS 1: sobreprecio selecto", labels: yl, values: [91080, 195960, 302680, 406640, 499560] },
+      { name: "ODS 8: empleo y turismo local", labels: yl, values: [97881, 124607, 188741, 252966, 275847] },
     ], {
-      x: 0.4, y: 1.1, w: 5.2, h: 3.8, barDir: "col", barGrouping: "clustered", chartColors: [HEX.g, HEX.am], barGapWidthPct: 50,
-      showLegend: true, legendPos: "b", legendFontSize: 11, legendColor: "1E1A16", legendFontFace: "Calibri",
+      x: 0.4, y: 1.1, w: 5.2, h: 3.8, barDir: "col", barGrouping: "stacked", chartColors: ["DDA63A", "E5243B", "A21942"], barGapWidthPct: 45,
+      showLegend: true, legendPos: "b", legendFontSize: 10.5, legendColor: "1E1A16", legendFontFace: "Calibri",
       catAxisLabelFontSize: 11, catAxisLabelColor: "1E1A16", valAxisLabelFontSize: 10, valAxisLabelColor: "5C5750", valAxisLabelFormatCode: "#,##0",
       valGridLine: { color: "E3E8DD", size: 0.75 }, catGridLine: { style: "none" }, catAxisLabelFontFace: "Calibri", valAxisLabelFontFace: "Calibri",
-      showTitle: true, title: "Flujo social anual (S/)", titleFontSize: 12, titleColor: "2F4A2B", titleFontFace: "Calibri",
+      showTitle: true, title: "Beneficios sociales por ODS (S/ por año)", titleFontSize: 12, titleColor: "2F4A2B", titleFontFace: "Calibri",
     });
-    T(s, "S/ 2,558,889", { x: 5.85, y: 1.2, w: 3.65, h: 0.8, fontSize: 36, bold: true, fontFace: "Cambria", color: HEX.g, valign: "middle" });
+    T(s, "S/ 3,279,853", { x: 5.85, y: 1.2, w: 3.65, h: 0.8, fontSize: 36, bold: true, fontFace: "Cambria", color: HEX.g, valign: "middle" });
     T(s, "VAN social al 8% (tasa social del MEF)", { x: 5.85, y: 2.0, w: 3.65, h: 0.35, fontSize: 13 });
-    const lines = [["S/ 3,741,400", "VP de los beneficios sociales: ingreso bruto adicional de los productores", HEX.g], ["S/ 1,182,511", "VP de los costos sociales: insumos y cosecha selectiva adicionales", HEX.am], ["3.16", "Relación beneficio-costo social", HEX.br]];
+    const lines = [["S/ 4,462,364", "VP de los beneficios sociales de los ODS 1, 2 y 8", HEX.g], ["S/ 1,182,511", "VP de los costos sociales: insumos y cosecha selectiva adicionales", HEX.am], ["3.77", "Relación beneficio-costo social", HEX.br]];
     lines.forEach((r, i) => {
       const y = 2.5 + i * 0.7;
       T(s, r[0], { x: 5.85, y, w: 1.45, h: 0.6, fontSize: 15, bold: true, fontFace: "Cambria", color: r[2], valign: "middle" });
@@ -599,7 +598,7 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     card(s, 5.85, 4.55, 3.65, 0.35, HEX.lt2);
     T(s, "Sin inversión ni flujo de caja libre", { x: 5.95, y: 4.55, w: 3.45, h: 0.35, fontSize: 11.5, bold: true, color: C.text2, valign: "middle" });
     source(s, "Fuente: modelo financiero v5 (hojas Beneficios Sociales, Costos Sociales y VAN Social). Estimación con supuestos regionales del productor.");
-    s.addNotes("El VAN social es beneficio social menos costo social, descontado al 8%. No usa el flujo de caja libre ni la inversión de la empresa. Los beneficios son el ingreso bruto adicional de los productores frente a la situación sin el modelo: S/ 18,400 por año por productor con tecnificación madura y S/ 2,760 en su primera campaña. Los costos son los insumos y la cosecha selectiva adicionales que paga el productor: S/ 5,000 y S/ 2,500 por año. El VAN social es S/ 2,558,889 y la relación beneficio-costo social es 3.16. Es una estimación con supuestos regionales; se recalcula con las fincas piloto.");
+    s.addNotes("El VAN social es beneficio social menos costo social, descontado al 8%. No usa el flujo de caja libre ni la inversión de la empresa. Hay un beneficio por cada ODS declarado: ODS 2, valor de la producción adicional; ODS 1, sobreprecio del café selecto; ODS 8, empleo calificado de los técnicos y gasto local de los tours. Los costos son los insumos y la cosecha selectiva adicionales que paga el productor. El VAN social es S/ 3,279,853 y la relación beneficio-costo social es 3.77. Es una estimación con supuestos regionales; se recalcula con las fincas piloto.");
   }
 
   // =============== 21. CIERRE ===============
