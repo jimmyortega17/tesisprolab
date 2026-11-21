@@ -6,6 +6,8 @@ from modelo import modelo
 
 R = json.load(open('mc_resultados.json'))
 wb = openpyxl.load_workbook('original.xlsx')
+wb['Supuestos']['B6'] = 140
+wb['Supuestos']['D6'] = 'Decisión del equipo: S/ 140 para que el flujo del año 1 no sea negativo; referencia de café de especialidad de Chanchamayo a S/ 130 en Mercado Libre Perú (2026)'
 F = 'Times New Roman'
 NUM = '#,##0;(#,##0);-'; PCT = '0.0%;(0.0%);-'; DEC = '#,##0.00'
 bold = Font(name=F, bold=True, size=11); norm = Font(name=F, size=11); inp = Font(name=F, size=11, color='0000FF')
@@ -137,6 +139,7 @@ put(x, 'A18', 'Brecha que debe cubrirse además del aporte del año 0 (déficit 
 put(x, 'A19', 'Colchón recomendado (20% sobre la necesidad máxima, supuesto del equipo)'); put(x, 'B19', 0.2, inp, PCT)
 put(x, 'A20', 'Aporte total recomendado de los socios (S/)'); put(x, 'B20', '=B17*(1+B19)', nf=NUM)
 put(x, 'A21', 'Aporte por socio con 4 socios (S/)'); put(x, 'B21', '=B20/4', nf=NUM)
+put(x, 'A22', 'Precio de quiebre del VAN (S/ con IGV), calculado con el script del modelo con las demás variables en su valor base'); put(x, 'B22', 104.22, inp, '0.00')
 put(x, 'A23', 'Tornado: VAN con cada variable en -20% y +20% (enlazado a la hoja Sensibilidad)', bold)
 head(x, 24, ['Variable', 'VAN con -20%', 'VAN con +20%', 'Amplitud (S/)', 'VAN base'])
 for i, r_s in enumerate(range(5, 10)):

@@ -10,7 +10,7 @@ def xroundup(x):
     return math.ceil(x - 1e-9)
 
 BASE = dict(
-    precio=120.0, igv=0.18, ppc=6.0, ret=0.60, cac=80.0, mkt=0.02, pasarela=0.042,
+    precio=140.0, igv=0.18, ppc=6.0, ret=0.60, cac=80.0, mkt=0.02, pasarela=0.042,
     p_inter=15.0, p_emp=20.0, verde=0.80, tostado=0.83, kgqq=46.0, pilado=0.8,
     maquila=8.0, bolsa=1.8, nbolsas=4, caja=2.5, envio=8.5,
     visitan=0.05, personas=2.5, tour_precio=180.0, tour_var=0.60,
@@ -109,7 +109,7 @@ def modelo(**kw):
                 inv0=inv0, ct=ct, kits=kits, tec=tec)
 
 def escenario(precio=1, paq=1, cafe=1, cf=1, cac=1):
-    return modelo(precio=120 * precio, paq=[x * paq for x in BASE['paq']], p_emp=20 * cafe, pilado=0.8 * cafe, f_cf=cf, cac=80 * cac)
+    return modelo(precio=BASE['precio'] * precio, paq=[x * paq for x in BASE['paq']], p_emp=20 * cafe, pilado=0.8 * cafe, f_cf=cf, cac=80 * cac)
 
 if __name__ == '__main__':
     b = modelo()

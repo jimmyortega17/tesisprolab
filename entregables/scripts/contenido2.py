@@ -3,6 +3,7 @@ import json
 FIG = '../figuras/'
 R = json.load(open('mc_resultados.json'))
 def f0(x): return f'{x:,.0f}'
+BASEPCT = round(100*sum(1 for x in R['van_array'] if x < 2061174.34)/len(R['van_array']))
 
 def parte2(D):
     # ---------------- Capítulo VI: 6.1 ----------------
@@ -12,20 +13,20 @@ def parte2(D):
     D.p('Las ocho hipótesis de la Tabla 15 no pesan igual. Se priorizaron con dos criterios: la importancia para el VAN y para la decisión de escalar, y la evidencia disponible. La puntuación es de 0 a 10 y es un juicio del equipo basado en el modelo financiero y en la matriz de supuestos críticos (Apéndice H). La Figura 6 muestra el mapa y la Tabla 58 explica cada puntaje.')
     D.figure('Mapa de priorización de hipótesis', FIG + 'fig_mapa_hipotesis.png', note='Elaboración propia. Las hipótesis del cuadrante superior izquierdo son importantes y tienen poca evidencia; se prueban primero.', width=5.8)
     D.table('Puntaje de priorización de las hipótesis', ['Hipótesis', 'Importancia', 'Evidencia', 'Fundamento', 'Orden de prueba'], [
-        ['H5. Preventa de S/ 120', '10', '1', 'Sin ella no hay ingresos; el VAN se anula con S/ 104.40. No hay compra real aún.', '1'],
+        ['H5. Preventa de S/ 140', '10', '1', 'Sin ella no hay ingresos; el VAN se anula con S/ 104 y el precio de S/ 140 todavía no se ha probado con compra real.', '1'],
         ['H6. El productor firma', '9', '3', 'Sin café selecto no se cumple la preventa. Hay interés (85% acepta visitas), pero no firma.', '2'],
         ['H8. Recompra y visita', '8.5', '1.5', 'Define la retención de 60% y el LTV. Sin evidencia propia.', '3'],
         ['H4. Rendimiento de 22 qq/ha', '8', '3', 'Define cuántos productores se necesitan. Hay referencias externas, no medidas propias.', '4'],
         ['H7. Valora la trazabilidad', '6.5', '1', 'Sostiene la diferenciación; su efecto sobre el precio no está medido.', '5'],
         ['H1. Valora el pago al productor', '6', '6.5', '92% en el trabajo de campo (n = 25), con muestra por conveniencia.', 'Validada'],
         ['H3. El productor acepta visitas', '4', '6.5', '85% (n = 20). Es complemento del modelo.', 'Validada'],
-        ['H2. Paga S/ 100 o más', '5', '5', '76% (n = 25), pero para una experiencia turística, no para el paquete de S/ 120.', 'Validar con H5'],
+        ['H2. Paga S/ 100 o más', '5', '5', '76% (n = 25), pero para una experiencia turística, no para el paquete de S/ 140.', 'Validar con H5'],
     ], note='Elaboración propia a partir de la Tabla 15 y del Apéndice H.', widths=[1.5, 0.8, 0.7, 2.7, 0.8])
 
     D.h('6.1.3 Diseño de los Experimentos', 2)
     D.p('Cada hipótesis tiene un experimento definido antes de conocer su resultado. La Tabla 59 detalla el tipo de experimento, la muestra, el canal, la duración, el costo y la decisión asociada. Los costos provienen del presupuesto del piloto (Tabla 32); donde no hay un costo específico se indica que está incluido en otro rubro.')
     D.table('Diseño de los experimentos por hipótesis', ['Hipótesis', 'Experimento', 'Muestra y canal', 'Duración', 'Costo (S/)', 'Criterio y decisión'], [
-        ['H5', 'Preventa con pago real y prueba de precio (S/ 120 y S/ 110)', 'Unas 10,000 visitas calificadas desde pauta digital', 'Meses 2 a 4', '14,000 (página 8,000 y pauta 6,000)', 'Conversión de 3% y 300 paquetes. Si no se cumple, probar S/ 110; no escalar si no se sostiene S/ 104.40.'],
+        ['H5', 'Preventa con pago real y prueba de precio (S/ 140 y S/ 130)', 'Unas 10,000 visitas calificadas desde pauta digital', 'Meses 2 a 4', '14,000 (página 8,000 y pauta 6,000)', 'Conversión de 3% y 300 paquetes. Si no se cumple, probar S/ 130 y luego S/ 120; no escalar si no se sostiene S/ 104.'],
         ['H6', 'Entrevista y propuesta de acuerdo escrito', '30 productores de Chanchamayo (Apéndice C)', 'Meses 1 a 2', 'Incluido en viajes (4,000)', '15 de 30 firman. Si no, revisar prima y condiciones y ampliar a Satipo.'],
         ['H8', 'Seguimiento de compradores del piloto', 'Compradores de los 300 paquetes', 'Meses 4 a 6', 'Incluido en el equipo', 'Recompra de 60% y 5% reserva tour. Si no, ajustar frecuencia y beneficios.'],
         ['H4', 'Fincas piloto con kit y asistencia técnica', '10 fincas; pesaje de la cosecha por parcela', 'Segunda campaña', '35,000 (kits) y 18,750 (técnico)', '22 qq/ha o más. Si no, recalcular cohortes y número de productores.'],
@@ -41,7 +42,7 @@ def parte2(D):
          'Alta (92%, 23 de 25).', 'Tuvo la valoración más alta, por encima del interés en la experiencia (88%).', 'Usar el beneficio al productor como mensaje central de la página de preventa y confirmarlo con compradores de Lima.'),
         ('H2', 'Disposición a pagar',
          'El consumidor paga S/ 100 o más por una experiencia vinculada al café.', 'Encuesta de campo a 25 turistas potenciales.', 'Porcentaje que declara esa disposición.', '60% o más.',
-         '76% (19 de 25).', 'La disposición es declarada y corresponde a una experiencia turística, no al paquete de S/ 120 de Lima.', 'Contrastar con la compra real de H5 antes de fijar el precio.'),
+         '76% (19 de 25).', 'La disposición es declarada y corresponde a una experiencia turística, no al paquete de S/ 140 de Lima.', 'Contrastar con la compra real de H5 antes de fijar el precio.'),
         ('H3', 'Aceptación de visitas',
          'El productor acepta recibir visitantes en su finca.', 'Encuesta de campo a 20 productores.', 'Porcentaje que responde afirmativamente.', '70% o más.',
          '85% (17 de 20).', 'El productor ve el turismo como medio para mejorar el valor de su café (80%).', 'Mantener las visitas como complemento y pactar el pago por persona en el acuerdo.'),
@@ -49,8 +50,8 @@ def parte2(D):
          'La tecnificación eleva el rendimiento a 22 qq/ha o más.', 'Diez fincas piloto con kit y asistencia; pesaje de la cosecha por parcela.', 'Rendimiento por hectárea en la segunda campaña.', '22 qq/ha o más.',
          '[Completar tras la segunda campaña]', '[Completar]', '[Completar: si no se cumple, recalcular cohortes y el número de productores]'),
         ('H5', 'Preventa del paquete',
-         'El consumidor de Lima compra por adelantado un paquete de S/ 120.', 'Página de preventa con pago real y pauta digital para unas 10,000 visitas calificadas.', 'Conversión de visitas calificadas y paquetes vendidos.', '3% y 300 paquetes.',
-         '[Completar tras el piloto]', '[Completar]', '[Completar: probar S/ 110 o detener según el precio de quiebre de S/ 104.40]'),
+         'El consumidor de Lima compra por adelantado un paquete de S/ 140.', 'Página de preventa con pago real y pauta digital para unas 10,000 visitas calificadas.', 'Conversión de visitas calificadas y paquetes vendidos.', '3% y 300 paquetes.',
+         '[Completar tras el piloto]', '[Completar]', '[Completar: probar S/ 130 y S/ 120, o detener según el precio de quiebre de S/ 104]'),
         ('H6', 'Compromiso del productor',
          'El productor firma el compromiso de venta de su café selecto.', 'Propuesta de acuerdo a 30 productores (Apéndice C).', 'Productores que firman.', '50% (15 de 30).',
          '[Completar tras el piloto]', '[Completar]', '[Completar: revisar prima y condiciones; ampliar a Satipo]'),
@@ -86,7 +87,7 @@ def parte2(D):
         fmt = (lambda v: f'{v*100:.1f}%') if (mo < 1 and k != 'paqf' and k != 'f_cf' and k != 'f_var') else (lambda v: f'{v:g}')
         rows.append([lab, fmt(lo), fmt(mo), fmt(hi), jus])
     D.table('Distribuciones de los supuestos simulados', ['Variable', 'Mínimo', 'Más probable', 'Máximo', 'Justificación'], rows,
-            note='Elaboración propia. El costo de adquisición se simuló como costo por visita calificada (S/ 2.40) dividido entre la conversión simulada. Simulación con semilla fija en Python; modelo validado contra el Excel (VAN base de S/ 922,276 y los cuatro escenarios).', widths=[1.9, 0.6, 0.7, 0.6, 2.7], size=8.5)
+            note='Elaboración propia. El costo de adquisición se simuló como costo por visita calificada (S/ 2.40) dividido entre la conversión simulada. Simulación con semilla fija en Python; modelo validado contra el Excel con el precio inicial de S/ 120 (VAN base de S/ 922,276 y los cuatro escenarios) y luego actualizado al precio de S/ 140.', widths=[1.9, 0.6, 0.7, 0.6, 2.7], size=8.5)
     v, l, c = R['van'], R['ltv'], R['ltv_cac']
     D.table('Resultados de la simulación Monte Carlo (10,000 iteraciones)', ['Estadístico', 'VAN (S/)', 'LTV (S/ por cliente)', 'LTV / CAC'], [
         ['Media', f0(v['media']), f0(l['media']), f"{c['media']:.1f}"],
@@ -98,33 +99,33 @@ def parte2(D):
         ['Percentil 95', f0(v['p95']), f0(l['p95']), f"{c['p95']:.1f}"],
         ['Probabilidad de VAN negativo', f"{R['p_van_neg']*100:.1f}%", '—', '—'],
         ['Probabilidad de LTV/CAC menor que 3', '—', '—', f"{R['p_lc_menor3']*100:.1f}%"],
-    ], note='Elaboración propia. Caso base del modelo: VAN de S/ 922,276 y LTV de S/ 556. Resultados en la hoja MonteCarlo del Excel.', widths=[2.6, 1.3, 1.5, 1.1])
+    ], note='Elaboración propia. Caso base del modelo: VAN de S/ 2,061,174 y LTV de S/ 793. Resultados en la hoja MonteCarlo del Excel.', widths=[2.6, 1.3, 1.5, 1.1])
     D.figure('Histograma del VAN simulado', FIG + 'fig_mc_van.png', note='Elaboración propia. Las barras en rojo corresponden a VAN negativo.', width=5.8)
     D.figure('Histograma del LTV simulado', FIG + 'fig_mc_ltv.png', note='Elaboración propia.', width=5.8)
     D.figure('Histograma de la relación LTV/CAC simulada', FIG + 'fig_mc_ltvcac.png', note='Elaboración propia. Las barras en rojo corresponden a una relación menor que 3.', width=5.8)
-    D.p(f"Resultados. El VAN simulado tiene mediana de S/ {f0(v['mediana'])} y media de S/ {f0(v['media'])}, inferiores al caso base de S/ 922,276, que queda por encima de la mediana de la simulación (percentil 85). La probabilidad de que el VAN sea negativo es de {R['p_van_neg']*100:.1f}%: en uno de cada cinco casos el proyecto destruye valor. En el percentil 5 la pérdida es de S/ {f0(-v['p5'])}. El VAN esperado por escenarios de S/ 609,814 de la Tabla 28 resulta más optimista que la media simulada; se recomienda reportar ambos y citar la simulación como el resultado más prudente.")
-    D.p(f"El LTV por cliente tiene media de S/ {f0(l['media'])} y un rango de S/ {f0(l['p5'])} a S/ {f0(l['p95'])} entre los percentiles 5 y 95, por debajo del valor base de S/ 556. La relación LTV/CAC tiene mediana de {c['mediana']:.1f} y solo {R['p_lc_menor3']*100:.1f}% de las iteraciones cae por debajo de 3, por lo que la economía del cliente es más resistente que el VAN total: el riesgo del proyecto se concentra en el precio y en la escala, no en el valor de cada cliente.")
+    D.p(f"Resultados. El VAN simulado tiene mediana de S/ {f0(v['mediana'])} y media de S/ {f0(v['media'])}, inferiores al caso base de S/ 2,061,174, que queda por encima de la mediana de la simulación (percentil {BASEPCT}). La probabilidad de que el VAN sea negativo es de {R['p_van_neg']*100:.1f}%. En el percentil 5 el VAN sigue siendo positivo, de S/ {f0(v['p5'])}. El VAN esperado por escenarios de S/ 1,713,197 de la Tabla 28 resulta más optimista que la media simulada; se recomienda reportar ambos y citar la simulación como el resultado más prudente. Estos resultados dependen de que el consumidor pague S/ 140, lo que H5 debe confirmar.")
+    D.p(f"El LTV por cliente tiene media de S/ {f0(l['media'])} y un rango de S/ {f0(l['p5'])} a S/ {f0(l['p95'])} entre los percentiles 5 y 95, por debajo del valor base de S/ 793. La relación LTV/CAC tiene mediana de {c['mediana']:.1f} y solo {R['p_lc_menor3']*100:.1f}% de las iteraciones cae por debajo de 3, por lo que la economía del cliente es más resistente que el VAN total: el riesgo del proyecto se concentra en que el consumidor acepte el precio y en la escala, no en el valor de cada cliente.")
     D.figure('Variables que más explican la variación del VAN', FIG + 'fig_mc_correlacion.png', note='Elaboración propia. Correlación de rangos de Spearman entre cada variable simulada y el VAN.', width=5.8)
-    D.p(f"La Figura 10 confirma que el precio del paquete es la variable que más explica el VAN (correlación de {R['corr_van']['precio']:.2f}), seguido del precio pagado por el café (correlación de {R['corr_van']['p_emp']:.2f}), la conversión de visitas ({R['corr_van']['conv']:.2f}) y el volumen vendido ({R['corr_van']['paqf']:.2f}). Esto coincide con el umbral de S/ 104.40 y con el tornado de la Figura 11, y explica por qué H5 (preventa de S/ 120) es la hipótesis que debe probarse primero.")
+    D.p(f"La Figura 10 confirma que el precio del paquete es la variable que más explica el VAN (correlación de {R['corr_van']['precio']:.2f}), seguido del precio pagado por el café (correlación de {R['corr_van']['p_emp']:.2f}), la conversión de visitas ({R['corr_van']['conv']:.2f}) y el volumen vendido ({R['corr_van']['paqf']:.2f}). Esto coincide con el tornado de la Figura 11 y con el precio de quiebre de S/ 104, y explica por qué H5 (preventa de S/ 140) es la hipótesis que debe probarse primero: el VAN sigue siendo positivo con precios de hasta S/ 105, pero solo si el consumidor acepta pagar más que la referencia de mercado.")
     D.figure('Tornado de sensibilidad del VAN', FIG + 'fig_tornado.png', note='Elaboración propia a partir del modelo financiero. Cada variable se mueve ±20% con las demás en su valor base.', width=5.8)
     D.p('Limitaciones. Las variables se simularon de forma independiente, aunque en la práctica algunas se mueven juntas (por ejemplo, un precio menor suele acompañarse de menor volumen), lo que podría ampliar el riesgo. Los rangos son juicios del equipo y deben actualizarse con los resultados del piloto. La simulación no modela el riesgo de un mal año climático ni el COK variable.')
 
     D.h('6.3.11 Recupero, TIR Modificada y Plan de Financiamiento', 2)
     D.p('La Tabla 71 completa los indicadores de la Tabla 25 con el recupero simple, la TIR modificada y la necesidad de financiamiento. Se calculan en la hoja Indicadores_Extra del Excel.')
     D.table('Indicadores adicionales de rentabilidad y financiamiento', ['Indicador', 'Valor'], [
-        ['Periodo de recupero simple', '2.40 años'], ['Periodo de recupero descontado', '2.86 años'],
-        ['TIR', '70.4%'], ['TIR modificada (financiamiento y reinversión al COK de 20.94%)', '53.9%'], ['Índice de rentabilidad', '1.09'],
-        ['Aporte inicial de los socios (año 0)', 'S/ 285,509'],
-        ['Necesidad máxima acumulada de caja (valle del año 1)', 'S/ 417,306'],
-        ['Aporte total recomendado con 20% de colchón', 'S/ 500,767'],
-        ['Aporte por socio con cuatro socios', 'S/ 125,192'],
+        ['Periodo de recupero simple', '1.48 años'], ['Periodo de recupero descontado', '1.74 años'],
+        ['TIR', '128.8%'], ['TIR modificada (financiamiento y reinversión al COK de 20.94%)', '85.9%'], ['Índice de rentabilidad', '1.20'], ['Flujo de caja libre del año 1', 'S/ 48,543'],
+        ['Aporte inicial de los socios (año 0)', 'S/ 271,700'],
+        ['Necesidad máxima acumulada de caja (año 0)', 'S/ 271,700'],
+        ['Aporte total recomendado con 20% de colchón', 'S/ 326,040'],
+        ['Aporte por socio con cuatro socios', 'S/ 81,510'],
     ], note='Elaboración propia a partir de la hoja FCL. El colchón de 20% es una propuesta del equipo.', widths=[4.5, 2.0])
-    D.p('La TIR modificada de 53.9% es menor que la TIR de 70.4% porque supone reinvertir los flujos al COK y no a la propia TIR; es una medida más prudente. El flujo del año 1 es de -S/ 131,797, de modo que la necesidad máxima de caja llega a S/ 417,306, S/ 131,797 más que el aporte inicial del año 0. El plan de financiamiento propone cubrirla con aporte de los socios en dos etapas.')
+    D.p('La TIR modificada de 85.9% es menor que la TIR de 128.8% porque supone reinvertir los flujos al COK y no a la propia TIR; es una medida más prudente. Con el precio de S/ 140, el flujo del año 1 es positivo (S/ 48,543) y la necesidad máxima de caja coincide con el aporte inicial del año 0, de S/ 271,700. El anticipo de los clientes por la preventa cubre el inventario, por lo que el modelo no requiere capital de trabajo adicional. El plan de financiamiento propone cubrir la inversión con aporte de los socios y agregar un colchón de 20%.')
     D.table('Plan de financiamiento por etapas', ['Etapa', 'Uso', 'Monto (S/)', 'Fuente'], [
         ['0. Piloto', 'Presupuesto del piloto (Tabla 32), menos S/ 30,500 de ventas de los 300 paquetes de prueba', '63,050 netos (93,550 brutos)', 'Aporte de los socios'],
-        ['1. Lanzamiento (año 0)', 'Inversión inicial, kits del año 1 y capital de trabajo', '285,509', 'Aporte de los socios, solo si se decide escalar'],
-        ['2. Cobertura del año 1', 'Déficit de caja del año 1', '131,797 (y 83,461 de colchón de 20% sobre la necesidad máxima)', 'Aporte de los socios o capital privado'],
-    ], note='Elaboración propia. El modelo no descuenta del año 0 los kits y el contenido del piloto; si se reutilizan, la necesidad de caja baja. El total con colchón (S/ 500,767) es el aporte a comprometer antes de escalar. El proyecto no usa deuda ni fondos del Estado.', widths=[1.3, 2.5, 1.5, 1.2])
+        ['1. Lanzamiento (año 0)', 'Inversión inicial y kits del año 1', '271,700', 'Aporte de los socios, solo si se decide escalar'],
+        ['2. Colchón de seguridad', 'Reserva de 20% sobre la necesidad máxima, por si la preventa se retrasa', '54,340', 'Aporte de los socios'],
+    ], note='Elaboración propia. El modelo no descuenta del año 0 los kits y el contenido del piloto; si se reutilizan, la necesidad de caja baja. El total con colchón (S/ 326,040) es el aporte a comprometer antes de escalar. El proyecto no usa deuda ni fondos del Estado.', widths=[1.3, 2.5, 1.5, 1.2])
 
     # ---------------- Capítulo VII ----------------
     D.pb(); D.h('Capítulo VII: Solución Sostenible (secciones nuevas)', 1)
@@ -168,13 +169,13 @@ def parte2(D):
     D.table('Ficha resumen de Cosecha Viva', ['Elemento', 'Contenido'], [
         ['Problema', 'Los pequeños productores de café de Chanchamayo obtienen ingresos bajos e inestables: producen cerca de 15 qq/ha, venden sin diferenciar a intermediarios y no llegan al consumidor urbano.'],
         ['Solución', 'Tecnificación con kit en comodato y asistencia técnica; compra del café selecto a S/ 20 por kg de pergamino (33% sobre el intermediario); venta por preventa a consumidores de Lima y la costa.'],
-        ['Producto', 'Paquete de cosecha de 1 kg a S/ 120 con videos por etapa, código QR por lote y visita opcional a la finca.'],
+        ['Producto', 'Paquete de cosecha de 1 kg a S/ 140 con videos por etapa, código QR por lote y visita opcional a la finca.'],
         ['Clientes', 'Consumidor de café de especialidad de Lima y la costa (351,000 personas interesadas); regalos corporativos; visitantes.'],
         ['Ingresos', 'Paquetes de cosecha y tours a la finca (S/ 180 por persona).'],
-        ['Inversión', 'S/ 156,200 de inversión inicial; aporte inicial de S/ 285,509; necesidad máxima de caja de S/ 417,306.'],
-        ['Rentabilidad (base)', 'VAN de S/ 922,276; TIR de 70.4%; recupero simple de 2.4 años; COK de 20.94%.'],
-        ['Riesgo (Monte Carlo)', f"VAN mediano de S/ {f0(R['van']['mediana'])}; probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%; el precio es la variable crítica (quiebre en S/ 104.40)."],
-        ['Impacto social', 'Ingreso neto del productor +64.7%; VAN social al 8% de S/ 5,004,740.'],
+        ['Inversión', 'S/ 156,200 de inversión inicial; aporte inicial de S/ 271,700; necesidad máxima de caja de S/ 271,700 (flujo del año 1 de +S/ 48,543).'],
+        ['Rentabilidad (base)', 'VAN de S/ 2,061,174; TIR de 128.8%; recupero simple de 1.5 años; COK de 20.94%.'],
+        ['Riesgo (Monte Carlo)', f"VAN mediano de S/ {f0(R['van']['mediana'])}; probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%; el precio sigue siendo la variable crítica (quiebre en S/ 104)."],
+        ['Impacto social', 'Ingreso neto del productor +64.7%; VAN social al 8% de S/ 7,370,976.'],
         ['Evidencia', 'H1 a H3 validadas en campo; H4 a H8 pendientes de un piloto de diez fincas y 300 paquetes de preventa.'],
         ['Decisión', 'Ejecutar el piloto de seis meses (S/ 93,550) y escalar solo si H5 y H6 se cumplen y el VAN recalculado es positivo.'],
     ], note='Elaboración propia a partir de la tesis y del modelo financiero v5.', widths=[1.4, 5.1])
@@ -190,7 +191,7 @@ def parte2(D):
         D.p(f'Señal de éxito: {exito}', italic=True, size=11)
     guion('I.1 Prueba de la página de preventa', 'H5 y H7', 'consumidores de café de 25 a 55 años que compran café al menos una vez al mes (5 a 8)',
           ['Encuentre cuánto cuesta el paquete y cuándo se entrega.', 'Elija el productor cuyo café quiere recibir.', 'Complete la compra hasta el pago, sin pagar.', 'Diga cómo pediría la devolución si algo sale mal.'],
-          ['¿Qué esperaba ver antes de pagar y no encontró?', '¿Qué le generó dudas sobre pagar por adelantado?', 'Del 1 al 5, ¿qué tan seguro se siente de que recibirá su café?', '¿Pagaría S/ 120? Si dice que no, ¿qué precio le parecería justo?', '¿Qué le hizo falta para decidir?'],
+          ['¿Qué esperaba ver antes de pagar y no encontró?', '¿Qué le generó dudas sobre pagar por adelantado?', 'Del 1 al 5, ¿qué tan seguro se siente de que recibirá su café?', '¿Pagaría S/ 140? Si dice que no, ¿qué precio le parecería justo?', '¿Qué le hizo falta para decidir?'],
           'Al menos 70% completa la compra sin ayuda y el promedio de seguridad es de 4 o más.')
     guion('I.2 Prueba del código QR y de los videos', 'H7', 'los mismos consumidores y 3 baristas o compradores frecuentes',
           ['Escanee el código de la bolsa de muestra.', 'Encuentre la finca, la fecha de tueste y el nombre del productor.', 'Mire un video de una etapa y diga qué entendió.'],
@@ -211,7 +212,7 @@ def parte2(D):
     D.p(f"Español: «Una simulación Monte Carlo de 10,000 iteraciones da un VAN mediano de S/ {f0(R['van']['mediana'])} y una probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%, con la relación LTV/CAC por debajo de 3 en solo {R['p_lc_menor3']*100:.1f}% de los casos.»")
     D.p(f"English: \"A 10,000-iteration Monte Carlo simulation yields a median NPV of S/ {f0(R['van']['mediana'])} and a {R['p_van_neg']*100:.1f}% probability of a negative NPV, with an LTV/CAC ratio below 3 in only {R['p_lc_menor3']*100:.1f}% of cases.\"")
     D.h('Conclusiones (agregar al cuarto párrafo)', 3)
-    D.p(f"La simulación Monte Carlo confirma que el riesgo se concentra en el precio y en la escala: el VAN tiene una mediana de S/ {f0(R['van']['mediana'])}, un percentil 5 de S/ {f0(R['van']['p5'])} y una probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%. El aporte de los socios debe prever una necesidad máxima de caja de S/ 417,306 (S/ 500,767 con un colchón de 20%).")
+    D.p(f"La simulación Monte Carlo confirma que el riesgo se concentra en el precio y en la escala: el VAN tiene una mediana de S/ {f0(R['van']['mediana'])}, un percentil 5 de S/ {f0(R['van']['p5'])} y una probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%. El aporte de los socios debe prever una necesidad máxima de caja de S/ 271,700 (S/ 326,040 con un colchón de 20%); con el precio de S/ 140 el flujo del año 1 es positivo.")
     D.h('Recomendaciones (agregar)', 3)
     D.p('Presupuestar el costo de las visitas calificadas del piloto con el costo del modelo (S/ 2.40 por visita) o medirlo antes de proyectar el año 1; priorizar las pruebas H5, H6, H8, H4 y H7, en ese orden; y actualizar la simulación Monte Carlo con los resultados del piloto.')
     D.h('Referencias nuevas', 3)

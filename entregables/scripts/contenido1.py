@@ -25,7 +25,7 @@ def parte1(D):
     D.p('El entorno se analizó con el modelo PESTEL, que ordena los factores políticos, económicos, sociales, tecnológicos, ecológicos y legales según su efecto sobre Cosecha Viva. La Tabla 43 presenta el resultado y la respuesta del modelo a cada factor.')
     D.table('Análisis PESTEL de Cosecha Viva', ['Factor', 'Situación', 'Efecto sobre el modelo', 'Respuesta de Cosecha Viva'], [
         ['Político', 'El riesgo país bajó a 118 puntos básicos (Andina, 2026). El modelo no usa fondos ni programas del Estado.', 'Bajo: no depende de subsidios ni de licitaciones.', 'Se financia con aporte de los socios y se mantiene el riesgo país dentro del COK.'],
-        ['Económico', 'Precios históricos del café (Agraria.pe, 2026); inflación esperada de 2.25% (BCRP, 2026); consumo interno de 1.7 kg por persona (Agraria.pe, 2025).', 'Alto: un alza del precio en chacra reduce la prima de 33% y el margen de S/ 39.13 por paquete.', 'Precio pactado con prima sobre el precio de chacra del mes y piso garantizado; simulación del precio del café en el análisis de riesgo.'],
+        ['Económico', 'Precios históricos del café (Agraria.pe, 2026); inflación esperada de 2.25% (BCRP, 2026); consumo interno de 1.7 kg por persona (Agraria.pe, 2025).', 'Alto: un alza del precio en chacra reduce la prima de 33% y el margen de S/ 55.24 por paquete.', 'Precio pactado con prima sobre el precio de chacra del mes y piso garantizado; simulación del precio del café en el análisis de riesgo.'],
         ['Social', 'El consumidor valora el origen y que su pago beneficie al productor (92% en el trabajo de campo). El productor vende sin diferenciar a intermediarios.', 'Favorable: la propuesta responde a un valor de los dos usuarios.', 'Videos por etapa, código QR por lote y compromiso de compra con prima.'],
         ['Tecnológico', 'Pagos digitales, comercio electrónico, video y códigos QR son de uso común; el fertirriego y el secado solar son prácticas conocidas.', 'Favorable: la tecnología necesaria ya existe y es de bajo costo.', 'Plataforma de preventa y trazabilidad (S/ 45,000 con imprevistos S/ 49,500); kit de tecnificación en comodato.'],
         ['Ecológico', 'Roya, broca y lluvia en la época de secado afectan el volumen y la calidad (Tabla 8).', 'Medio: un mal año reduce el café selecto disponible.', 'Fincas en distintas altitudes, manejo integrado de plagas, secado solar y red de productores de respaldo.'],
@@ -74,7 +74,7 @@ def parte1(D):
     D.p('El mapa de la Tabla 8 describe solo al productor. La Tabla 48 presenta el recorrido del consumidor con Cosecha Viva, de modo que cada etapa tenga una oportunidad de mejora y una métrica que se mide en el piloto.')
     D.table('Mapa de experiencia del consumidor con Cosecha Viva', ['Etapa', 'Qué hace', 'Qué siente', 'Punto de dolor', 'Oportunidad', 'Métrica'], [
         ['Descubre', 'Ve un video o una recomendación y entra a la página.', 'Curiosidad', 'No sabe si el origen es real.', 'Video de la finca y ficha del productor.', 'Visitas calificadas'],
-        ['Decide', 'Compara el paquete de S/ 120 con otros cafés.', 'Duda', 'Pagar por adelantado sin ver el producto.', 'Garantía de entrega, fecha de tueste y devolución.', 'Conversión (meta 3%)'],
+        ['Decide', 'Compara el paquete de S/ 140 con otros cafés.', 'Duda', 'Pagar por adelantado sin ver el producto.', 'Garantía de entrega, fecha de tueste y devolución.', 'Conversión (meta 3%)'],
         ['Compra', 'Elige productor, paga con tarjeta o billetera digital.', 'Expectativa', 'Pago complicado o sin comprobante claro.', 'Pago en pocos pasos y confirmación inmediata.', 'Abandono del pago'],
         ['Espera', 'Recibe videos por etapa del café.', 'Conexión', 'Que no haya novedades durante meses.', 'Un video por etapa y aviso de cada avance.', 'Apertura de mensajes'],
         ['Recibe', 'Abre la caja y escanea el código QR.', 'Emoción', 'Retrasos o café fuera de punto.', 'Entrega en fecha y tueste reciente.', 'Entregas a tiempo; satisfacción'],
@@ -117,14 +117,14 @@ def parte1(D):
     D.h('5.5.1 Objetivos', 3)
     D.bullets(['Conseguir 300 paquetes de preventa con pago real en el piloto, con conversión mínima de 3% (H5).',
                'Alcanzar 12,000 paquetes y 2,000 clientes activos en el año 1, y 66,000 paquetes y 11,000 clientes en el año 5.',
-               'Mantener un CAC menor o igual que S/ 80 y una relación LTV/CAC mayor que 3 (el modelo base da 6.96).',
+               'Mantener un CAC menor o igual que S/ 80 y una relación LTV/CAC mayor que 3 (el modelo base da 9.91).',
                'Lograr 60% de recompra anual y que 5% de los clientes reserve un tour (H8).'])
     D.h('5.5.2 Segmentación, objetivo y posicionamiento', 3)
     D.p('El segmento objetivo es el consumidor de café de especialidad de Lima y la costa, de 25 a 55 años, que compra café al menos una vez al mes (sección 2.5). El posicionamiento es: "el café que usted financia antes de la cosecha y sigue hasta su taza, con un productor que gana más". La promesa tiene tres pruebas: videos por etapa, código QR por lote y visita opcional a la finca.')
     D.h('5.5.3 Mezcla de marketing', 3)
     D.table('Mezcla de marketing de Cosecha Viva (7P)', ['Elemento', 'Decisión'], [
         ['Producto', 'Paquete de cosecha de 1 kg (cuatro bolsas de 250 g) con código QR, videos por etapa y ficha del productor.'],
-        ['Precio', 'S/ 120 con IGV (S/ 101.69 sin IGV). Prueba de S/ 110 si no se alcanza la conversión. El VAN se anula con S/ 104.40.'],
+        ['Precio', 'S/ 140 con IGV (S/ 118.64 sin IGV), 17% más que la propuesta inicial de S/ 120 y cerca de la referencia de S/ 130 por kg del mercado digital. Pruebas con S/ 140 y S/ 130, con S/ 120 como precio de reserva. El VAN se anula con un precio de S/ 104.'],
         ['Plaza', 'Página propia de preventa con envío a domicilio en Lima y la costa; ventas directas para regalos corporativos.'],
         ['Promoción', 'Pauta digital, contenido de cosecha, referidos, alianzas con cafeterías y hoteles, y campañas por fechas.'],
         ['Personas', 'Ejecutivo de ventas y atención, comunicador audiovisual y técnicos que muestran la finca.'],
@@ -136,9 +136,9 @@ def parte1(D):
     D.table('Presupuesto de marketing según el modelo (S/)', ['Concepto', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'], [
         ['Clientes nuevos a captar', '2,000', '3,133', '4,067', '5,000', '5,600'],
         ['Inversión en adquisición (CAC de S/ 80)', '160,000', '250,640', '325,360', '400,000', '448,000'],
-        ['Marketing de retención y contenido (2%)', '24,407', '52,881', '81,356', '109,831', '134,237'],
-        ['Total marketing', '184,407', '303,521', '406,716', '509,831', '582,237'],
-        ['Marketing / ventas netas', '14.7%', '11.1%', '9.7%', '9.0%', '8.4%'],
+        ['Marketing de retención y contenido (2%)', '28,475', '61,695', '94,915', '128,136', '156,610'],
+        ['Total marketing', '188,475', '312,335', '420,275', '528,136', '604,610'],
+        ['Marketing / ventas netas', '12.9%', '9.9%', '8.6%', '8.0%', '7.5%'],
     ], note='Adaptado del modelo financiero (hojas Demanda, EERR y Plan_Marketing).', widths=[2.6, 0.8, 0.8, 0.8, 0.8, 0.8])
     D.table('Distribución de la inversión en adquisición por canal (propuesta del equipo)', ['Canal', '% del total', 'Año 1 (S/)', 'Año 5 (S/)', 'Indicador'], [
         ['Pauta digital (Meta y Google)', '45%', '72,000', '201,600', 'Costo por visita y conversión'],
@@ -149,7 +149,7 @@ def parte1(D):
     ], note='Elaboración propia a partir de la hoja Plan_Marketing del modelo.', widths=[2.4, 0.8, 0.9, 0.9, 1.5])
     D.table('Calendario de campañas', ['Periodo', 'Campaña', 'Acción principal'], [
         ['Meses 1 a 2', 'Preparación', 'Acuerdos con productores; fichas y videos de tres productores; página de preventa.'],
-        ['Meses 3 a 4', 'Prueba de preventa (H5)', 'Pauta digital para unas 10,000 visitas calificadas; prueba de precio de S/ 120 y S/ 110.'],
+        ['Meses 3 a 4', 'Prueba de preventa (H5)', 'Pauta digital para unas 10,000 visitas calificadas; prueba de precio de S/ 140 y S/ 130.'],
         ['Meses 5 a 9', 'Campaña de preventa del primer año', 'Preventa con pago anticipado; videos de la cosecha selectiva; reservas de tours.'],
         ['Meses 7 a 12', 'Entregas y recompra', 'Envío del café tostado, medición de satisfacción y oferta de recompra.'],
         ['Fechas de regalo', 'Regalos', 'Ofertas para fechas de regalo, como el Día de la Madre y Navidad; confirmar el calendario con los datos del piloto.'],
