@@ -21,6 +21,13 @@ def build(pages=None):
     for p in doc.paragraphs:
         if p.text.startswith('La viabilidad se evalúa con un flujo'):
             for r in p.runs: r.text = r.text.replace('con la recuperación del capital de trabajo y el valor de rescate de los activos', 'con el valor de rescate de los activos (el capital de trabajo que se recupera es nulo en el caso base)')
+    for p in doc.paragraphs:
+        for r in p.runs:
+            t = r.text
+            t = t.replace('Para delimitar el problema se utilizó el Lienzo Blanco de Relevancia, que ordena los factores según su peso en el problema.', 'Para delimitar el problema se utilizó una matriz de relevancia, que ordena los factores según su peso en el problema.')
+            t = t.replace('Ambos momentos coinciden con el núcleo crítico del Lienzo Blanco de Relevancia.', 'Ambos momentos coinciden con el núcleo crítico de la matriz de relevancia del problema.')
+            if t.strip() == 'Lienzo Blanco de Relevancia del Problema': t = 'Matriz de Relevancia de los Factores del Problema'
+            if t != r.text: r.text = t
     F = FDoc(doc); parte1(F); parte2(F)
     FIG = '../figuras/'
     def fig(key, texto, titulo, archivo):
@@ -33,12 +40,12 @@ def build(pages=None):
     F.table('Flujo de Caja Libre (FCL) y Flujo de Caja del Accionista (FCA) (S/)', ['Concepto', 'Año 0', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
             [fila('FCL', 17), fila('(+) Préstamo', 18), fila('(-) Amortización', 20), fila('(-) Intereses', 21), fila('(+) Escudo fiscal', 22), fila('FCA', 23)],
             note='Adaptado del modelo financiero (hoja FCA_WACC). El FCL se descuenta con el WACC y el FCA con el COK; sin préstamo, ambos son iguales y el WACC es igual al COK.', widths=[1.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9])
-    fig('l1', 'La Figura {n} presenta el lienzo blanco de relevancia: lo que resulta interesante de la solución, las críticas constructivas, las nuevas preguntas y las nuevas ideas.', 'Lienzo blanco de relevancia de Cosecha Viva', 'lienzo_1_blanco_relevancia.png')
+    fig('l45', 'Con las respuestas de la prueba del PMV de la primera versión se construyó el lienzo blanco de relevancia, que ordena lo que resultó interesante, las críticas constructivas, las nuevas preguntas y las nuevas ideas (Figura {n}). Las nuevas preguntas son las hipótesis H5 a H8 del capítulo VI y las nuevas ideas dieron origen a la segunda versión del PMV.', 'Lienzo blanco de relevancia de la prueba del PMV de la primera versión', 'lienzo_1_blanco_relevancia.png')
     fig('l1', 'La Figura {n} delimita el problema con el lienzo ¿Qué es? y ¿Qué no es?, que separa lo que es el problema de lo que no es.', 'Lienzo ¿Qué es? y ¿Qué no es? del problema', 'lienzo_2_que_es_que_no_es.png')
     fig('l5', 'La Figura {n} resume al usuario-beneficiario en la matriz de meta-usuario de Rosa, una productora de café de Chanchamayo.', 'Matriz de meta-usuario: Rosa, productora de café', 'lienzo_4_meta_usuario.png')
     fig('l8', 'La Figura {n} presenta el storyboard del productor en la situación actual, con sus pensamientos, emociones y la curva antes, durante y después.', 'Storyboard del productor en la situación actual', 'lienzo_3_storyboard_productor.png')
     fig('c3b', 'La Figura {n} muestra el storyboard del consumidor con Cosecha Viva, con una curva emocional que sube a medida que ve el origen de su café.', 'Storyboard del consumidor con Cosecha Viva', 'lienzo_5_storyboard_consumidor.png')
-    fig('l9', 'La Figura {n} reproduce el lienzo 6x6 con las preguntas generadoras, sus ideas y la idea elegida para cada una.', 'Lienzo 6x6: preguntas generadoras e ideas', 'lienzo_6_lienzo_6x6.png')
+    fig('l9', 'La Figura {n} reproduce el lienzo 6x6: seis preguntas generadoras, seis ideas para cada una y la idea elegida en la última fila.', 'Lienzo 6x6: preguntas generadoras e ideas', 'lienzo_6_lienzo_6x6.png')
     fig('l10', 'La Figura {n} ubica las alternativas en la matriz costo-impacto; la alternativa D es la elegida.', 'Matriz costo-impacto de las alternativas', 'lienzo_7_costo_impacto.png')
     fig('l12', 'La Figura {n} presenta el lienzo de la propuesta de valor, con el mapa de valor de Cosecha Viva frente al perfil del usuario.', 'Lienzo de la propuesta de valor', 'lienzo_8_propuesta_valor.png')
     anchors = {
@@ -54,6 +61,7 @@ def build(pages=None):
         'c8': heading(doc, '8.2 Conclusiones', 'Heading 2')._p,
         'fca': heading(doc, '6.3.7 Indicadores de Rentabilidad y Análisis Costo-Beneficio', 'Heading 3')._p,
         'l1': find_par(doc, 'El lienzo muestra que actuar solo')._p,
+        'l45': heading(doc, '4.5.3 Segunda Versión del PMV', 'Heading 3')._p,
         'l5': find_par(doc, 'Los resultados de campo orientan el perfil')._p,
         'l8': find_par(doc, 'El mapa muestra que los momentos críticos')._p,
         'l9': find_par(doc, 'Las ideas se agruparon en cuatro alternativas')._p,

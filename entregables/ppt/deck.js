@@ -145,7 +145,6 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
   }
 
   // =============== 4. LIENZOS BLANCO DE RELEVANCIA Y QUÉ ES / QUÉ NO ES ===============
-  await imageSlide("lz1-1.png", "Lienzo blanco de relevancia con la plantilla de la consultora: cosas interesantes de la solución, críticas constructivas (riesgos), nuevas preguntas (las hipótesis del piloto) y nuevas ideas (tours, regalos corporativos, réplica en otras zonas).");
   await imageSlide("lz2-2.png", "Lienzo ¿Qué es? y ¿Qué no es? del problema: es baja productividad, venta sin diferenciar, falta de capital y de comprador seguro, y migración de jóvenes; no es solo un problema de precio ni de productividad, ni lo resuelve el turismo cafetalero ni depende del Estado.");
 
   // =============== 5. LIENZO META-USUARIO ===============
@@ -217,7 +216,8 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     s.addNotes("La evidencia de campo respalda tres hipótesis: H1, el consumidor valora que su pago beneficie al productor (92%); H2, paga S/ 100 o más por una experiencia (76%); y H3, el productor acepta visitas (85%). Son respuestas declaradas, de una muestra pequeña y por conveniencia, de modo que no sustituyen la prueba de compra real.");
   }
 
-  await imageSlide("lz6-6.png", "Lienzo 6x6: seis preguntas generadoras, una por necesidad, con tres ideas de solución cada una y la idea elegida en la fila final.");
+  await imageSlide("lz1-1.png", "Lienzo blanco de relevancia con la plantilla de la consultora. Se construye después de probar el prototipo con los usuarios (PMV 1: 20 productores y 25 turistas potenciales): cosas interesantes (88% se interesa, 92% valora que el pago llegue al productor, 85% de productores acepta visitas), críticas constructivas (el turismo ya existe y no sube el rendimiento), nuevas preguntas (las hipótesis H5 a H8) y nuevas ideas (vender el café, preventa, tecnificar, turismo como puerta de entrada).");
+  await imageSlide("lz6-6.png", "Lienzo 6x6: seis preguntas generadoras, una por necesidad, con seis ideas de solución cada una y la idea elegida en la fila final.");
   await imageSlide("lz7-7.png", "Matriz costo-impacto de las cuatro alternativas. La alternativa D (tecnificación, compra asegurada, preventa con trazabilidad y tour) es la elegida porque actúa sobre las dos causas del núcleo crítico y se financia con el dinero del cliente.");
 
   // =============== 11. LA SOLUCIÓN: 4 PALANCAS ===============

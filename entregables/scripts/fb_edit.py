@@ -94,6 +94,20 @@ def actualizar_cifras(doc):
             p.runs[0].text = 'Beneficios Sociales, Costos Sociales y VAN Social al 8% (S/)'
         if p.text.strip() == 'Nota. Adaptado del modelo financiero (hoja Productor).':
             for r in p.runs[1:]: r.text = ' Adaptado del modelo financiero (hojas Beneficios Sociales, Costos Sociales y VAN Social). VAN social = suma de los valores presentes del flujo social; no incluye flujo de caja libre ni inversión.'
+    # ---- Tabla 9 (idx 8): seis ideas por cada pregunta generadora (lienzo 6x6)
+    seis = {'¿Cómo elevar': 'Asistencia técnica gratuita; kit de fertirriego en comodato; crédito en insumos; plan de nutrición por parcela; compra grupal de insumos; escuelas de campo entre productores',
+            '¿Cómo asegurar': 'Compromiso de compra con prima; venta a cooperativas; subasta de microlotes; contrato con precio piso; alianza con tostadurías de Lima; sello de calidad por lote',
+            '¿Cómo financiar': 'Preventa al consumidor; adelanto de la empresa; fondo rotatorio; suscripción anual de café; microcrédito con aliado financiero; adopta una finca (padrinazgo)',
+            '¿Cómo dar': 'Videos por etapa; código QR por lote; certificación privada; ficha del productor con foto y nombre; fecha de tueste en la bolsa; transmisión en vivo de la cosecha',
+            '¿Cómo acercar': 'Tour en la cosecha; visitas virtuales; encuentro con el productor; cata en la finca; día de cosecha para familias; alojamiento rural con el productor',
+            '¿Cómo generar': 'Pago por visitante; venta de subproductos; talleres de catación; venta de plantones; almuerzo gastronómico en la finca; pago por guiar recorridos'}
+    for j, rw in enumerate(T[8].rows):
+        for k, v in seis.items():
+            if rw.cells[0].text.startswith(k): setc(T[8], j, 1, v)
+    for p in doc.paragraphs:
+        for r in p.runs:
+            if 'y para cada una se plantearon ideas de solución. La Tabla 9 resume las preguntas y las ideas más prometedoras.' in r.text:
+                r.text = r.text.replace('y para cada una se plantearon ideas de solución. La Tabla 9 resume las preguntas y las ideas más prometedoras.', 'y para cada una se plantearon seis ideas de solución, de modo que el lienzo reúne 6 preguntas por 6 ideas. La Tabla 9 resume las preguntas y sus seis ideas.')
     # ---- Tabla 29 (idx 28): solo los ODS declarados (1, 2 y 8), cada uno con su beneficio social
     for rw in list(T[28].rows):
         if rw.cells[0].text.startswith(('ODS 12', 'ODS 13')): T[28]._tbl.remove(rw._tr)

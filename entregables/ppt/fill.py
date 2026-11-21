@@ -67,26 +67,27 @@ def swap_pic(slide, sid, blob, keep_ratio=True, scale=0.82):
 def icons(slide, ids, names):
     for i, (sid, n) in enumerate(zip(ids, names)): swap_pic(slide, sid, tile(n, COLORS[i % len(COLORS)]))
 
-# =============== 1. BLANCO DE RELEVANCIA ===============
+# =============== 1. BLANCO DE RELEVANCIA (prueba del PMV 1) ===============
 s = S[1]
 for sid, t in {
-    337: 'Compra asegurada con prima de 33%',
-    338: 'Videos por etapa y QR por lote para ver el origen',
-    339: 'La preventa financia la tecnificación del productor',
-    350: 'Kit de fertirriego y secado en comodato, sin costo inicial',
-    330: 'El precio de S/ 140 aún no se prueba con compra real',
-    331: 'Retención y conversión sin evidencia propia',
-    332: 'El productor podría vender a otro comprador',
-    333: 'Un mal año por clima o plagas reduce el café selecto',
-    334: '¿Pagará el consumidor de Lima S/ 140 por adelantado?',
-    335: '¿Llegarán las fincas piloto a 22 qq/ha?',
-    345: '¿Firmarán 15 de 30 productores el acuerdo?',
-    348: '¿Recomprará 60% de los clientes cada año?',
-    341: 'Tours a la finca como segundo ingreso',
-    343: 'Paquetes de regalo y ventas corporativas',
-    347: 'Replicar en Satipo, Villa Rica y otros cultivos',
-    349: 'Alianzas con tostadurías y hoteles de la zona',
+    337: '88% se interesa en una experiencia cafetalera',
+    338: '92% valora que su pago beneficie al productor',
+    339: '85% de productores acepta recibir visitantes',
+    350: '84% valora la interacción con los productores',
+    330: 'La visita ocasional no da el mayor valor que espera 80%',
+    331: 'El turismo cafetalero ya existe en la zona',
+    332: 'No sube el rendimiento del productor',
+    333: 'Muestra pequeña, sin compra real',
+    334: '¿Pagará el consumidor de Lima por adelantado?',
+    335: '¿Firmará el productor el compromiso de venta?',
+    345: '¿Valorará la trazabilidad con videos y QR?',
+    348: '¿Recomprará y visitará la finca?',
+    341: 'Vender el café, no la visita: 64% quiere comprarlo',
+    343: 'Preventa con pago real al consumidor de Lima',
+    347: 'Tecnificar al productor y comprar con prima',
+    349: 'El turismo como puerta de entrada y segundo ingreso',
 }.items(): set_text(shp(s, sid), t)
+set_text(shp(s, 318), 'BLANCO DE RELEVANCIA: PRUEBA DEL PMV 1')
 
 # =============== 2. ¿QUÉ ES? / ¿QUÉ NO ES? ===============
 s = S[2]
@@ -190,17 +191,19 @@ set_cell(tbl.cell(1, 3), 'El productor necesita producir más y mejor con apoyo 
 set_cell(tbl.cell(3, 0), 'A partir de la necesidad se plantearon 6 preguntas generadoras, una por necesidad')
 qs = ['¿Cómo elevar el rendimiento del productor sin que tenga capital?', '¿Cómo asegurar un comprador que pague por calidad?', '¿Cómo financiar la campaña antes de la cosecha?',
       '¿Cómo dar al consumidor confianza en el origen?', '¿Cómo acercar al consumidor a la finca?', '¿Cómo generar ingresos complementarios al productor?']
-ideas = [['Asistencia técnica gratuita', 'Compromiso de compra con prima', 'Preventa al consumidor', 'Videos por etapa', 'Tour en la cosecha', 'Pago por visitante'],
-         ['Kit de fertirriego en comodato', 'Venta a cooperativas', 'Adelanto de la empresa', 'Código QR por lote', 'Visitas virtuales', 'Venta de subproductos'],
-         ['Crédito en insumos', 'Subasta de microlotes', 'Fondo rotatorio', 'Certificación privada', 'Encuentro con el productor', 'Talleres de catación']]
+IDEAS6 = [
+    ['Asistencia técnica gratuita', 'Kit de fertirriego en comodato', 'Crédito en insumos', 'Plan de nutrición por parcela', 'Compra grupal de insumos', 'Escuelas de campo entre productores'],
+    ['Compromiso de compra con prima', 'Venta a cooperativas', 'Subasta de microlotes', 'Contrato con precio piso', 'Alianza con tostadurías de Lima', 'Sello de calidad por lote'],
+    ['Preventa al consumidor', 'Adelanto de la empresa', 'Fondo rotatorio', 'Suscripción anual de café', 'Microcrédito con aliado financiero', 'Adopta una finca (padrinazgo)'],
+    ['Videos por etapa', 'Código QR por lote', 'Certificación privada', 'Ficha del productor con foto y nombre', 'Fecha de tueste en la bolsa', 'Transmisión en vivo de la cosecha'],
+    ['Tour en la cosecha', 'Visitas virtuales', 'Encuentro con el productor', 'Cata en la finca', 'Día de cosecha para familias', 'Alojamiento rural con el productor'],
+    ['Pago por visitante', 'Venta de subproductos', 'Talleres de catación', 'Venta de plantones', 'Almuerzo gastronómico en la finca', 'Pago por guiar recorridos'],
+]
 sel = ['Tecnificar con kit en comodato y asistencia técnica', 'Compra asegurada con prima de 33%', 'Preventa que financia la campaña', 'Videos por etapa y QR por lote', 'Tour guiado a la finca en la cosecha', 'Pago por visitante al productor']
 for j in range(6):
     set_cell(tbl.cell(4, j), qs[j])
-    for k in range(3): set_cell(tbl.cell(5 + k, j), ideas[k][j])
+    for k in range(6): set_cell(tbl.cell(5 + k, j), IDEAS6[j][k])
     set_cell(tbl.cell(11, j), sel[j])
-# quitar filas sobrantes (8 a 10)
-trs = tbl._tbl.findall(qn('a:tr'))
-for i in (8, 9, 10): tbl._tbl.remove(trs[i])
 
 # =============== 7. MATRIZ COSTO / IMPACTO ===============
 s = S[7]
@@ -230,9 +233,9 @@ swap_pic(s, 3, tile('FaUsers', '2D6A8F', 400), scale=0.7)
 # slide 6: más alto y con letra legible
 for i, r in enumerate(tbl.rows):
     if i >= 4:
-        r.height = Emu(int(0.62 * 914400)) if i != 4 else Emu(int(0.6 * 914400))
+        r.height = Emu(int(0.5 * 914400)) if i != 4 else Emu(int(0.6 * 914400))
         for c in r.cells:
             for para in c.text_frame.paragraphs:
-                for run in para.runs: run.font.size = Pt(11)
+                for run in para.runs: run.font.size = Pt(10.5)
 p.save(OUT)
 print('guardado')
