@@ -1,0 +1,632 @@
+205 H1 Capítulo I: Definición del Problema
+206 H2 1.1 Contexto en el que se Determina el Problema
+207   p El café es uno de los principales productos agrí
+208   p La provincia de Chanchamayo, en la región Junín,
+209   p Al mismo tiempo, el consumo interno de café crec
+210   p Chanchamayo también es un destino turístico de l
+211 H2 1.2 Presentación del Problema a Resolver
+212   p Los pequeños productores de café de la provincia
+213   p Para delimitar el problema se utilizó una matriz
+214   CAP Tabla 1
+215   p Matriz de Relevancia de los Factores del Problem
+216   [TABLA 5 x 2 ] Nivel de relevancia
+217   p Nota. Adaptado de Agraria.pe (2019b, 2026), Gest
+218   p La Figura 1 delimita el problema con el lienzo ¿
+219   CAP Figura 1
+220   p Lienzo ¿Qué es? y ¿Qué no es? del problema
+221   [IMG]
+223   p El lienzo muestra que actuar solo sobre el preci
+224 H2 1.3 Sustento de la Complejidad y Relevancia del Problema
+225 H3 1.3.1 Complejidad del Problema
+226   p El problema es complejo porque sus causas están 
+227   CAP Tabla 2
+228   p Causas y Consecuencias del Problema
+229   [TABLA 6 x 3 ] Ámbito
+230   p Nota. Adaptado de Agraria.pe (2019b, 2026) y Ges
+231   p La brecha de productividad está documentada: el 
+232   p Para comprobar que estas cifras representan a lo
+233 H3 1.3.2 Relevancia del Problema
+234   p El problema es relevante por su escala y por su 
+235   p Además, el problema se repite en otras zonas caf
+236 H1 Capítulo II: Análisis del Mercado
+237 H2 2.1 Descripción del Mercado o Industria
+238   p La solución opera en un mercado de dos lados. De
+239   p En el mercado interno, el consumo de café en el 
+240   CAP Tabla 3
+241   p Estimación del Tamaño de Mercado
+242   [TABLA 4 x 3 ] Nivel de mercado
+243   p Nota. Adaptado de INEI (2026), Agraria.pe (2025)
+244   p El mercado objetivo del quinto año equivale a me
+245   p En precios, el café de especialidad de Chanchama
+246 H2 2.2 Análisis Competitivo Detallado
+247   p Los competidores provienen de dos sectores: el t
+248   CAP Tabla 4
+249   p Análisis de Competidores
+250   [TABLA 7 x 4 ] Competidor
+251   p Nota. Adaptado de Civitatis (2026), Living in Pe
+252   p El análisis de las cinco fuerzas complementa la 
+253   p En conclusión, el espacio que ocupa la propuesta
+254 H2 2.3 Análisis del Entorno
+255   p El entorno se analizó con el modelo PESTEL, que 
+256   CAP Tabla 5
+257   p Análisis PESTEL de Cosecha Viva
+258   [TABLA 7 x 4 ] Factor
+260 H2 2.4 Análisis de las Cinco Fuerzas Competitivas
+261   p La sección 2.2 ya incluye un párrafo breve sobre
+262   CAP Tabla 6
+263   p Cinco fuerzas competitivas
+264   [TABLA 6 x 4 ] Fuerza
+265   p .
+266 H2 2.5 Segmentación y Mercado Objetivo
+267   p El modelo atiende a cuatro segmentos. La Tabla 7
+269   CAP Tabla 7
+270   p Segmentos del modelo Cosecha Viva
+271   [TABLA 5 x 4 ] Segmento
+273 H1 Capítulo III: Investigación del Usuario
+274   p La investigación del usuario se realizó con un t
+275   p Esta base tiene dos limitaciones que se reconoce
+276 H2 3.1 Perfil del Usuario
+277   p El modelo tiene dos usuarios. El usuario-benefic
+278   CAP Tabla 8
+279   p Lienzo del Meta-Usuario
+280   [TABLA 7 x 3 ] Dimensión
+281   p Nota. Adaptado del trabajo de campo del equipo (
+282   p La Figura 2 resume al usuario-beneficiario en la
+283   CAP Figura 2
+284   p Matriz de meta-usuario: Rosa, productora de café
+285   [IMG]
+287   p Los resultados de campo orientan el perfil. Entr
+288   p La Tabla 9 presenta resultados de la Encuesta a 
+289   CAP Tabla 9
+290   p Resultados de la Encuesta a Productores (n = 20)
+291   [TABLA 8 x 3 ] Pregunta evaluada
+292   p Nota. Adaptado de los resultados del trabajo de 
+293   p La Tabla 10 presenta resultados de la Encuesta a
+294   CAP Tabla 10
+295   p Resultados de la Encuesta a Turistas Potenciales
+296   [TABLA 8 x 3 ] Pregunta evaluada
+297   p Nota. Adaptado de los resultados del trabajo de 
+298   p Los resultados muestran que el interés del produ
+299 H3 3.1.1 Mapas de Empatía
+300   p Los mapas de empatía organizan lo que cada usuar
+301   p La Tabla 11 presenta mapa de empatía del product
+302   CAP Tabla 11
+303   p Mapa de empatía del productor de café
+304   [TABLA 7 x 2 ] Dimensión
+305   p Nota. Adaptado del trabajo de campo del equipo (
+306   p La Tabla 12 presenta mapa de empatía del consumi
+307   CAP Tabla 12
+308   p Mapa de empatía del consumidor de café de especi
+309   [TABLA 7 x 2 ] Dimensión
+310   p Nota. Pendiente de validar con la encuesta del A
+311 H2 3.2 Mapa de Experiencia de Usuario
+312   p El mapa de experiencia describe la campaña actua
+313   CAP Tabla 13
+314   p Mapa de Experiencia del Productor en la Situació
+315   [TABLA 7 x 4 ] Etapa
+316   p Nota. Adaptado del trabajo de campo del equipo y
+317   p La Figura 3 presenta el storyboard del productor
+318   CAP Figura 3
+319   p Storyboard del productor en la situación actual
+320   [IMG]
+322   p El mapa muestra que los momentos críticos son la
+323 H3 3.2.1 Mapa de Experiencia del Consumidor
+324   p El mapa de la Tabla 13 describe solo al producto
+326   CAP Tabla 14
+327   p Mapa de experiencia del consumidor con Cosecha V
+328   [TABLA 8 x 6 ] Etapa
+329   p Nota. Los puntos de dolor son hipótesis; se conf
+330   p La Figura 4 muestra el storyboard del consumidor
+331   CAP Figura 4
+332   p Storyboard del consumidor con Cosecha Viva
+333   [IMG]
+335 H2 3.3 Identificación de la Necesidad
+336   p A partir del perfil y del mapa de experiencia se
+337   p Ambas necesidades se encuentran en un punto comú
+338 H1 Capítulo IV: Diseño del Producto o Servicio
+339 H2 4.1 Concepción del Producto o Servicio
+340   p La concepción partió de las necesidades del capí
+341   CAP Tabla 15
+342   p Lienzo 6x6: Preguntas Generadoras e Ideas
+343   [TABLA 7 x 2 ] Pregunta generadora
+345   p La Figura 5 reproduce el lienzo 6x6: seis pregun
+346   CAP Figura 5
+347   p Lienzo 6x6: preguntas generadoras e ideas
+348   [IMG]
+350   p Las ideas se agruparon en cuatro alternativas de
+351   CAP Tabla 16
+352   p Matriz Costo-Impacto de las Alternativas
+353   [TABLA 5 x 5 ] Alternativa
+354   p Nota. Adaptado del taller de ideación del equipo
+355   p La Figura 6 ubica las alternativas en la matriz 
+356   CAP Figura 6
+357   p Matriz costo-impacto de las alternativas
+358   [IMG]
+360   p La alternativa D se eligió porque es la única qu
+361   p La solución se denomina Cosecha Viva Chanchamayo
+362 H2 4.2 Desarrollo de la Narrativa
+363   p Rosa tiene 42 años y dos hectáreas de café en Ch
+364   p En Lima, Carla, de 34 años, ve en Instagram un v
+365   p En su primera campaña, Rosa aún cosecha 30 quint
+366 H2 4.3 Carácter Innovador del Producto o Servicio
+367   p La innovación no está en el turismo ni en la ven
+368   CAP Tabla 17
+369   p Matriz Comparativa de Innovación
+370   [TABLA 8 x 7 ] Atributo
+371   p Nota. Adaptado de Civitatis (2026), Living in Pe
+372   p En la búsqueda competitiva documentada (Apéndice
+373 H2 4.4 Propuesta de Valor
+374   p La propuesta de valor se construyó dolor por dol
+375   CAP Tabla 18
+376   p Encaje Problema-Solución
+377   [TABLA 8 x 4 ] Usuario
+378   p Nota. Adaptado del lienzo de propuesta de valor 
+379   p La Figura 7 presenta el lienzo de la propuesta d
+380   CAP Figura 7
+381   p Lienzo de la propuesta de valor
+382   [IMG]
+384   p El elemento central de la propuesta es la confia
+385 H3 4.4.1 Lienzo de la Propuesta de Valor
+386   p El lienzo de la propuesta de valor de Osterwalde
+387   p La Tabla 19 presenta lienzo de la propuesta de v
+388   CAP Tabla 19
+389   p Lienzo de la propuesta de valor: productor
+390   [TABLA 4 x 2 ] Perfil del cliente
+391   p Nota. Adaptado de Osterwalder et al. (2014).
+392   p La Tabla 20 presenta lienzo de la propuesta de v
+393   CAP Tabla 20
+394   p Lienzo de la propuesta de valor: consumidor
+395   [TABLA 4 x 2 ] Perfil del cliente
+396   p Nota. Pendiente de validar con la encuesta del A
+397 H2 4.5 Producto Mínimo Viable (PMV)
+398 H3 4.5.1 Primera Versión del PMV
+399   p La primera versión del PMV fue la experiencia de
+400 H3 4.5.2 Prueba con Usuarios y Retroalimentación
+401   p La prueba arrojó tres aprendizajes. Primero, el 
+402   p A estos aprendizajes se sumó la revisión de la c
+403   p Con las respuestas de la prueba del PMV de la pr
+404   CAP Figura 8
+405   p Lienzo blanco de relevancia de la prueba del PMV
+406   [IMG]
+407 H3 4.5.3 Segunda Versión del PMV
+408   p Con esa retroalimentación se diseñó la segunda v
+409   CAP Tabla 21
+410   p Iteración del Producto Mínimo Viable
+411   [TABLA 7 x 3 ] Elemento
+412   p Nota. Adaptado del trabajo de campo del equipo (
+413   p La segunda versión se valida en el capítulo VI c
+414 H1 Capítulo V: Modelo de Negocio
+415 H2 5.1 Lienzo del Modelo de Negocio
+416   p El modelo se estructura con el lienzo del modelo
+417   CAP Tabla 22
+418   p Lienzo del Modelo de Negocio de Cosecha Viva
+419   [TABLA 10 x 2 ] Bloque
+420   p Nota. Adaptado de Osterwalder y Pigneur (2010).
+421   p El modelo no depende del Estado en ninguno de su
+422 H2 5.2 Viabilidad del Modelo de Negocio
+423   p El modelo es viable financieramente. Con una inv
+424   p Cada paquete deja un margen de contribución de S
+425 H2 5.3 Escalabilidad y Exponencialidad del Modelo de Negocio
+426   p El modelo es escalable porque su crecimiento no 
+427   p Tiene además rasgos de exponencialidad. El conte
+428 H3 5.3.1 Hoja de Ruta de Escalamiento y Estrategia de Salida
+429   p El modelo crece por cohortes de productores y po
+430   CAP Tabla 23
+431   p Hoja de ruta de escalamiento
+432   [TABLA 5 x 6 ] Etapa
+433   p Nota. Adaptado del modelo financiero (hojas Dema
+434   p La estrategia de salida es una opción de los soc
+435 H2 5.4 Sostenibilidad del Modelo de Negocio
+436   p El modelo es sostenible en tres dimensiones. En 
+437 H2 5.5 Plan de Marketing
+438   p El plan de marketing define a quién se vende, qu
+439 H3 5.5.1 Objetivos
+440   p •	Conseguir 300 paquetes de preventa con pago re
+441   p •	Alcanzar 12,000 paquetes y 2,000 clientes acti
+442   p •	Mantener un CAC menor o igual que S/ 80 y una 
+443   p •	Lograr 60% de recompra anual y que 5% de los c
+444 H3 5.5.2 Segmentación, objetivo y posicionamiento
+445   p El segmento objetivo es el consumidor de café de
+446 H3 5.5.3 Mezcla de marketing
+447   p La Tabla 24 presenta mezcla de marketing de Cose
+448   CAP Tabla 24
+449   p Mezcla de marketing de Cosecha Viva (7P)
+450   [TABLA 8 x 2 ] Elemento
+452 H3 5.5.4 Canales, calendario y presupuesto
+453   p La Tabla 26 propone la distribución de la invers
+454   p La Tabla 25 presenta presupuesto de marketing se
+455   CAP Tabla 25
+456   p Presupuesto de marketing según el modelo (S/)
+457   [TABLA 6 x 6 ] Concepto
+458   p Nota. Adaptado del modelo financiero (hojas Dema
+459   CAP Tabla 26
+460   p Distribución de la inversión en adquisición por 
+461   [TABLA 6 x 5 ] Canal
+463   CAP Tabla 27
+464   p Calendario de campañas
+465   [TABLA 6 x 3 ] Periodo
+466   p Nota. Adaptado del cronograma de la Tabla 67.
+467 H3 5.5.5 Indicadores del plan
+468   p La Tabla 28 presenta indicadores de marketing y 
+469   CAP Tabla 28
+470   p Indicadores de marketing y metas
+471   [TABLA 8 x 3 ] Indicador
+472   p Nota. Adaptado del modelo financiero y de las hi
+473   p Advertencia sobre el presupuesto del piloto. La 
+474 H2 5.6 Aspectos Legales, Societarios y Regulatorios
+475   p La Tabla 29 resume las obligaciones principales.
+476   CAP Tabla 29
+477   p Marco legal y regulatorio del modelo
+478   [TABLA 8 x 3 ] Aspecto
+479   p Nota. Normas específicas y plazos por confirmar 
+480 H1 Capítulo VI: Validación del Modelo de Negocio
+481   p La validación se organiza en tres dimensiones: d
+482 H2 6.1 Validación de la Deseabilidad de la Solución
+483   p La deseabilidad se validó en dos fases. La prime
+484   CAP Tabla 30
+485   p Validación de la Deseabilidad
+486   [TABLA 9 x 5 ] Hipótesis
+487   p Nota. Adaptado del trabajo de campo del equipo (
+488   p Las hipótesis H1 a H3 se validaron con datos de 
+489 H3 6.1.1 Embudo Comercial y Economía del Cliente
+490   p Para sostener la proyección de ventas se constru
+491   CAP Tabla 31
+492   p Embudo Comercial y Economía del Cliente
+493   [TABLA 7 x 6 ] Concepto
+494   p Nota. Adaptado del modelo financiero (hoja Deman
+495   p El primer año exige captar 2,000 clientes, lo qu
+496 H3 6.1.2 Mapa de Priorización de Hipótesis
+497   p Las ocho hipótesis de la Tabla 30 no pesan igual
+498   CAP Figura 9
+499   p Mapa de priorización de hipótesis
+500   [IMG]
+501   p Nota. Las hipótesis del cuadrante superior izqui
+502   CAP Tabla 32
+503   p Puntaje de priorización de las hipótesis
+504   [TABLA 9 x 5 ] Hipótesis
+506 H3 6.1.3 Diseño de los Experimentos
+507   p Cada hipótesis tiene un experimento definido ant
+508   CAP Tabla 33
+509   p Diseño de los experimentos por hipótesis
+510   [TABLA 7 x 6 ] Hipótesis
+512 H3 6.1.4 Tarjetas de Prueba y de Aprendizaje
+513   p Cada hipótesis se resume en una tarjeta de prueb
+514   p La Tabla 34 presenta la tarjeta de prueba y de a
+515   CAP Tabla 34
+516   p Tarjeta de prueba y de aprendizaje de H1: Valora
+517   [TABLA 9 x 2 ] Tarjeta de prueba
+518   p Nota. Formato adaptado de Bland y Osterwalder (2
+519   p La Tabla 35 presenta la tarjeta de prueba y de a
+520   CAP Tabla 35
+521   p Tarjeta de prueba y de aprendizaje de H2: Dispos
+522   [TABLA 9 x 2 ] Tarjeta de prueba
+523   p La Tabla 36 presenta la tarjeta de prueba y de a
+524   CAP Tabla 36
+525   p Tarjeta de prueba y de aprendizaje de H3: Acepta
+526   [TABLA 9 x 2 ] Tarjeta de prueba
+527   p La Tabla 37 presenta la tarjeta de prueba y de a
+528   CAP Tabla 37
+529   p Tarjeta de prueba y de aprendizaje de H4: Rendim
+530   [TABLA 9 x 2 ] Tarjeta de prueba
+531   p La Tabla 38 presenta la tarjeta de prueba y de a
+532   CAP Tabla 38
+533   p Tarjeta de prueba y de aprendizaje de H5: Preven
+534   [TABLA 9 x 2 ] Tarjeta de prueba
+535   p La Tabla 39 presenta la tarjeta de prueba y de a
+536   CAP Tabla 39
+537   p Tarjeta de prueba y de aprendizaje de H6: Compro
+538   [TABLA 9 x 2 ] Tarjeta de prueba
+539   p La Tabla 40 presenta la tarjeta de prueba y de a
+540   CAP Tabla 40
+541   p Tarjeta de prueba y de aprendizaje de H7: Valora
+542   [TABLA 9 x 2 ] Tarjeta de prueba
+543   p La Tabla 41 presenta la tarjeta de prueba y de a
+544   CAP Tabla 41
+545   p Tarjeta de prueba y de aprendizaje de H8: Recomp
+546   [TABLA 9 x 2 ] Tarjeta de prueba
+547 H3 6.1.5 Tareas y Preguntas de Prueba
+548   p Antes de lanzar los experimentos se prueba con u
+549   CAP Tabla 42
+550   p Resumen de tareas de prueba y preguntas
+551   [TABLA 5 x 4 ] Prueba
+552   p Nota. Guion completo en el Apéndice J.
+553 H2 6.2 Validación de la Factibilidad de la Solución
+554   p La factibilidad se evaluó en sus aspectos técnic
+555   p En el abastecimiento, el modelo reconoce que la 
+556   CAP Tabla 43
+557   p Abastecimiento de Café Selecto por Cohortes
+558   [TABLA 7 x 6 ] Concepto
+559   p Nota. Adaptado del modelo financiero (hoja Deman
+560   p En lo operativo, el modelo requiere un equipo pe
+561   CAP Tabla 44
+562   p Riesgos y Medidas de Mitigación
+563   [TABLA 7 x 3 ] Riesgo
+564   p Nota. Adaptado del análisis de sensibilidad del 
+565 H2 6.3 Validación de la Viabilidad de la Solución
+566   p La viabilidad se evalúa con un flujo de caja lib
+567 H3 6.3.1 Costo de Oportunidad del Capital (COK)
+568   p El COK se calcula con el modelo CAPM ajustado po
+569   CAP Tabla 45
+570   p Cálculo del COK
+571   [TABLA 9 x 3 ] Componente
+572   p Nota. La beta total divide la beta desapalancada
+573   p El proyecto se financia solo con aporte de los s
+574 H3 6.3.2 Inversión y Tratamiento Contable
+575   p La inversión inicial asciende a S/ 156,200, incl
+576   CAP Tabla 46
+577   p Inversión Inicial y Tratamiento Contable
+578   [TABLA 9 x 4 ] Concepto
+579   p Nota. Montos sin IGV. Adaptado del modelo financ
+580   p A la inversión inicial se suman los kits de tecn
+581 H3 6.3.3 Economía Unitaria
+582   p La Tabla 47 muestra el valor de venta y los cost
+583   CAP Tabla 47
+584   p Economía Unitaria del Paquete de Cosecha
+585   [TABLA 10 x 3 ] Concepto
+586   p Nota. Valores sin IGV. El valor de venta corresp
+587   p Cada paquete deja un margen de contribución de S
+588 H3 6.3.4 Capital de Trabajo
+589   p El capital de trabajo ya no se fija como un porc
+590   CAP Tabla 48
+591   p Capital de Trabajo por Ciclo de Caja (S/)
+592   [TABLA 7 x 6 ] Concepto
+593   p Nota. Adaptado del modelo financiero (hoja Capit
+594   p El resultado muestra una ventaja del modelo: des
+595 H3 6.3.5 Estado de Resultados Proyectado
+596   p La Tabla 49 presenta el estado de resultados. El
+597   CAP Tabla 49
+598   p Estado de Resultados Proyectado (S/)
+599   [TABLA 14 x 6 ] Concepto
+600   p Nota. Valores sin IGV. Impuesto a la renta de 29
+601 H3 6.3.6 Flujo de Caja Libre
+602   p La Tabla 50 presenta el flujo de caja libre. Sol
+603   CAP Tabla 50
+604   p Flujo de Caja Libre (S/)
+605   [TABLA 15 x 7 ] Concepto
+606   p Nota. Adaptado del modelo financiero (hoja FCL).
+607   p La Tabla 51 muestra la relación entre el FCL y e
+608   CAP Tabla 51
+609   p Flujo de Caja Libre (FCL) y Flujo de Caja del Ac
+610   [TABLA 7 x 7 ] Concepto
+611   p Nota. Adaptado del modelo financiero (hoja FCA_W
+612 H3 6.3.7 Indicadores de Rentabilidad y Análisis Costo-Beneficio
+613   p La Tabla 52 resume los indicadores del caso base
+614   CAP Tabla 52
+615   p Indicadores de Rentabilidad y Costo-Beneficio
+616   [TABLA 13 x 2 ] Indicador
+617   p Nota. Adaptado del modelo financiero (hojas FCL 
+618   p El análisis costo-beneficio confirma la convenie
+619 H3 6.3.8 Punto de Equilibrio
+620   p Se calcularon dos puntos de equilibrio. El opera
+621   CAP Tabla 53
+622   p Punto de Equilibrio
+623   [TABLA 5 x 6 ] Concepto
+624   p Nota. Adaptado del modelo financiero (hoja EERR)
+625 H3 6.3.9 Análisis de Sensibilidad, Escenarios y Umbrales
+626   p La Tabla 54 muestra cómo cambia el VAN cuando ca
+627   CAP Tabla 54
+628   p Sensibilidad del VAN ante Cambios en las Variabl
+629   [TABLA 6 x 6 ] Variable
+630   p Nota. Adaptado del modelo financiero (hoja Sensi
+631   p El precio pagado por el cliente sigue siendo la 
+632   CAP Tabla 55
+633   p Escenarios del VAN
+634   [TABLA 6 x 4 ] Escenario
+635   p Nota. Adaptado del modelo financiero (hoja Sensi
+636   p Los cuatro escenarios dan VAN positivo, incluido
+637 H3 6.3.10 Simulación Monte Carlo del VAN y del LTV
+638   p El análisis de sensibilidad de la sección 6.3.9 
+639   p La Tabla 56 presenta distribuciones de los supue
+640   CAP Tabla 56
+641   p Distribuciones de los supuestos simulados
+642   [TABLA 12 x 5 ] Variable
+643   p Nota. El costo de adquisición se simuló como cos
+644   p La Tabla 57 presenta resultados de la simulación
+645   CAP Tabla 57
+646   p Resultados de la simulación Monte Carlo (10,000 
+647   [TABLA 10 x 4 ] Estadístico
+648   p Nota. Caso base del modelo: VAN de S/ 2,061,174 
+649   p La Figura 10 presenta histograma del VAN simulad
+650   CAP Figura 10
+651   p Histograma del VAN simulado
+652   [IMG]
+653   p Nota. Las barras en rojo corresponden a VAN nega
+654   p La Figura 11 presenta histograma del LTV simulad
+655   CAP Figura 11
+656   p Histograma del LTV simulado
+657   [IMG]
+659   p La Figura 12 presenta histograma de la relación 
+660   CAP Figura 12
+661   p Histograma de la relación LTV/CAC simulada
+662   [IMG]
+663   p Nota. Las barras en rojo corresponden a una rela
+664   p Resultados. El VAN simulado tiene mediana de S/ 
+665   p El LTV por cliente tiene media de S/ 674 y un ra
+666   CAP Figura 13
+667   p Variables que más explican la variación del VAN
+668   [IMG]
+669   p Nota. Correlación de rangos de Spearman entre ca
+670   p La Figura 13 confirma que el precio del paquete 
+671   CAP Figura 14
+672   p Tornado de sensibilidad del VAN
+673   [IMG]
+674   p Nota. Cada variable se mueve ±20% con las demás 
+675   p Limitaciones. Las variables se simularon de form
+676 H3 6.3.11 Recupero, TIR Modificada y Plan de Financiamiento
+677   p La Tabla 58 completa los indicadores de la Tabla
+678   CAP Tabla 58
+679   p Indicadores adicionales de rentabilidad y financ
+680   [TABLA 11 x 2 ] Indicador
+681   p Nota. El colchón de 20% es una propuesta del equ
+682   p La TIR modificada de 85.9% es menor que la TIR d
+683   p La Tabla 59 presenta plan de financiamiento por 
+684   CAP Tabla 59
+685   p Plan de financiamiento por etapas
+686   [TABLA 4 x 4 ] Etapa
+687   p Nota. El modelo no descuenta del año 0 los kits 
+688 H1 Capítulo VII: Solución Sostenible
+689 H2 7.1 Relevancia Social de la Solución
+690   p La solución atiende un problema que afecta a la 
+691   CAP Tabla 60
+692   p Contribución a los Objetivos de Desarrollo Soste
+693   [TABLA 4 x 4 ] ODS
+694   p Nota. Adaptado de Naciones Unidas (2015).
+695   p En el quinto año, el modelo trabaja con 117 fami
+696 H2 7.2 Rentabilidad Social de la Solución
+697   p La rentabilidad social se midió con el VAN socia
+698   CAP Tabla 61
+699   p Beneficio Anual Estimado por Productor
+700   [TABLA 11 x 4 ] Concepto
+701   p Nota. Adaptado del modelo financiero (hoja Produ
+702   p Con los costos incluidos en el modelo, el ingres
+703   p El VAN social se calculó como la diferencia entr
+704   CAP Tabla 62
+705   p Beneficios Sociales, Costos Sociales y VAN Socia
+706   [TABLA 9 x 6 ] Concepto
+707   p Nota. Adaptado del modelo financiero (hojas Bene
+708   p El VAN social asciende a S/ 3,279,853, con una r
+709 H2 7.3 Impacto Ambiental
+710   p El modelo no reduce su sostenibilidad a la dimen
+711   CAP Tabla 63
+712   p Impactos ambientales y medidas de gestión
+713   [TABLA 6 x 4 ] Etapa
+714   p Nota. Pendiente de medir en las fincas piloto.
+715 H2 7.4 Enfoque de Género e Inclusión
+716   p La caficultura familiar involucra a mujeres y jó
+717   CAP Tabla 64
+718   p Medidas de género e inclusión
+719   [TABLA 5 x 3 ] Medida
+720   p Nota. Las metas son propuestas del equipo y se c
+721 H1 Capítulo VIII: Decisión e Implementación
+722 H2 8.1 Plan de Implementación y Equipo de Trabajo
+723   p La implementación empieza con un piloto de seis 
+724   CAP Tabla 65
+725   p Presupuesto del Piloto
+726   [TABLA 9 x 2 ] Concepto
+727   p Nota. Supuestos del equipo. El ingreso de los 30
+728   p La Tabla 66 define los hitos del piloto, sus res
+729   CAP Tabla 66
+730   p Hitos, Criterios de Decisión y Responsables del 
+731   [TABLA 7 x 5 ] Mes
+732   p Nota. Adaptado del plan de validación del capítu
+733   p El equipo inicial está formado por los cuatro au
+734   CAP Tabla 67
+735   p Cronograma de Implementación del Primer Año
+736   [TABLA 9 x 6 ] Actividad
+737   p Nota. Adaptado del ciclo anual del modelo.
+738 H3 8.1.1 Estructura Organizacional
+739   p La Figura 15 presenta la estructura organizacion
+740   CAP Figura 15
+741   p Organigrama de Cosecha Viva
+742   [IMG]
+744   CAP Tabla 68
+745   p Roles y costos del equipo
+746   [TABLA 7 x 3 ] Puesto
+747   p Nota. Adaptado de la hoja CostosFijos del modelo
+748 H2 8.2 Conclusiones
+749   p Primero, los pequeños productores de café de Cha
+750   p Segundo, Cosecha Viva actúa sobre las causas al 
+751   p Tercero, la evidencia de campo valida el interés
+752   p Cuarto, con los supuestos actuales el modelo es 
+753   p Quinto, el modelo es socialmente rentable con lo
+754 H2 8.3 Recomendaciones
+755   p Se recomienda ejecutar el piloto antes de la inv
+756   p Se recomienda firmar acuerdos escritos con los p
+757   p Se recomienda conservar las bases individuales d
+758 H1 Referencias
+759   p Agraria.pe. (2019a, 4 de junio). Cada hogar peru
+760   p Agraria.pe. (2019b, 11 de julio). Yara lanzará “
+761   p Agraria.pe. (2022, 16 de febrero). Consumo de ca
+762   p Agraria.pe. (2025, 26 de diciembre). Consumo de 
+763   p Agraria.pe. (2026, 26 de mayo). Perú desaprovech
+764   p Andina. (2026, 16 de noviembre). Peru: Country r
+765   p Banco Central de Reserva del Perú. (2026, 15 de 
+766   p Bland, D. J., & Osterwalder, A. (2019). Testing 
+767   p Cámara de Comercio de Lima. (s.f.). El hogar per
+768   p Caretas. (s.f.). Puma Café: el café peruano que 
+769   p Civitatis. (2026). Tour del café orgánico por la
+770   p Damodaran, A. (2026a). Total betas by sector (fo
+771   p Damodaran, A. (2026b). Damodaran Online [Implied
+772   p Decreto Supremo N.° 122-94-EF. (1994). Reglament
+773   p Decreto Supremo N.° 179-2004-EF. (2004). Texto Ú
+774   p El Comercio. (s.f.). Ruta del café peruano: ¿por
+775   p El Peruano. (2022). Cafés de especialidad: una t
+776   p El Peruano. (2026, 17 de julio). Café peruano ll
+777   p El Peruano. (2026, 28 de agosto). Aroma que conq
+778   p Euronews. (2026, 5 de junio). CrowdFarming, la p
+779   p Federal Reserve. (2026, 16 de septiembre). Summa
+780   p García, M., Curiñaupa, G., & den Belder, E. (201
+781   p Gestión. (2025). Precio del café cae a mínimos d
+782   p Instituto Nacional de Estadística e Informática.
+783   p Living in Peru. (s.f.). Discover Peruvian coffee
+784   p Mercado Libre Perú. (2026). Café Chanchamayo [Li
+785   p Naciones Unidas. (2015). Transformar nuestro mun
+786   p Osterwalder, A., & Pigneur, Y. (2010). Business 
+787   p Osterwalder, A., Pigneur, Y., Bernarda, G., & Sm
+788   p Perfect Daily Grind. (2026, 18 de junio). Suscri
+789   p Perú21. (s.f.). La buena hora del café peruano: 
+790   p RoboForex. (2026, 10 de noviembre). ¿Por qué sub
+791 H1 Apéndices
+792 H2 Apéndice A. Resultados e Instrumentos de la Primera Fase de Validación
+793   p Este apéndice reproduce los resultados estadísti
+794   CAP Figura 16
+795   p Resultados Estadísticos de la Primera Fase de Va
+796   [IMG]
+797   p Nota. Adaptado del trabajo de campo del equipo e
+798   CAP Figura 17
+799   p Cuestionario Aplicado a Pequeños Productores de 
+800   [IMG]
+801   p Nota. Adaptado del trabajo de campo del equipo e
+802   CAP Figura 18
+803   p Cuestionario Aplicado a Turistas Potenciales
+804   [IMG]
+805   p Nota. Adaptado del trabajo de campo del equipo e
+806 H2 Apéndice B. Cuestionario para Consumidores de Café de Especialidad en Lima (Segu
+807   p Objetivo: medir la disposición del consumidor de
+808   CAP Tabla 69
+809   p Preguntas del Cuestionario para Consumidores
+810   [TABLA 10 x 3 ] N.°
+811   p Nota. Instrumento diseñado por el equipo para la
+812 H2 Apéndice C. Guía de Entrevista y Propuesta de Acuerdo con Productores (Segunda F
+813   p Objetivo: conocer la situación productiva y come
+814   CAP Tabla 70
+815   p Guía de Entrevista a Productores
+816   [TABLA 10 x 2 ] N.°
+817   p Nota. Instrumento diseñado por el equipo para la
+818   p Los elementos mínimos del acuerdo con el product
+819 H2 Apéndice D. Matriz FODA del Modelo Cosecha Viva
+820   p Las dos tablas siguientes presentan la matriz FO
+821   CAP Tabla 71
+822   p Matriz FODA
+823   [TABLA 5 x 2 ] Fortalezas
+825   CAP Tabla 72
+826   p Matriz FODA (continuación)
+827   [TABLA 5 x 2 ] Oportunidades
+828   p Nota. Adaptado de los capítulos I, II, III y VI.
+829 H2 Apéndice E. Registro Fotográfico del Trabajo de Campo
+830   p Las fotografías registran las visitas de campo d
+831   CAP Figura 19
+832   p Visitas de Campo del Equipo en Chanchamayo
+833   [IMG]
+834   p Nota. Fotografías del equipo durante el trabajo 
+835   CAP Figura 20
+836   p Encuentro con Pobladores durante el Trabajo de C
+837   [IMG]
+838 H2 Apéndice F. Supuestos del Modelo Financiero
+839   p Esta tabla reproduce la hoja de supuestos del mo
+840   CAP Tabla 73
+841   p Supuestos del Modelo Financiero
+842   [TABLA 42 x 5 ] Supuesto
+843   p Nota. Adaptado del modelo financiero (hoja Supue
+844 H2 Apéndice G. Búsqueda Competitiva Documentada
+845   p Para sustentar la comparación del capítulo IV se
+846   CAP Tabla 74
+847   p Registro de la Búsqueda Competitiva
+848   [TABLA 7 x 3 ] Palabras clave
+849   p Nota. Búsqueda realizada por el equipo el 21 de 
+850 H2 Apéndice H. Matriz de Supuestos Críticos
+851   p La matriz vincula cada supuesto que más influye 
+852   CAP Tabla 75
+853   p Matriz de Supuestos Críticos
+854   [TABLA 11 x 6 ] Supuesto
+855   p Nota. Adaptado del modelo financiero y del plan 
