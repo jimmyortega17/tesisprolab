@@ -53,10 +53,12 @@ def actualizar_cifras(doc):
     # ---- Tabla 25 (idx 24): indicadores
     vals = {'VAN financiero al COK': 'S/ ' + n0(base), 'TIR': pc(FCL['B24'].value), 'Periodo de recupero': f"{FCL['B26'].value:.2f} años",
             'Valor presente de los ingresos': 'S/ ' + n0(FCL['B27'].value), 'Valor presente de los egresos': 'S/ ' + n0(FCL['B28'].value),
-            'Relación beneficio-costo': f"{FCL['B29'].value:.2f}", 'VAN esperado': 'S/ ' + n0(SEN['B17'].value), 'VAN financiero a la tasa social': 'S/ ' + n0(FCL['B30'].value)}
+            'Relación beneficio-costo': f"{FCL['B29'].value:.2f}", 'VAN esperado': 'S/ ' + n0(SEN['B17'].value)}
     for i, rw in enumerate(T[24].rows):
         for k, v in vals.items():
             if rw.cells[0].text.startswith(k): setc(T[24], i, 1, v)
+    for rw in list(T[24].rows):
+        if rw.cells[0].text.startswith('VAN financiero a la tasa social'): T[24]._tbl.remove(rw._tr)
     # ---- Tabla 26 (idx 25): punto de equilibrio
     fill(T[25], {'Paquetes de equilibrio operativo': row(EER, 23, 2, 6), 'Paquetes de equilibrio contable': row(EER, 24, 2, 6)}, 5)
     fill(T[25], {'Margen de seguridad': [pc(v) for v in row(EER, 25, 2, 6)]}, 5, fmt=lambda x: x)
@@ -65,10 +67,21 @@ def actualizar_cifras(doc):
         for j in range(5): setc(T[26], i + 1, 1 + j, n0(SEN.cell(r, 2 + j).value))
     # ---- Tabla 28 (idx 27): escenarios
     for i, r in enumerate(range(13, 18)): setc(T[27], i + 1, 3, n0(SEN.cell(r, 2).value))
-    # ---- Tabla 31 (idx 30): VAN social
-    for i, (k, c) in enumerate([('(a)', 'B25'), ('(b)', 'B26'), ('(c)', 'B27'), ('VAN social', 'B24')]):
-        for j, rw in enumerate(T[30].rows):
-            if rw.cells[0].text.startswith(k): setc(T[30], j, 1, n0(PRO[c].value))
+    # ---- Tabla 31 (idx 30): VAN social = beneficios sociales - costos sociales
+    from fb_insert import FDoc
+    F_ = FDoc(doc)
+    hdr = ['Concepto', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5']
+    filas = [['Beneficios sociales totales'] + [n0(v) for v in row(VS, 5, 2, 6)],
+             ['Costos sociales'] + [n0(v) for v in row(VS, 6, 2, 6)],
+             ['Flujo social (beneficios - costos)'] + [n0(v) for v in row(VS, 7, 2, 6)],
+             ['Valor presente al 8%'] + [n0(VS.cell(11 + i, 2).value) for i in range(5)]]
+    nueva = F_._tbl(hdr, filas, [2.6, 1, 1, 1, 1, 1], 9)
+    T[30]._tbl.addprevious(nueva); T[30]._tbl.getparent().remove(T[30]._tbl)
+    for p in doc.paragraphs:
+        if p.text.strip() == 'Componentes del VAN Social al 8%':
+            p.runs[0].text = 'Beneficios Sociales, Costos Sociales y VAN Social al 8% (S/)'
+        if p.text.strip() == 'Nota. Adaptado del modelo financiero (hoja Productor).':
+            for r in p.runs[1:]: r.text = ' Adaptado del modelo financiero (hojas Beneficios Sociales, Costos Sociales y VAN Social). VAN social = suma de los valores presentes del flujo social; no incluye flujo de caja libre ni inversión.'
     # ---- Tabla 39 (idx 38): supuesto de precio
     for j, rw in enumerate(T[38].rows):
         if rw.cells[0].text.startswith('Precio del paquete de cosecha'):
@@ -92,7 +105,7 @@ def actualizar_cifras(doc):
 
     # ---- prosa
     sens = {k: SEN.cell(r, 2).value for k, r in (('12', 28), ('28', 33))}
-    vans = PRO['B24'].value; vpriv = PRO['B25'].value; vtax = PRO['B26'].value; vinc = PRO['B27'].value
+    vans = VS['B17'].value; vpb = VS['B18'].value; vpc = VS['B19'].value; bcs = VS['B20'].value
     m5 = EER['F22'].value
     pe1, pe2 = EER['B23'].value, EER['C23'].value
     ms2 = EER['C25'].value; ms1 = EER['B25'].value
@@ -116,7 +129,8 @@ def actualizar_cifras(doc):
     S('Se calcularon dos puntos', f"Se calcularon dos puntos de equilibrio. El operativo divide los costos fijos y la inversión en adquisición de clientes, netos del margen de los tours, entre el margen unitario neto del marketing de retención; el contable añade la depreciación. En el primer año, el equilibrio operativo exige {V(pe1)} paquetes frente a 12,000 proyectados, con un margen de seguridad de {pc(ms1)}; desde el segundo año, las ventas superan el equilibrio con un margen de seguridad de {pc(ms2)} (Tabla 26).")
     S('El precio pagado por el cliente es', f"El precio pagado por el cliente sigue siendo la variable más sensible: el VAN se anula con una caída de 25.6%, es decir, con un precio de S/ 104, fuera del rango de ±20% de la Tabla 27. Con el precio de S/ 140 el VAN permanece positivo en todas las variaciones de ±20% de la tabla. La Tabla 28 combina varias variables en cuatro escenarios, incluido uno de estrés, con probabilidades asignadas por el equipo.")
     S('Los escenarios pesimista', f"Los cuatro escenarios dan VAN positivo, incluido el de estrés (S/ {V(SEN['B16'].value)}), que queda cerca de cero. El VAN esperado es de S/ {V(SEN['B17'].value)}. Estos escenarios mueven el precio solo entre 0% y -10% de S/ 140 (hasta S/ 126), por lo que no cubren el caso en que el consumidor no acepte pagar S/ 140. La conclusión es clara: el valor del proyecto depende de sostener el precio y el volumen de la preventa, y no debe invertirse a escala antes de validarlos.")
-    S('El VANS asciende', f"El VANS asciende a S/ {V(vans)}. Alrededor de un tercio corresponde al ingreso incremental de los productores, lo que muestra que una parte importante del valor creado queda en las familias productoras. Como los supuestos del productor provienen de referencias regionales, el VANS debe recalcularse con los rendimientos y costos medidos en las fincas piloto.")
+    S('El VANS asciende', f"El VAN social asciende a S/ {V(vans)}, con una relación beneficio-costo social de {bcs:.2f}: en valor presente al 8%, los beneficios suman S/ {V(vpb)} y los costos S/ {V(vpc)}. El resultado es una estimación: como los supuestos del productor provienen de referencias regionales, el VAN social debe recalcularse con los rendimientos y costos medidos en las fincas piloto.")
+    S('El flujo social se construyó', "El VAN social se calculó como la diferencia entre los beneficios sociales y los costos sociales, descontada a la tasa social del MEF de 8%. No incluye el flujo de caja libre ni la inversión de la empresa, porque mide el valor que se crea para la sociedad y no el retorno del inversionista. Los beneficios sociales son el ingreso bruto adicional de los productores frente a la situación sin el modelo (S/ 18,400 por año por productor con tecnificación madura y S/ 2,760 en su primera campaña), valorado a precios de mercado e incluida la prima que paga la empresa; los costos sociales son los recursos adicionales que el productor destina a insumos y cosecha selectiva (S/ 5,000 y S/ 2,500 por año). No se aplicaron precios sociales a la mano de obra ni a las divisas. La Tabla 31 presenta el cálculo.")
     S('Cuarto, con los', f"Cuarto, con los supuestos actuales el modelo es viable: el flujo de caja libre es positivo desde el primer año y, con un COK de 20.94%, el VAN es de S/ {V(base)}, la TIR de {pc(FCL['B24'].value)} y la relación beneficio-costo de {FCL['B29'].value:.2f}; el VAN esperado por escenarios es de S/ {V(SEN['B17'].value)}. Una simulación Monte Carlo de 10,000 iteraciones da una mediana de S/ {MCV['mediana']} y una probabilidad de VAN negativo de {MCV['p']}. El precio sigue siendo la variable crítica: el VAN se anula con un precio de S/ 104, y el precio de S/ 140 aún no se ha probado con compra real. Estos resultados son proyecciones condicionadas a la validación comercial.")
     S('Quinto, el modelo', f"Quinto, el modelo es socialmente rentable con los supuestos actuales: el ingreso neto estimado del productor sube en 64.7% con la tecnificación madura y el VAN social al 8% alcanza S/ {V(vans)}. Además, el modelo no depende del Estado en ninguna de sus etapas.")
     S('Se recomienda ejecutar', "Se recomienda ejecutar el piloto antes de la inversión completa y no escalar si la preventa de prueba no alcanza 3% de conversión y 300 paquetes, o si menos de la mitad de los productores invitados firma el acuerdo. El piloto debe probar el precio de S/ 140 frente a S/ 130 y S/ 120, y medir el costo real por visita calificada, porque el presupuesto del piloto (S/ 0.60 por visita) es cuatro veces menor que el del modelo (S/ 2.40). Con los resultados, se deben actualizar los supuestos del modelo financiero, las probabilidades de los escenarios, la simulación Monte Carlo y el VAN social.")

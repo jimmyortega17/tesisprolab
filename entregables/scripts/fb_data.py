@@ -1,6 +1,6 @@
 import openpyxl
 wb = openpyxl.load_workbook('valores_v5.xlsx', data_only=True)
-EER, FCL, CT, UNI, SEN, PRO, DEM = (wb[n] for n in ('EERR', 'FCL', 'CapitalTrabajo', 'Unitario', 'Sensibilidad', 'Productor', 'Demanda'))
+EER, FCL, CT, UNI, SEN, PRO, DEM, VS, BS, CS = (wb[n] for n in ('EERR', 'FCL', 'CapitalTrabajo', 'Unitario', 'Sensibilidad', 'Productor', 'Demanda', 'VAN Social', 'Beneficios Sociales', 'Costos Sociales'))
 
 def n0(v):
     v = round(v)

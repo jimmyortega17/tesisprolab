@@ -23,6 +23,94 @@ def head(ws, row, labels, col=1):
     for i, t in enumerate(labels):
         c = put(ws, f'{L(col+i)}{row}', t, bold, fill=hdr_fill); c.alignment = Alignment(wrap_text=True, vertical='center')
 
+# ---------- 0. VAN social = beneficios sociales - costos sociales (sin FCL ni inversión) ----------
+FF = 'Times New Roman'
+def sty(c, b=False, nf=None, fill=None):
+    c.font = Font(name=FF, size=11, bold=b)
+    if nf: c.number_format = nf
+    if fill: c.fill = PatternFill('solid', fgColor=fill)
+pr = wb['Productor']
+pr.delete_rows(15, 20)
+pr['A1'] = 'Beneficio del productor por cohortes'
+pr['A2'] = 'Soles por año. Valoración a precios de mercado, sin precios sociales. Base de las hojas Beneficios Sociales, Costos Sociales y VAN Social.'
+for r_, lab, f_ in ((15, 'Ingreso bruto anual del productor (S/)', '=X11*X7*X9+X11*(1-X7)*X8'),
+                    (16, 'Beneficio bruto incremental frente a la situación sin el modelo (S/)', '=X15-$B15'),
+                    (17, 'Costo adicional de insumos y cosecha selectiva (S/)', '=X10*X5')):
+    pr.cell(r_, 1, lab); sty(pr.cell(r_, 1))
+    for col in 'BCD':
+        if r_ == 16 and col == 'B': continue
+        c = pr[f'{col}{r_}']; c.value = f_.replace('X', col); sty(c, nf=NUM)
+pr['A18'] = 'Comprobación: ingreso neto incremental = beneficio bruto - costo adicional'; sty(pr['A18'])
+pr['C18'] = '=C16-C17-C13'; pr['D18'] = '=D16-D17-D13'
+for k in ('C18', 'D18'): sty(pr[k], nf=NUM)
+
+yrs = ['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5']; dcols = 'CDEFG'
+def sheet_head(ws, title, sub):
+    ws.column_dimensions['A'].width = 66
+    for c_ in 'BCDEFG': ws.column_dimensions[c_].width = 16
+    ws['A1'] = title; sty(ws['A1'], b=True); ws['A2'] = sub; sty(ws['A2'])
+    ws['A4'] = 'Criterio'; sty(ws['A4'], b=True, fill='E8EFE0')
+    for i, y in enumerate(yrs):
+        c = ws.cell(4, 2 + i, y); sty(c, b=True, fill='E8EFE0')
+
+bs = wb.create_sheet('Beneficios Sociales')
+sheet_head(bs, 'Beneficios sociales', 'Estimación del flujo de beneficios sociales. Soles por año.')
+rows_b = [(5, 'DATOS BASE', None, True),
+          (6, 'Productores con tecnificación madura', '=Demanda!{d}17', False),
+          (7, 'Productores en su primera campaña', '=Demanda!{d}18', False),
+          (8, 'A) INGRESO INCREMENTAL DE PRODUCTORES CON TECNIFICACIÓN MADURA', None, True),
+          (9, 'Beneficio bruto incremental por productor (S/ por año)', '=Productor!$C$16', False),
+          (10, 'Beneficio social 1 (productores maduros)', '={c}6*{c}9', False),
+          (11, 'B) INGRESO INCREMENTAL DE PRODUCTORES EN SU PRIMERA CAMPAÑA', None, True),
+          (12, 'Beneficio bruto incremental por productor (S/ por año)', '=Productor!$D$16', False),
+          (13, 'Beneficio social 2 (productores en primera campaña)', '={c}7*{c}12', False),
+          (14, 'TOTAL DE BENEFICIOS SOCIALES', '={c}10+{c}13', True)]
+for r_, lab, f_, b_ in rows_b:
+    bs.cell(r_, 1, lab); sty(bs.cell(r_, 1), b=b_)
+    if f_:
+        for i in range(5):
+            c = bs.cell(r_, 2 + i, f_.format(d=dcols[i], c=L(2 + i))); sty(c, b=b_, nf=NUM)
+cs = wb.create_sheet('Costos Sociales')
+sheet_head(cs, 'Costos sociales', 'Estimación del flujo de costos sociales: recursos que usa el productor para producir más y mejor café. Soles por año.')
+rows_c = [(5, 'DATOS BASE', None, True),
+          (6, 'Productores con tecnificación madura', "='Beneficios Sociales'!{c}6", False),
+          (7, 'Productores en su primera campaña', "='Beneficios Sociales'!{c}7", False),
+          (8, 'A) COSTO ADICIONAL DE INSUMOS Y COSECHA SELECTIVA, PRODUCTORES MADUROS', None, True),
+          (9, 'Costo adicional por productor (S/ por año)', '=Productor!$C$17', False),
+          (10, 'Costo social 1 (productores maduros)', '={c}6*{c}9', False),
+          (11, 'B) COSTO ADICIONAL EN LA PRIMERA CAMPAÑA (PLAN GRADUAL)', None, True),
+          (12, 'Costo adicional por productor (S/ por año)', '=Productor!$D$17', False),
+          (13, 'Costo social 2 (productores en primera campaña)', '={c}7*{c}12', False),
+          (14, 'TOTAL DE COSTOS SOCIALES', '={c}10+{c}13', True)]
+for r_, lab, f_, b_ in rows_c:
+    cs.cell(r_, 1, lab); sty(cs.cell(r_, 1), b=b_)
+    if f_:
+        for i in range(5):
+            c = cs.cell(r_, 2 + i, f_.format(c=L(2 + i))); sty(c, b=b_, nf=NUM)
+vs = wb.create_sheet('VAN Social')
+sheet_head(vs, 'VAN social', 'VAN social = beneficios sociales - costos sociales, descontados a la tasa social del MEF. No incluye el flujo de caja libre ni la inversión de la empresa.')
+vrows = [(5, 'Beneficios sociales totales', "='Beneficios Sociales'!{c}14"), (6, 'Costos sociales', "='Costos Sociales'!{c}14"), (7, 'Flujo social (beneficios - costos)', '={c}5-{c}6')]
+for r_, lab, f_ in vrows:
+    vs.cell(r_, 1, lab); sty(vs.cell(r_, 1), b=(r_ == 7))
+    for i in range(5):
+        c = vs.cell(r_, 2 + i, f_.format(c=L(2 + i))); sty(c, b=(r_ == 7), nf=NUM)
+vs['A9'] = 'Tasa de descuento social (MEF)'; sty(vs['A9']); vs['B9'] = '=COK!$B$13'; sty(vs['B9'], nf=PCT)
+for i in range(5):
+    vs.cell(11 + i, 1, f'Valor presente (VP) año {i + 1}'); sty(vs.cell(11 + i, 1))
+    c = vs.cell(11 + i, 2, f'={L(2 + i)}7/(1+$B$9)^{i + 1}'); sty(c, nf=NUM)
+vs['A17'] = 'VAN SOCIAL (S/)'; sty(vs['A17'], b=True, fill='E8EFE0'); vs['B17'] = '=SUM(B11:B15)'; sty(vs['B17'], b=True, nf=NUM, fill='E8EFE0')
+vs['A18'] = 'VP de los beneficios sociales'; vs['B18'] = '=NPV($B$9,B5:F5)'
+vs['A19'] = 'VP de los costos sociales'; vs['B19'] = '=NPV($B$9,B6:F6)'
+vs['A20'] = 'Relación beneficio-costo social'; vs['B20'] = '=B18/B19'
+for r_ in (18, 19): sty(vs.cell(r_, 1)); sty(vs.cell(r_, 2), nf=NUM)
+sty(vs['A20']); sty(vs['B20'], nf='0.00')
+vs['A22'] = 'Nota. No hay año 0: el VAN social no incluye inversión ni flujo de caja libre. Los costos sociales son los recursos que el productor destina a insumos y cosecha selectiva; la prima pagada por la empresa es una transferencia y no se cuenta.'
+sty(vs['A22'])
+# quitar el VAN financiero a la tasa social de la hoja FCL
+fcl_ws = wb['FCL']; fcl_ws['A30'] = None; fcl_ws['B30'] = None
+for nm in ('VAN Social', 'Costos Sociales', 'Beneficios Sociales'):
+    wb.move_sheet(nm, offset=wb.sheetnames.index('Productor') + 1 - wb.sheetnames.index(nm))
+
 # ---------- 1. recrear el gráfico de la hoja Sensibilidad (openpyxl no conserva gráficos al cargar) ----------
 s = wb['Sensibilidad']
 ch = LineChart(); ch.title = 'Sensibilidad del VAN (S/)'; ch.y_axis.title = 'VAN (S/)'; ch.x_axis.title = 'Variación'

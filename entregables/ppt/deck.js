@@ -537,7 +537,7 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
       [lb("FCL descontado"), ...["-271,700", "40,140", "314,848", "535,602", "652,037", "790,248"].map((v) => cl(v))],
       [lb("Acumulado"), ...["-271,700", "-231,560", "83,288", "618,890", "1,270,926", "2,061,174"].map((v, i) => cl(v, i === 5))]];
     s.addTable(rows, { x: 4.5, y: 1.65, w: 5.0, colW: [0.85, 0.66, 0.62, 0.66, 0.7, 0.75, 0.76], rowH: 0.4, border: { type: "solid", color: "DDE5D5", pt: 1 }, fontFace: "Calibri", margin: [0.02, 0.04, 0.02, 0.04] });
-    const kp = [["VAN financiero al COK", "S/ 2,061,174"], ["VAN a la tasa social (8%)", "S/ 3,336,600"], ["Relación beneficio-costo", "1.20"]];
+    const kp = [["VAN financiero al COK", "S/ 2,061,174"], ["Recupero descontado", "1.74 años"], ["Relación beneficio-costo", "1.20"]];
     kp.forEach((r, i) => {
       const y = 3.4 + i * 0.5;
       s.addShape(S.ROUNDED_RECTANGLE, { x: 4.5, y, w: 5.0, h: 0.42, rectRadius: 0.06, fill: { color: i === 0 ? HEX.g : "FFFFFF" }, line: { color: HEX.g, width: 1 } });
@@ -576,21 +576,30 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
 
   // =============== 20. RENTABILIDAD SOCIAL ===============
   {
-    const s = content("Rentabilidad social: VAN social al 8%");
-    s.addChart(pres.charts.DOUGHNUT, [{ name: "VAN social", labels: ["VAN privado de la empresa", "Impuesto a la renta (transferencia)", "Ingreso neto incremental de productores"], values: [3336600, 1475487, 2558889] }], {
-      x: 0.4, y: 1.1, w: 4.8, h: 3.8, chartColors: [HEX.g, HEX.am, HEX.br], holeSize: 55, showLegend: true, legendPos: "b", legendFontSize: 10.5, legendColor: "1E1A16", legendFontFace: "Calibri",
-      showPercent: true, showValue: false, dataLabelColor: "FFFFFF", dataLabelFontSize: 12, dataLabelFontFace: "Calibri",
+    const s = content("VAN social: beneficios menos costos");
+    const yl = ["Año 1", "Año 2", "Año 3", "Año 4", "Año 5"];
+    s.addChart(pres.charts.BAR, [
+      { name: "Beneficios sociales", labels: yl, values: [91080, 651360, 978880, 1469240, 1824360] },
+      { name: "Costos sociales", labels: yl, values: [82500, 205000, 315000, 432500, 532500] },
+    ], {
+      x: 0.4, y: 1.1, w: 5.2, h: 3.8, barDir: "col", barGrouping: "clustered", chartColors: [HEX.g, HEX.am], barGapWidthPct: 50,
+      showLegend: true, legendPos: "b", legendFontSize: 11, legendColor: "1E1A16", legendFontFace: "Calibri",
+      catAxisLabelFontSize: 11, catAxisLabelColor: "1E1A16", valAxisLabelFontSize: 10, valAxisLabelColor: "5C5750", valAxisLabelFormatCode: "#,##0",
+      valGridLine: { color: "E3E8DD", size: 0.75 }, catGridLine: { style: "none" }, catAxisLabelFontFace: "Calibri", valAxisLabelFontFace: "Calibri",
+      showTitle: true, title: "Flujo social anual (S/)", titleFontSize: 12, titleColor: "2F4A2B", titleFontFace: "Calibri",
     });
-    T(s, "S/ 7,370,976", { x: 5.5, y: 1.25, w: 4.0, h: 0.8, fontSize: 40, bold: true, fontFace: "Cambria", color: HEX.g, valign: "middle" });
-    T(s, "VAN social con la tasa social de descuento del MEF (8%)", { x: 5.5, y: 2.05, w: 4.0, h: 0.4, fontSize: 13 });
-    const lines = [["S/ 3,336,600", "VAN del flujo privado de la empresa", HEX.g], ["S/ 1,475,487", "Impuesto a la renta, que es transferencia y no costo social", HEX.am], ["S/ 2,558,889", "Ingreso neto incremental de los productores (cerca de un tercio)", HEX.br]];
+    T(s, "S/ 2,558,889", { x: 5.85, y: 1.2, w: 3.65, h: 0.8, fontSize: 36, bold: true, fontFace: "Cambria", color: HEX.g, valign: "middle" });
+    T(s, "VAN social al 8% (tasa social del MEF)", { x: 5.85, y: 2.0, w: 3.65, h: 0.35, fontSize: 13 });
+    const lines = [["S/ 3,741,400", "VP de los beneficios sociales: ingreso bruto adicional de los productores", HEX.g], ["S/ 1,182,511", "VP de los costos sociales: insumos y cosecha selectiva adicionales", HEX.am], ["3.16", "Relación beneficio-costo social", HEX.br]];
     lines.forEach((r, i) => {
-      const y = 2.6 + i * 0.75;
-      T(s, r[0], { x: 5.5, y, w: 1.6, h: 0.6, fontSize: 15, bold: true, fontFace: "Cambria", color: r[2], valign: "middle" });
-      T(s, r[1], { x: 7.15, y, w: 2.35, h: 0.6, fontSize: 11.5, valign: "middle" });
+      const y = 2.5 + i * 0.7;
+      T(s, r[0], { x: 5.85, y, w: 1.45, h: 0.6, fontSize: 15, bold: true, fontFace: "Cambria", color: r[2], valign: "middle" });
+      T(s, r[1], { x: 7.35, y, w: 2.15, h: 0.6, fontSize: 10.5, valign: "middle" });
     });
-    source(s, "Fuente: hoja Productor del modelo financiero v5. Supuestos del productor tomados de referencias regionales; se recalculan con el piloto.");
-    s.addNotes("El VAN social suma el VAN del flujo privado, el impuesto a la renta (porque es una transferencia al fisco y no un costo para la sociedad) y el ingreso neto incremental de los productores. Los supuestos del productor provienen de referencias regionales, así que el VAN social debe recalcularse con los rendimientos y costos medidos en las fincas piloto.");
+    card(s, 5.85, 4.55, 3.65, 0.35, HEX.lt2);
+    T(s, "Sin inversión ni flujo de caja libre", { x: 5.95, y: 4.55, w: 3.45, h: 0.35, fontSize: 11.5, bold: true, color: C.text2, valign: "middle" });
+    source(s, "Fuente: modelo financiero v5 (hojas Beneficios Sociales, Costos Sociales y VAN Social). Estimación con supuestos regionales del productor.");
+    s.addNotes("El VAN social es beneficio social menos costo social, descontado al 8%. No usa el flujo de caja libre ni la inversión de la empresa. Los beneficios son el ingreso bruto adicional de los productores frente a la situación sin el modelo: S/ 18,400 por año por productor con tecnificación madura y S/ 2,760 en su primera campaña. Los costos son los insumos y la cosecha selectiva adicionales que paga el productor: S/ 5,000 y S/ 2,500 por año. El VAN social es S/ 2,558,889 y la relación beneficio-costo social es 3.16. Es una estimación con supuestos regionales; se recalcula con las fincas piloto.");
   }
 
   // =============== 21. CIERRE ===============

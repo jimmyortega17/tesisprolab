@@ -175,7 +175,7 @@ def parte2(D):
         ['Inversión', 'S/ 156,200 de inversión inicial; aporte inicial de S/ 271,700; necesidad máxima de caja de S/ 271,700 (flujo del año 1 de +S/ 48,543).'],
         ['Rentabilidad (base)', 'VAN de S/ 2,061,174; TIR de 128.8%; recupero simple de 1.5 años; COK de 20.94%.'],
         ['Riesgo (Monte Carlo)', f"VAN mediano de S/ {f0(R['van']['mediana'])}; probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%; el precio sigue siendo la variable crítica (quiebre en S/ 104)."],
-        ['Impacto social', 'Ingreso neto del productor +64.7%; VAN social al 8% de S/ 7,370,976.'],
+        ['Impacto social', 'Ingreso neto del productor +64.7%; VAN social al 8% de S/ 2,558,889 (beneficios menos costos sociales).'],
         ['Evidencia', 'H1 a H3 validadas en campo; H4 a H8 pendientes de un piloto de diez fincas y 300 paquetes de preventa.'],
         ['Decisión', 'Ejecutar el piloto de seis meses (S/ 93,550) y escalar solo si H5 y H6 se cumplen y el VAN recalculado es positivo.'],
     ], note='Elaboración propia a partir de la tesis y del modelo financiero v5.', widths=[1.4, 5.1])

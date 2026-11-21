@@ -17,7 +17,7 @@ Estas son las cifras de la tesis original (v4.1) que deben actualizarse.
 | TIR | 70.4% | 128.8% |
 | Relación beneficio-costo | 1.09 | 1.20 |
 | Periodo de recupero descontado | 2.86 años | 1.74 años |
-| VAN social al 8% | S/ 5,004,740 | S/ 7,370,976 |
+| VAN social al 8% (beneficios - costos, sin FCL ni inversión) | S/ 5,004,740 (método anterior, incorrecto) | **S/ 2,558,889** |
 | LTV por cliente | S/ 556 | S/ 793 |
 | LTV / CAC | 6.96 | 9.91 |
 | Precio de quiebre del VAN | S/ 104.40 | S/ 104 (exacto 104.22) |
@@ -34,3 +34,7 @@ las conclusiones y el Apéndice F (supuesto de precio, fila 1).
 **Advertencia.** S/ 140 es 8% más que la referencia de S/ 130 por kg del mercado digital y 40% más que los
 S/ 100 de la encuesta de campo. El modelo no reduce la conversión por el mayor precio. La hipótesis H5 debe
 probar S/ 140, S/ 130 y S/ 120.
+
+## Corrección del VAN social
+VAN social = beneficios sociales - costos sociales, descontados al 8%. No usa el flujo de caja libre ni la inversión.
+Hojas nuevas del Excel: Beneficios Sociales, Costos Sociales y VAN Social. Beneficios: S/ 3,741,400 en valor presente; costos: S/ 1,182,511; relación beneficio-costo social: 3.16.
