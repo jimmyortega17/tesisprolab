@@ -26,6 +26,13 @@ def build(pages=None):
     def fig(key, texto, titulo, archivo):
         F.at(key); n = F.nf + 1
         F.p(texto.format(n=n)); F.figure(titulo, FIG + archivo, note='Elaboración propia con la plantilla de lienzos de la consultora de empresas.', width=5.6)
+    F.at('fca'); n_ = F.nt + 1
+    F.p(f'La Tabla {n_} muestra la relación entre el FCL y el FCA. Como el proyecto no usa préstamo, no hay préstamo, amortización, intereses ni escudo fiscal, y el FCA es igual al FCL.')
+    from fb_data import FW, n0
+    def fila(lab, r): return [lab] + [n0(FW.cell(r, 2 + i).value) for i in range(6)]
+    F.table('Flujo de Caja Libre (FCL) y Flujo de Caja del Accionista (FCA) (S/)', ['Concepto', 'Año 0', 'Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5'],
+            [fila('FCL', 17), fila('(+) Préstamo', 18), fila('(-) Amortización', 20), fila('(-) Intereses', 21), fila('(+) Escudo fiscal', 22), fila('FCA', 23)],
+            note='Adaptado del modelo financiero (hoja FCA_WACC). El FCL se descuenta con el WACC y el FCA con el COK; sin préstamo, ambos son iguales y el WACC es igual al COK.', widths=[1.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9])
     fig('l1', 'La Figura {n} presenta el lienzo blanco de relevancia: lo que resulta interesante de la solución, las críticas constructivas, las nuevas preguntas y las nuevas ideas.', 'Lienzo blanco de relevancia de Cosecha Viva', 'lienzo_1_blanco_relevancia.png')
     fig('l1', 'La Figura {n} delimita el problema con el lienzo ¿Qué es? y ¿Qué no es?, que separa lo que es el problema de lo que no es.', 'Lienzo ¿Qué es? y ¿Qué no es? del problema', 'lienzo_2_que_es_que_no_es.png')
     fig('l5', 'La Figura {n} resume al usuario-beneficiario en la matriz de meta-usuario de Rosa, una productora de café de Chanchamayo.', 'Matriz de meta-usuario: Rosa, productora de café', 'lienzo_4_meta_usuario.png')
@@ -45,6 +52,7 @@ def build(pages=None):
         'c6b': heading(doc, 'Capítulo VII: Solución Sostenible', 'Heading 1')._p,
         'c7': heading(doc, 'Capítulo VIII: Decisión e Implementación', 'Heading 1')._p,
         'c8': heading(doc, '8.2 Conclusiones', 'Heading 2')._p,
+        'fca': heading(doc, '6.3.7 Indicadores de Rentabilidad y Análisis Costo-Beneficio', 'Heading 3')._p,
         'l1': find_par(doc, 'El lienzo muestra que actuar solo')._p,
         'l5': find_par(doc, 'Los resultados de campo orientan el perfil')._p,
         'l8': find_par(doc, 'El mapa muestra que los momentos críticos')._p,

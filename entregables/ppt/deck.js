@@ -401,7 +401,7 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
     const s = content("Flujo de caja libre y rentabilidad");
     const labels = ["Año 0", "Año 1", "Año 2", "Año 3", "Año 4", "Año 5"];
     s.addChart([
-      { type: pres.charts.BAR, data: [{ name: "Flujo de caja libre", labels, values: FCL }], options: { chartColors: [HEX.g], barGapWidthPct: 50 } },
+      { type: pres.charts.BAR, data: [{ name: "FCL = FCA (sin préstamo)", labels, values: FCL }], options: { chartColors: [HEX.g], barGapWidthPct: 50 } },
       { type: pres.charts.LINE, data: [{ name: "Flujo descontado acumulado", labels, values: ACUM }], options: { chartColors: [HEX.am], lineSize: 3, lineDataSymbolSize: 7 } },
     ], {
       x: 0.4, y: 1.1, w: 5.9, h: 3.8, showLegend: true, legendPos: "b", legendFontSize: 11, legendColor: "1E1A16", legendFontFace: "Calibri",
@@ -409,23 +409,23 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
       valGridLine: { color: "E3E8DD", size: 0.75 }, catGridLine: { style: "none" }, catAxisLabelFontFace: "Calibri", valAxisLabelFontFace: "Calibri",
       showTitle: true, title: "Soles sin IGV", titleFontSize: 12, titleColor: "2F4A2B", titleFontFace: "Calibri",
     });
-    const k = [["VAN financiero", "S/ 2,061,174", HEX.g], ["COK (CAPM)", "20.94%", HEX.br], ["TIR", "128.8%", HEX.bl], ["TIR modificada", "85.9%", HEX.am]];
+    const k = [["VAN económico (FCL al WACC)", "S/ 2,061,174", HEX.g], ["VAN financiero (FCA al COK)", "S/ 2,061,174", HEX.br], ["TIR del FCL y del FCA", "128.8%", HEX.bl], ["TIR modificada del FCA", "85.9%", HEX.am]];
     for (let i = 0; i < 4; i++) {
       const col = i % 2, row = Math.floor(i / 2);
       const x = 6.5 + col * 1.54, y = 1.15 + row * 1.35;
       card(s, x, y, 1.45, 1.22, HEX.lt2);
-      T(s, k[i][1], { x: x + 0.06, y: y + 0.12, w: 1.33, h: 0.55, fontSize: i === 0 ? 17 : 22, bold: true, fontFace: "Cambria", color: k[i][2], align: "center", valign: "middle" });
+      T(s, k[i][1], { x: x + 0.06, y: y + 0.12, w: 1.33, h: 0.55, fontSize: i < 2 ? 16 : 22, bold: true, fontFace: "Cambria", color: k[i][2], align: "center", valign: "middle" });
       T(s, k[i][0], { x: x + 0.06, y: y + 0.7, w: 1.33, h: 0.45, fontSize: 11.5, align: "center", valign: "top", bold: true });
     }
     card(s, 6.5, 3.9, 3.04, 1.0, "FFFFFF", "C9D4C0");
-    T(s, [{ text: "Año 1 ya es positivo (+S/ 48,543). ", options: { bold: true, color: HEX.g } }, { text: "Recupero descontado en 1.74 años; relación beneficio-costo de 1.20." }], { x: 6.62, y: 3.92, w: 2.82, h: 0.96, fontSize: 11.5, valign: "middle" });
+    T(s, [{ text: "Sin préstamo: FCA = FCL y WACC = COK = 20.94%. ", options: { bold: true, color: HEX.g } }, { text: "El año 1 ya es positivo (+S/ 48,543); recupero descontado de 1.74 años." }], { x: 6.62, y: 3.92, w: 2.82, h: 0.96, fontSize: 11.5, valign: "middle" });
     source(s, "Fuente: modelo financiero v5 (hojas FCL e Indicadores_Extra). Proyección con precio de S/ 140 aún no probado con compra real.");
     s.addNotes("El flujo de caja libre es negativo solo en el año 0 (S/ -271,700: inversión de S/ 156,200 más kits de S/ 115,500). Desde el año 1 es positivo. Con un COK de 20.94% el VAN financiero es de S/ 2,061,174, la TIR de 128.8% y la TIR modificada de 85.9%, que supone reinvertir al COK y es la medida más prudente. Advertencia: el precio de S/ 140 es una decisión del equipo que aún no se prueba con compra real; con el precio inicial de S/ 120 el VAN era de S/ 922,276 y el año 1 era negativo.");
   }
 
   // =============== 18. COK Y VAN ===============
   {
-    const s = content("Del COK al VAN financiero");
+    const s = content("Del COK y el WACC al VAN");
     card(s, 0.5, 1.15, 3.8, 3.75, HEX.lt2);
     T(s, "Costo de oportunidad (CAPM, beta total)", { x: 0.65, y: 1.22, w: 3.6, h: 0.35, fontSize: 13.5, bold: true, fontFace: "Cambria", color: C.text2 });
     const cok = [["Tasa libre de riesgo (bono EE. UU. 10 años)", "4.88%"], ["Beta total, sector agrícola", "3.56"], ["Prima de riesgo de mercado", "4.14%"], ["Riesgo país (EMBIG Perú)", "1.18%"], ["COK en dólares = 4.88% + 3.56 × 4.14% + 1.18%", "20.80%"], ["Inflación esperada: Perú 2.25% y EE. UU. 2.13%", "ajuste"], ["COK en soles", "20.94%"]];
@@ -434,16 +434,16 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
       T(s, r[0], { x: 0.65, y, w: 2.65, h: 0.38, fontSize: 10.5, bold: last || i === 4, valign: "middle" });
       T(s, r[1], { x: 3.3, y, w: 0.9, h: 0.38, fontSize: last ? 16 : 12, bold: true, color: last ? HEX.g : C.text1, align: "right", valign: "middle" });
     });
-    T(s, "VAN = flujo del año 0 + suma de cada flujo / (1 + COK) elevado al año", { x: 4.5, y: 1.15, w: 5.0, h: 0.45, fontSize: 11.5, bold: true, color: C.text2, valign: "middle" });
+    T(s, "VAN = flujo del año 0 + suma de cada flujo / (1 + tasa) elevado al año. FCL con WACC; FCA con COK.", { x: 4.5, y: 1.15, w: 5.0, h: 0.45, fontSize: 11.5, bold: true, color: C.text2, valign: "middle" });
     const hd = (t) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: HEX.dk2 }, align: "center", fontSize: 11 } });
     const cl = (t, b) => ({ text: t, options: { align: "right", fontSize: 10, bold: !!b } });
     const lb = (t) => ({ text: t, options: { bold: true, fontSize: 10.5, fill: { color: HEX.lt2 } } });
     const rows = [[hd("S/"), hd("Año 0"), hd("Año 1"), hd("Año 2"), hd("Año 3"), hd("Año 4"), hd("Año 5")],
-      [lb("FCL"), ...["-271,700", "48,543", "460,485", "947,356", "1,394,761", "2,044,317"].map((v) => cl(v))],
+      [lb("FCL = FCA"), ...["-271,700", "48,543", "460,485", "947,356", "1,394,761", "2,044,317"].map((v) => cl(v))],
       [lb("FCL descontado"), ...["-271,700", "40,140", "314,848", "535,602", "652,037", "790,248"].map((v) => cl(v))],
       [lb("Acumulado"), ...["-271,700", "-231,560", "83,288", "618,890", "1,270,926", "2,061,174"].map((v, i) => cl(v, i === 5))]];
     s.addTable(rows, { x: 4.5, y: 1.65, w: 5.0, colW: [0.85, 0.66, 0.62, 0.66, 0.7, 0.75, 0.76], rowH: 0.4, border: { type: "solid", color: "DDE5D5", pt: 1 }, fontFace: "Calibri", margin: [0.02, 0.04, 0.02, 0.04] });
-    const kp = [["VAN financiero al COK", "S/ 2,061,174"], ["Recupero descontado", "1.74 años"], ["Relación beneficio-costo", "1.20"]];
+    const kp = [["VAN económico (FCL al WACC)", "S/ 2,061,174"], ["VAN financiero (FCA al COK)", "S/ 2,061,174"], ["WACC = COK (sin deuda)", "20.94%"]];
     kp.forEach((r, i) => {
       const y = 3.4 + i * 0.5;
       s.addShape(S.ROUNDED_RECTANGLE, { x: 4.5, y, w: 5.0, h: 0.42, rectRadius: 0.06, fill: { color: i === 0 ? HEX.g : "FFFFFF" }, line: { color: HEX.g, width: 1 } });
@@ -451,7 +451,7 @@ function T(s, text, o) { s.addText(text, Object.assign({ margin: 0, isTextBox: t
       T(s, r[1], { x: 7.5, y, w: 1.9, h: 0.42, fontSize: 15, bold: true, fontFace: "Cambria", color: i === 0 ? "FFFFFF" : HEX.g, valign: "middle", align: "right" });
     });
     source(s, "Fuentes: Damodaran (2026a, 2026b); RoboForex (2026); Andina (2026); BCRP (2026); Federal Reserve (2026). Modelo financiero v5.");
-    s.addNotes("El COK se calcula con CAPM usando la beta total del sector agrícola, porque el riesgo dominante es el abastecimiento. El COK en dólares es 20.80% y, con las expectativas de inflación de Perú y de Estados Unidos, el COK en soles es 20.94%. El VAN financiero descuenta el flujo de caja libre a esa tasa; la tasa social de 8% se usa solo para el VAN social.");
+    s.addNotes("El proyecto no usa préstamo, así que el FCA es igual al FCL y el WACC es igual al COK; si hubiera deuda, el FCA sería distinto del FCL y el WACC menor que el COK. El FCL se descuenta con el WACC y el FCA con el COK. El COK se calcula con CAPM usando la beta total del sector agrícola, porque el riesgo dominante es el abastecimiento. El COK en dólares es 20.80% y, con las expectativas de inflación de Perú y de Estados Unidos, el COK en soles es 20.94%. El VAN financiero descuenta el flujo de caja libre a esa tasa; la tasa social de 8% se usa solo para el VAN social.");
   }
 
   // =============== 19. ODS ===============

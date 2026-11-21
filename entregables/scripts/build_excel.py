@@ -120,6 +120,60 @@ fcl_ws = wb['FCL']; fcl_ws['A30'] = None; fcl_ws['B30'] = None
 for nm in ('VAN Social', 'Costos Sociales', 'Beneficios Sociales'):
     wb.move_sheet(nm, offset=wb.sheetnames.index('Productor') + 1 - wb.sheetnames.index(nm))
 
+# ---------- FCL al WACC y FCA al COK ----------
+fw = wb.create_sheet('FCA_WACC')
+fw.column_dimensions['A'].width = 70
+for c_ in 'BCDEFG': fw.column_dimensions[c_].width = 16
+def put2(ref, v, b=False, nf=None, color=None, fill=None):
+    c = fw[ref]; c.value = v; c.font = Font(name='Times New Roman', size=11, bold=b, color=color)
+    if nf: c.number_format = nf
+    if fill: c.fill = PatternFill('solid', fgColor=fill)
+put2('A1', 'FCL descontado al WACC y FCA descontado al COK', True)
+put2('A2', 'El FCL (flujo de caja libre) se descuenta con el WACC. El FCA (flujo de caja del accionista) se descuenta con el COK. Sin préstamo, el FCA es igual al FCL y el WACC es igual al COK.')
+put2('A4', 'Financiamiento', True, fill='E8EFE0'); put2('B4', 'Valor', True, fill='E8EFE0')
+put2('A5', 'Préstamo (S/): 0 = el proyecto se financia solo con aporte de los socios'); put2('B5', 0, color='0000FF', nf=NUM)
+put2('A6', 'Tasa de interés anual del préstamo (referencial; no se usa si no hay préstamo)'); put2('B6', 0.12, color='0000FF', nf=PCT)
+put2('A7', 'Plazo del préstamo (años, amortización constante)'); put2('B7', 5, color='0000FF')
+put2('A8', 'Impuesto a la renta'); put2('B8', '=Supuestos!$B$47', nf=PCT)
+put2('A9', 'Aporte de los socios (patrimonio) = salida de caja del año 0 - préstamo'); put2('B9', '=-FCL!$B$17-$B$5', nf=NUM)
+put2('A10', 'Proporción de deuda D / (D + E)'); put2('B10', '=$B$5/($B$5+$B$9)', nf=PCT)
+put2('A11', 'Proporción de patrimonio E / (D + E)'); put2('B11', '=$B$9/($B$5+$B$9)', nf=PCT)
+put2('A12', 'COK (costo de oportunidad del accionista)'); put2('B12', '=COK!$B$12', nf=PCT)
+put2('A13', 'Costo de la deuda después de impuestos = Kd x (1 - t)'); put2('B13', '=$B$6*(1-$B$8)', nf=PCT)
+put2('A14', 'WACC = E/(D+E) x COK + D/(D+E) x Kd x (1 - t)', True); put2('B14', '=$B$11*$B$12+$B$10*$B$13', True, nf='0.00%')
+for i, y in enumerate(['Año 0'] + yrs): put2(f'{L(2 + i)}16', y, True, fill='E8EFE0')
+put2('A16', 'Flujos (S/)', True, fill='E8EFE0')
+labs = {17: 'FCL (flujo de caja libre)', 18: '(+) Préstamo recibido', 19: 'Saldo del préstamo al cierre', 20: '(-) Amortización', 21: '(-) Intereses', 22: '(+) Escudo fiscal de los intereses', 23: 'FCA (flujo de caja del accionista)', 24: 'FCA - FCL'}
+for r_, t_ in labs.items(): put2(f'A{r_}', t_, r_ in (17, 23))
+for i in range(6):
+    c = L(2 + i); pc_ = L(1 + i)
+    put2(f'{c}17', f'=FCL!{c}17', True, NUM)
+    put2(f'{c}18', '=$B$5' if i == 0 else 0, nf=NUM)
+    put2(f'{c}19', '=B18' if i == 0 else f'={pc_}19-{c}20', nf=NUM)
+    put2(f'{c}20', 0 if i == 0 else f'=MIN({pc_}19,$B$5/$B$7)', nf=NUM)
+    put2(f'{c}21', 0 if i == 0 else f'={pc_}19*$B$6', nf=NUM)
+    put2(f'{c}22', 0 if i == 0 else f'={c}21*$B$8', nf=NUM)
+    put2(f'{c}23', f'={c}17+{c}18-{c}20-{c}21+{c}22', True, NUM)
+    put2(f'{c}24', f'={c}23-{c}17', nf=NUM)
+put2('A26', 'Resultados', True, fill='E8EFE0'); put2('B26', 'Valor', True, fill='E8EFE0')
+put2('A27', 'VAN económico: FCL descontado al WACC (S/)', True); put2('B27', '=B17+NPV($B$14,C17:G17)', True, NUM)
+put2('A28', 'VAN financiero: FCA descontado al COK (S/)', True); put2('B28', '=B23+NPV($B$12,C23:G23)', True, NUM)
+put2('A29', 'Diferencia entre ambos VAN (0 si no hay préstamo)'); put2('B29', '=B27-B28', nf=NUM)
+put2('A30', 'TIR económica (FCL)'); put2('B30', '=IRR(B17:G17)', nf=PCT)
+put2('A31', 'TIR financiera (FCA)'); put2('B31', '=IRR(B23:G23)', nf=PCT)
+put2('A32', 'TIR modificada del FCA (financiamiento y reinversión al COK)'); put2('B32', '=MIRR(B23:G23,$B$12,$B$12)', nf=PCT)
+put2('A34', 'Nota. Si se ingresa un préstamo en B5, el FCA cambia (préstamo, amortización, intereses y escudo fiscal) y el WACC baja por la deuda. Este modelo no recalcula la beta ni el COK por mayor apalancamiento, y la hoja Sensibilidad sigue usando el COK.')
+# la hoja FCL descuenta con el WACC
+fl = wb['FCL']
+for i in range(6): fl.cell(18, 2 + i).value = f'=1/(1+FCA_WACC!$B$14)^{i}'
+fl['A18'] = 'Factor de descuento al WACC'
+fl['A23'] = 'VAN económico: FCL descontado al WACC (S/)'
+fl['A24'] = 'TIR económica (FCL)'
+fl['A25'] = 'WACC (igual al COK si no hay préstamo)'; fl['B25'] = '=FCA_WACC!$B$14'
+fl['A30'] = 'VAN financiero: FCA descontado al COK (S/)'; fl['B30'] = '=FCA_WACC!$B$28'; fl['B30'].number_format = NUM; fl['A30'].font = Font(name='Times New Roman', size=11)
+fl['A30'].font = Font(name='Times New Roman', size=11); fl['B30'].font = Font(name='Times New Roman', size=11)
+wb.move_sheet('FCA_WACC', offset=wb.sheetnames.index('FCL') + 1 - wb.sheetnames.index('FCA_WACC'))
+
 # ---------- 1. recrear el gráfico de la hoja Sensibilidad (openpyxl no conserva gráficos al cargar) ----------
 s = wb['Sensibilidad']
 ch = LineChart(); ch.title = 'Sensibilidad del VAN (S/)'; ch.y_axis.title = 'VAN (S/)'; ch.x_axis.title = 'Variación'
@@ -226,7 +280,7 @@ put(x, 'A8', 'Periodo de recupero simple (años)')
 put(x, 'B8', '=IF(G6<0,"Mayor a 5",IF(C6>=0,-B6/C5,IF(D6>=0,1-C6/D5,IF(E6>=0,2-D6/E5,IF(F6>=0,3-E6/F5,IF(G6>=0,4-F6/G5,"Mayor a 5"))))))', nf='0.00')
 put(x, 'A9', 'Periodo de recupero descontado (años), hoja FCL'); put(x, 'B9', '=FCL!B26', nf='0.00')
 put(x, 'A10', 'TIR (hoja FCL)'); put(x, 'B10', '=FCL!B24', nf=PCT)
-put(x, 'A11', 'TIR modificada (financiamiento y reinversión al COK)'); put(x, 'B11', '=MIRR(B5:G5,COK!B12,COK!B12)', nf=PCT)
+put(x, 'A11', 'TIR modificada del FCA (financiamiento y reinversión al COK)'); put(x, 'B11', '=MIRR(B5:G5,COK!B12,COK!B12)', nf=PCT)
 put(x, 'A12', 'COK'); put(x, 'B12', '=COK!B12', nf=PCT)
 put(x, 'A13', 'Índice de rentabilidad (1 + VAN / VP de egresos)'); put(x, 'B13', '=1+FCL!B23/FCL!B28', nf='0.00')
 put(x, 'A15', 'Necesidad de financiamiento', bold)

@@ -50,15 +50,23 @@ def actualizar_cifras(doc):
                  'Inversión inicial': row(FCL, 9, 2, 7), 'Kits': row(FCL, 10, 2, 7), 'Costos variables': row(FCL, 11, 2, 7), 'Marketing': row(FCL, 12, 2, 7),
                  'Costos fijos': row(FCL, 13, 2, 7), 'Impuesto': row(FCL, 14, 2, 7), 'Inversión en capital': row(FCL, 15, 2, 7), 'Total egresos': row(FCL, 16, 2, 7),
                  'Flujo de caja libre': row(FCL, 17, 2, 7), 'Flujo descontado acumulado': row(FCL, 20, 2, 7)}, 6)
-    # ---- Tabla 25 (idx 24): indicadores
-    vals = {'VAN financiero al COK': 'S/ ' + n0(base), 'TIR': pc(FCL['B24'].value), 'Periodo de recupero': f"{FCL['B26'].value:.2f} años",
-            'Valor presente de los ingresos': 'S/ ' + n0(FCL['B27'].value), 'Valor presente de los egresos': 'S/ ' + n0(FCL['B28'].value),
-            'Relación beneficio-costo': f"{FCL['B29'].value:.2f}", 'VAN esperado': 'S/ ' + n0(SEN['B17'].value)}
-    for i, rw in enumerate(T[24].rows):
-        for k, v in vals.items():
-            if rw.cells[0].text.startswith(k): setc(T[24], i, 1, v)
-    for rw in list(T[24].rows):
-        if rw.cells[0].text.startswith('VAN financiero a la tasa social'): T[24]._tbl.remove(rw._tr)
+    # ---- Tabla 25 (idx 24): indicadores económicos y financieros
+    from fb_insert import FDoc as _FD
+    _F = _FD(doc)
+    ind = [['VAN económico: FCL descontado al WACC', 'S/ ' + n0(FW['B27'].value)],
+           ['VAN financiero: FCA descontado al COK', 'S/ ' + n0(FW['B28'].value)],
+           ['TIR económica (FCL)', pc(FW['B30'].value)],
+           ['TIR financiera (FCA)', pc(FW['B31'].value)],
+           ['TIR modificada del FCA (reinversión al COK)', pc(FW['B32'].value)],
+           ['WACC (sin deuda, igual al COK)', pc(FW['B14'].value, 2)],
+           ['COK', pc(FW['B12'].value, 2)],
+           ['Periodo de recupero descontado', f"{FCL['B26'].value:.2f} años"],
+           ['Valor presente de los ingresos de caja', 'S/ ' + n0(FCL['B27'].value)],
+           ['Valor presente de los egresos de caja', 'S/ ' + n0(FCL['B28'].value)],
+           ['Relación beneficio-costo (VP ingresos / VP egresos)', f"{FCL['B29'].value:.2f}"],
+           ['VAN esperado ponderado por escenarios', 'S/ ' + n0(SEN['B17'].value)]]
+    _t = _F._tbl(['Indicador', 'Valor'], ind, [3.6, 1.6], 9)
+    T[24]._tbl.addprevious(_t); T[24]._tbl.getparent().remove(T[24]._tbl)
     # ---- Tabla 26 (idx 25): punto de equilibrio
     fill(T[25], {'Paquetes de equilibrio operativo': row(EER, 23, 2, 6), 'Paquetes de equilibrio contable': row(EER, 24, 2, 6)}, 5)
     fill(T[25], {'Margen de seguridad': [pc(v) for v in row(EER, 25, 2, 6)]}, 5, fmt=lambda x: x)
@@ -134,13 +142,13 @@ def actualizar_cifras(doc):
     S('El modelo es viable financieramente', f"El modelo es viable financieramente. Con una inversión inicial de S/ 156,200 y un costo de oportunidad del capital de 20.94%, calculado con el modelo CAPM, beta total y riesgo país, genera, con los supuestos actuales, un VAN de S/ {V(base)} y una TIR de {pc(FCL['B24'].value)} en un horizonte de cinco años, con liquidación al quinto año y sin perpetuidad; el flujo de caja libre es positivo desde el primer año. Estos resultados son proyecciones condicionadas a la validación comercial del piloto, en particular del precio de S/ 140; el detalle se presenta en el capítulo VI.")
     S('Cada paquete deja un margen de contribución de S/ 39.13 sin', f"Cada paquete deja un margen de contribución de S/ {n2(UNI['B14'].value)} sin IGV ({pc(UNI['C14'].value)} del valor de venta). La frecuencia de seis paquetes por cliente al año se sustenta en el consumo de un hogar: un hogar limeño tiene 3.4 personas en promedio (Cámara de Comercio de Lima [CCL], s.f.) y el consumo per cápita bordea 1.6 a 1.7 kilogramos al año (El Peruano, 2026; Agraria.pe, 2025), es decir, entre 5.4 y 5.8 kilogramos por hogar. La preventa reduce la necesidad de capital de trabajo, porque el cliente paga antes de que la empresa compre el café al productor.")
     S('El primer año exige captar', f"El primer año exige captar 2,000 clientes, lo que con una conversión de 3% equivale a unas 66,667 visitas calificadas. La relación entre el valor del cliente y su costo de adquisición es de {lc:.2f} veces, por encima del mínimo de tres veces que suele exigirse en modelos de suscripción; sin embargo, depende de la retención y del CAC, que son los supuestos de menor confianza del modelo (Apéndice H).")
-    S('Como el COK es', f"Como el COK es un supuesto relevante, la hoja de sensibilidad calcula el VAN con tasas de 12% a 28%: el VAN se mantiene positivo en todo ese rango, entre S/ {V(sens['28'])} con 28% y S/ {V(sens['12'])} con 12%. La tasa social de descuento del MEF, de 8%, se usa solo para el VAN social del capítulo VII.")
+    S('Como el COK es', f"El proyecto se financia solo con aporte de los socios y no usa préstamo. Por eso el WACC es igual al COK ({pc(FW['B14'].value, 2)}): el flujo de caja libre (FCL) se descuenta con el WACC y el flujo de caja del accionista (FCA) se descuenta con el COK, y como no hay préstamo el FCA es igual al FCL. Si hubiera deuda, el FCA sería distinto del FCL. Como el COK es un supuesto relevante, la hoja de sensibilidad calcula el VAN con tasas de 12% a 28%: el VAN se mantiene positivo en todo ese rango, entre S/ {V(sens['28'])} con 28% y S/ {V(sens['12'])} con 12%. La tasa social de descuento del MEF, de 8%, se usa solo para el VAN social del capítulo VII.")
     set_par(find_par(doc, 'Nota. Valores sin IGV. El valor de venta'), 'Nota. Valores sin IGV. El valor de venta corresponde al precio de S/ 140 dividido entre 1.18.')
     S('Cada paquete deja un margen de contribución de S/ 39.13 (', f"Cada paquete deja un margen de contribución de S/ {n2(UNI['B14'].value)} ({pc(UNI['C14'].value)} del valor de venta). El café pagado al productor es el mayor costo y representa alrededor de 25% del valor de venta: una parte importante de lo que paga el cliente llega a la finca.")
     S('El resultado muestra una ventaja', "El resultado muestra una ventaja del modelo: desde el primer año, los anticipos de la preventa cubren el inventario de café y de empaques, y el capital de trabajo requerido es nulo; por eso no hay recupero de capital de trabajo al quinto año. Esta ventaja depende del supuesto de anticipos, de baja confianza, que debe confirmarse en el piloto.")
     S('La Tabla 23 presenta', f"La Tabla 23 presenta el estado de resultados. El primer año ya registra utilidad operativa positiva, aunque pequeña, porque absorbe la deducción de los gastos preoperativos y el costo de captar a los primeros clientes; el margen EBITDA pasa de {pc(EER['B22'].value)} en el primer año a {pc(m5)} en el quinto.")
     S('La Tabla 24 presenta', "La Tabla 24 presenta el flujo de caja libre. Solo el flujo del año 0 es negativo, por la inversión y los kits del primer año; desde el año 1 el flujo es positivo (S/ " + V(FCL['C17'].value) + "). En el quinto año el proyecto se liquida con el valor de rescate de S/ 154,500, sin perpetuidad y sin recupero de capital de trabajo.")
-    S('La Tabla 25 resume', f"La Tabla 25 resume los indicadores del caso base. Con los supuestos actuales, el VAN es positivo al COK de 20.94%, la TIR supera ampliamente el COK y la inversión se recupera, en valor presente, en menos de dos años ({FCL['B26'].value:.2f} años).")
+    S('La Tabla 25 resume', f"La Tabla 25 resume los indicadores del caso base. Como no hay préstamo, el VAN económico (FCL al WACC) y el VAN financiero (FCA al COK) coinciden. Con los supuestos actuales, el VAN es positivo al COK de 20.94%, la TIR supera ampliamente el COK y la inversión se recupera, en valor presente, en menos de dos años ({FCL['B26'].value:.2f} años).")
     S('El análisis costo-beneficio', f"El análisis costo-beneficio confirma la conveniencia del proyecto en el caso base: por cada sol de egresos en valor presente, incluidos la inversión, los costos y los impuestos, el modelo genera S/ {FCL['B29'].value:.2f} de ingresos en valor presente. La relación sigue siendo estrecha porque el café comprado al productor es un costo alto por diseño, y es sensible a la clasificación de los flujos y al valor de rescate; por eso se complementa con el VAN esperado por escenarios, de S/ {V(SEN['B17'].value)}.")
     S('Se calcularon dos puntos', f"Se calcularon dos puntos de equilibrio. El operativo divide los costos fijos y la inversión en adquisición de clientes, netos del margen de los tours, entre el margen unitario neto del marketing de retención; el contable añade la depreciación. En el primer año, el equilibrio operativo exige {V(pe1)} paquetes frente a 12,000 proyectados, con un margen de seguridad de {pc(ms1)}; desde el segundo año, las ventas superan el equilibrio con un margen de seguridad de {pc(ms2)} (Tabla 26).")
     S('El precio pagado por el cliente es', f"El precio pagado por el cliente sigue siendo la variable más sensible: el VAN se anula con una caída de 25.6%, es decir, con un precio de S/ 104, fuera del rango de ±20% de la Tabla 27. Con el precio de S/ 140 el VAN permanece positivo en todas las variaciones de ±20% de la tabla. La Tabla 28 combina varias variables en cuatro escenarios, incluido uno de estrés, con probabilidades asignadas por el equipo.")
