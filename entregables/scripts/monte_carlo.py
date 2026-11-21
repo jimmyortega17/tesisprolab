@@ -10,7 +10,7 @@ COSTO_VISITA = BASE['cac'] * 0.03          # S/ 2.40 por visita calificada (CAC 
 
 # nombre, etiqueta, (mín, moda, máx), justificación
 DIST = [
-    ('precio',  'Precio del paquete (S/, con IGV)',          (115, 140, 155), 'Precio base de S/ 140; el quiebre del VAN está por debajo de S/ 100; referencia de mercado cercana a S/ 130 por kg (Mercado Libre, 2026)'),
+    ('precio',  'Precio del paquete (S/, con IGV)',          (115, 140, 155), 'Precio base de S/ 140; el VAN se anula con un precio de S/ 104; referencia de mercado cercana a S/ 130 por kg (Mercado Libre, 2026)'),
     ('paqf',    'Factor de paquetes vendidos',               (0.70, 1.00, 1.15), 'Escenarios del equipo: estrés -30%, pesimista -20%, optimista +15%'),
     ('conv',    'Conversión de visitas en compra',           (0.015, 0.03, 0.04), 'Umbral H5 de 3%; CAC = costo por visita / conversión'),
     ('ret',     'Retención anual de clientes',               (0.40, 0.60, 0.75), 'Confianza baja; validar en el piloto (H8)'),

@@ -21,7 +21,7 @@ def parte1(D):
     # ---------------- Capítulo II ----------------
     D.pb(); D.h('Capítulo II: Análisis del Mercado (secciones nuevas)', 1)
     D.where('Capítulo II, después de la sección 2.2 Análisis Competitivo Detallado.')
-    D.h('2.3 Análisis del Entorno', 2)
+    D.at('c2'); D.h('2.3 Análisis del Entorno', 2)
     D.p('El entorno se analizó con el modelo PESTEL, que ordena los factores políticos, económicos, sociales, tecnológicos, ecológicos y legales según su efecto sobre Cosecha Viva. La Tabla 43 presenta el resultado y la respuesta del modelo a cada factor.')
     D.table('Análisis PESTEL de Cosecha Viva', ['Factor', 'Situación', 'Efecto sobre el modelo', 'Respuesta de Cosecha Viva'], [
         ['Político', 'El riesgo país bajó a 118 puntos básicos (Andina, 2026). El modelo no usa fondos ni programas del Estado.', 'Bajo: no depende de subsidios ni de licitaciones.', 'Se financia con aporte de los socios y se mantiene el riesgo país dentro del COK.'],
@@ -52,7 +52,7 @@ def parte1(D):
     # ---------------- Capítulo III ----------------
     D.pb(); D.h('Capítulo III: Investigación del Usuario (secciones nuevas)', 1)
     D.where('Capítulo III: el mapa de empatía va al final de 3.1 Perfil del Usuario; el mapa de experiencia del consumidor va al final de 3.2.')
-    D.h('3.1.1 Mapas de Empatía', 2)
+    D.at('c3a'); D.h('3.1.1 Mapas de Empatía', 3)
     D.p('Los mapas de empatía organizan lo que cada usuario ve, escucha, piensa, siente, dice y hace, junto con sus dolores y ganancias. Complementan el lienzo del meta-usuario de la Tabla 5. El del productor se basa en el trabajo de campo con 20 productores; el del consumidor es una hipótesis del equipo que debe confirmarse con las entrevistas del Apéndice B.')
     D.table('Mapa de empatía del productor de café', ['Dimensión', 'Contenido'], [
         ['Ve', 'Su parcela con poca nutrición, plagas, café mezclado al cosechar, precios que cambian sin explicación.'],
@@ -70,7 +70,7 @@ def parte1(D):
         ['Dolores', 'Desconfianza en el origen, café no siempre fresco, poca conexión con el productor (Tabla 5).'],
         ['Ganancias', 'Café fresco y trazable, impacto visible en el productor y una experiencia que puede compartir.'],
     ], note='Elaboración propia a partir del lienzo del meta-usuario (Tabla 5). Pendiente de validar con la encuesta del Apéndice B.', widths=[1.3, 5.2])
-    D.h('3.2.1 Mapa de Experiencia del Consumidor', 2)
+    D.at('c3b'); D.h('3.2.1 Mapa de Experiencia del Consumidor', 3)
     D.p('El mapa de la Tabla 8 describe solo al productor. La Tabla 48 presenta el recorrido del consumidor con Cosecha Viva, de modo que cada etapa tenga una oportunidad de mejora y una métrica que se mide en el piloto.')
     D.table('Mapa de experiencia del consumidor con Cosecha Viva', ['Etapa', 'Qué hace', 'Qué siente', 'Punto de dolor', 'Oportunidad', 'Métrica'], [
         ['Descubre', 'Ve un video o una recomendación y entra a la página.', 'Curiosidad', 'No sabe si el origen es real.', 'Video de la finca y ficha del productor.', 'Visitas calificadas'],
@@ -85,7 +85,7 @@ def parte1(D):
     # ---------------- Capítulo IV ----------------
     D.pb(); D.h('Capítulo IV: Diseño del Producto o Servicio (sección nueva)', 1)
     D.where('Capítulo IV, dentro de 4.4 Propuesta de Valor, antes de la Tabla 12 o en su lugar como ampliación.')
-    D.h('4.4.1 Lienzo de la Propuesta de Valor', 2)
+    D.at('c4'); D.h('4.4.1 Lienzo de la Propuesta de Valor', 3)
     D.p('El lienzo de la propuesta de valor de Osterwalder et al. (2014) separa el perfil del cliente (trabajos, dolores y ganancias) del mapa de valor (productos y servicios, aliviadores de dolor y creadores de ganancia). Se construyó uno por cada lado del modelo. El encaje de la Tabla 12 resume la relación entre ambos.')
     D.table('Lienzo de la propuesta de valor: productor', ['Perfil del cliente', 'Mapa de valor'], [
         ['Trabajos: producir café para sostener a su familia; vender la cosecha; pagar la campaña; cuidar la parcela.', 'Productos y servicios: asistencia técnica, kit de fertirriego y secado en comodato, compra del café selecto, visitas a la finca.'],
@@ -102,7 +102,7 @@ def parte1(D):
     # ---------------- Capítulo V ----------------
     D.pb(); D.h('Capítulo V: Modelo de Negocio (secciones nuevas)', 1)
     D.where('Capítulo V: 5.3.1 va dentro de 5.3 Escalabilidad; 5.5 y 5.6 van después de 5.4 Sostenibilidad. Actualice el índice.')
-    D.h('5.3.1 Hoja de Ruta de Escalamiento y Estrategia de Salida', 2)
+    D.at('c5a'); D.h('5.3.1 Hoja de Ruta de Escalamiento y Estrategia de Salida', 3)
     D.p('El modelo crece por cohortes de productores y por clientes. La Tabla 51 muestra la escala que alcanza cada año según el modelo financiero y las condiciones que deben cumplirse antes de pasar a la siguiente etapa.')
     D.table('Hoja de ruta de escalamiento', ['Etapa', 'Año', 'Paquetes', 'Clientes activos', 'Productores', 'Condición para avanzar'], [
         ['Piloto', 'Meses 1 a 6', '300', '—', '10 fincas', 'H5 y H6 cumplidas; VAN recalculado positivo.'],
@@ -112,7 +112,7 @@ def parte1(D):
     ], note='Adaptado del modelo financiero (hojas Demanda y FCL). El piloto no forma parte de los cinco años proyectados.', widths=[1.3, 0.8, 1.0, 1.0, 0.9, 1.7])
     D.p('La estrategia de salida es una opción de los socios y no está incluida en el flujo de caja, que liquida los activos al quinto año sin perpetuidad. Las alternativas son: continuar la operación; vender la participación a una tostaduría o comercializadora de café; incorporar un inversionista con aporte de capital para escalar a otras regiones o cultivos; o transferir la plataforma de trazabilidad como servicio a otras marcas. La decisión dependerá de la retención de clientes, de la fidelidad de los productores y del VAN recalculado con los datos del piloto.')
 
-    D.h('5.5 Plan de Marketing', 2)
+    D.at('c5b'); D.h('5.5 Plan de Marketing', 2)
     D.p('El plan de marketing define a quién se vende, qué se promete, por qué canales y con qué presupuesto. Sus cifras provienen del modelo financiero (hoja Plan_Marketing del Excel): el primer año exige 2,000 clientes nuevos, equivalentes a 66,667 visitas calificadas con una conversión de 3% y un CAC de S/ 80.')
     D.h('5.5.1 Objetivos', 3)
     D.bullets(['Conseguir 300 paquetes de preventa con pago real en el piloto, con conversión mínima de 3% (H5).',

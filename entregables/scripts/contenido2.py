@@ -9,7 +9,7 @@ def parte2(D):
     # ---------------- Capítulo VI: 6.1 ----------------
     D.pb(); D.h('Capítulo VI: Validación del Modelo de Negocio (secciones nuevas)', 1)
     D.where('Capítulo VI, dentro de 6.1 Validación de la Deseabilidad, después de la Tabla 15 y antes de 6.1.1.')
-    D.h('6.1.2 Mapa de Priorización de Hipótesis', 2)
+    D.at('c6a'); D.h('6.1.2 Mapa de Priorización de Hipótesis', 3)
     D.p('Las ocho hipótesis de la Tabla 15 no pesan igual. Se priorizaron con dos criterios: la importancia para el VAN y para la decisión de escalar, y la evidencia disponible. La puntuación es de 0 a 10 y es un juicio del equipo basado en el modelo financiero y en la matriz de supuestos críticos (Apéndice H). La Figura 6 muestra el mapa y la Tabla 58 explica cada puntaje.')
     D.figure('Mapa de priorización de hipótesis', FIG + 'fig_mapa_hipotesis.png', note='Elaboración propia. Las hipótesis del cuadrante superior izquierdo son importantes y tienen poca evidencia; se prueban primero.', width=5.8)
     D.table('Puntaje de priorización de las hipótesis', ['Hipótesis', 'Importancia', 'Evidencia', 'Fundamento', 'Orden de prueba'], [
@@ -23,7 +23,7 @@ def parte2(D):
         ['H2. Paga S/ 100 o más', '5', '5', '76% (n = 25), pero para una experiencia turística, no para el paquete de S/ 140.', 'Validar con H5'],
     ], note='Elaboración propia a partir de la Tabla 15 y del Apéndice H.', widths=[1.5, 0.8, 0.7, 2.7, 0.8])
 
-    D.h('6.1.3 Diseño de los Experimentos', 2)
+    D.h('6.1.3 Diseño de los Experimentos', 3)
     D.p('Cada hipótesis tiene un experimento definido antes de conocer su resultado. La Tabla 59 detalla el tipo de experimento, la muestra, el canal, la duración, el costo y la decisión asociada. Los costos provienen del presupuesto del piloto (Tabla 32); donde no hay un costo específico se indica que está incluido en otro rubro.')
     D.table('Diseño de los experimentos por hipótesis', ['Hipótesis', 'Experimento', 'Muestra y canal', 'Duración', 'Costo (S/)', 'Criterio y decisión'], [
         ['H5', 'Preventa con pago real y prueba de precio (S/ 140 y S/ 130)', 'Unas 10,000 visitas calificadas desde pauta digital', 'Meses 2 a 4', '14,000 (página 8,000 y pauta 6,000)', 'Conversión de 3% y 300 paquetes. Si no se cumple, probar S/ 130 y luego S/ 120; no escalar si no se sostiene S/ 104.'],
@@ -34,7 +34,7 @@ def parte2(D):
         ['H1 a H3', 'Ya realizados: encuesta de campo', '20 productores y 25 turistas', 'Abril a mayo', '—', 'Validadas; se contrastan con Lima en H5 y H7.'],
     ], note='Elaboración propia a partir de las Tablas 32 y 33 y de los Apéndices B y C.', widths=[0.6, 1.5, 1.3, 0.8, 1.0, 1.7], size=8.5)
 
-    D.h('6.1.4 Tarjetas de Prueba y de Aprendizaje', 2)
+    D.h('6.1.4 Tarjetas de Prueba y de Aprendizaje', 3)
     D.p('Cada hipótesis se resume en una tarjeta de prueba y una tarjeta de aprendizaje, según el formato de Bland y Osterwalder (2019). La tarjeta de prueba se completa antes del experimento y la de aprendizaje después. En H1 a H3 se registran los resultados de campo; en H4 a H8 los campos de resultado quedan en blanco hasta ejecutar el piloto.')
     cards = [
         ('H1', 'Valoración del pago al productor',
@@ -69,18 +69,18 @@ def parte2(D):
             note='Elaboración propia. Formato adaptado de Bland y Osterwalder (2019).' if k == 'H1' else None)
     D.p('Referencia nueva para la lista: Bland, D. J., & Osterwalder, A. (2019). Testing business ideas: A field guide for rapid experimentation. John Wiley & Sons.', italic=True, size=10)
 
-    D.h('6.1.5 Tareas y Preguntas de Prueba', 2)
-    D.p('Antes de lanzar los experimentos se prueba con usuarios cada pieza del PMV de la segunda versión. La Tabla 68 resume las tareas y las preguntas que se aplican; el guion completo está en el Apéndice I.')
+    D.h('6.1.5 Tareas y Preguntas de Prueba', 3)
+    D.p('Antes de lanzar los experimentos se prueba con usuarios cada pieza del PMV de la segunda versión. La Tabla 68 resume las tareas y las preguntas que se aplican; el guion completo está en el Apéndice J.')
     D.table('Resumen de tareas de prueba y preguntas', ['Prueba', 'Hipótesis', 'Tarea que realiza el usuario', 'Pregunta de verificación'], [
         ['Página de preventa', 'H5, H7', 'Encontrar el precio y la fecha de entrega; elegir un productor; completar la compra.', '¿Qué información necesitaba para confiar en pagar por adelantado?'],
         ['Código QR y videos', 'H7', 'Escanear la bolsa y hallar la finca, la fecha de tueste y el video de la cosecha.', '¿Qué le pareció más útil y qué no entendió?'],
         ['Acuerdo con el productor', 'H6, H3', 'Leer el acuerdo y explicarlo con sus palabras; señalar qué condición cambiaría.', '¿Qué le haría desconfiar y firmaría hoy?'],
         ['Seguimiento posventa', 'H8', 'Recordar cuándo recibió su café y decir si renovaría su paquete.', '¿Qué necesitaría para volver a comprar o visitar la finca?'],
-    ], note='Elaboración propia. Guion completo en el Apéndice I.', widths=[1.2, 0.8, 2.5, 2.0])
+    ], note='Elaboración propia. Guion completo en el Apéndice J.', widths=[1.2, 0.8, 2.5, 2.0])
 
     # ---------------- 6.3.10 Monte Carlo ----------------
     D.pb(); D.where('Capítulo VI, al final de 6.3, después de 6.3.9 Análisis de Sensibilidad, Escenarios y Umbrales.')
-    D.h('6.3.10 Simulación Monte Carlo del VAN y del LTV', 2)
+    D.at('c6b'); D.h('6.3.10 Simulación Monte Carlo del VAN y del LTV', 3)
     D.p('El análisis de sensibilidad de la sección 6.3.9 cambia una variable por vez y usa cuatro escenarios con probabilidades asignadas por el equipo. La simulación Monte Carlo completa ese análisis: varía a la vez los supuestos de confianza media y baja del Apéndice H, extrae 10,000 combinaciones y calcula la distribución del VAN y del LTV. Se usaron distribuciones triangulares, con un mínimo, un valor más probable (el supuesto del modelo) y un máximo. Los rangos se apoyan en los escenarios del equipo y en los umbrales de las hipótesis; son supuestos que el piloto debe reemplazar por datos medidos. El COK se mantuvo fijo en 20.94%.')
     rows = []
     for k, lab, (lo, mo, hi), jus in R['dist']:
@@ -110,7 +110,7 @@ def parte2(D):
     D.figure('Tornado de sensibilidad del VAN', FIG + 'fig_tornado.png', note='Elaboración propia a partir del modelo financiero. Cada variable se mueve ±20% con las demás en su valor base.', width=5.8)
     D.p('Limitaciones. Las variables se simularon de forma independiente, aunque en la práctica algunas se mueven juntas (por ejemplo, un precio menor suele acompañarse de menor volumen), lo que podría ampliar el riesgo. Los rangos son juicios del equipo y deben actualizarse con los resultados del piloto. La simulación no modela el riesgo de un mal año climático ni el COK variable.')
 
-    D.h('6.3.11 Recupero, TIR Modificada y Plan de Financiamiento', 2)
+    D.h('6.3.11 Recupero, TIR Modificada y Plan de Financiamiento', 3)
     D.p('La Tabla 71 completa los indicadores de la Tabla 25 con el recupero simple, la TIR modificada y la necesidad de financiamiento. Se calculan en la hoja Indicadores_Extra del Excel.')
     D.table('Indicadores adicionales de rentabilidad y financiamiento', ['Indicador', 'Valor'], [
         ['Periodo de recupero simple', '1.48 años'], ['Periodo de recupero descontado', '1.74 años'],
@@ -130,7 +130,7 @@ def parte2(D):
     # ---------------- Capítulo VII ----------------
     D.pb(); D.h('Capítulo VII: Solución Sostenible (secciones nuevas)', 1)
     D.where('Capítulo VII, después de 7.2 Rentabilidad Social de la Solución.')
-    D.h('7.3 Impacto Ambiental', 2)
+    D.at('c7'); D.h('7.3 Impacto Ambiental', 2)
     D.p('El modelo no reduce su sostenibilidad a la dimensión social. La Tabla 73 identifica los impactos ambientales de cada etapa y las medidas de gestión. Las metas son propuestas del equipo y se miden en las fincas piloto.')
     D.table('Impactos ambientales y medidas de gestión', ['Etapa', 'Impacto', 'Medida', 'Indicador'], [
         ['Producción', 'Uso de agua y fertilizantes; control de plagas.', 'Fertirriego por goteo con dosis medidas; manejo integrado de plagas; sombra y cobertura del suelo.', 'Litros de agua y kilos de fertilizante por quintal'],
@@ -151,7 +151,7 @@ def parte2(D):
     # ---------------- Capítulo VIII ----------------
     D.pb(); D.h('Capítulo VIII: Decisión e Implementación (sección nueva)', 1)
     D.where('Capítulo VIII, dentro de 8.1 Plan de Implementación y Equipo de Trabajo, después de la Tabla 33.')
-    D.h('8.1.1 Estructura Organizacional', 2)
+    D.at('c8'); D.h('8.1.1 Estructura Organizacional', 3)
     D.p('La Figura 12 presenta la estructura organizacional del primer año. Los cuatro fundadores forman la junta de socios y asumen las áreas de gerencia general, gestión comercial y digital, finanzas y relación con los aliados. Los puestos de campo, ventas, almacén y comunicación se contratan según el modelo de costos fijos. La Tabla 75 resume los roles.')
     D.figure('Organigrama de Cosecha Viva', FIG + 'fig_organigrama.png', note='Elaboración propia a partir de la hoja CostosFijos del modelo financiero.', width=6.0)
     D.table('Roles y costos del equipo', ['Puesto', 'Función principal', 'Costo mensual (S/)'], [
@@ -164,7 +164,7 @@ def parte2(D):
     ], note='Adaptado de la hoja CostosFijos del modelo. Los sueldos son un supuesto del equipo y se suman cargas laborales de 25%.', widths=[1.8, 3.4, 1.3])
 
     # ---------------- Ficha, apéndice y textos ----------------
-    D.pb(); D.h('Ficha Resumen del Proyecto', 1)
+    D.at('END'); D.h('Apéndice I. Ficha Resumen del Proyecto', 1)
     D.where('Después del Resumen Ejecutivo o como apéndice, como hoja de una página.')
     D.table('Ficha resumen de Cosecha Viva', ['Elemento', 'Contenido'], [
         ['Problema', 'Los pequeños productores de café de Chanchamayo obtienen ingresos bajos e inestables: producen cerca de 15 qq/ha, venden sin diferenciar a intermediarios y no llegan al consumidor urbano.'],
@@ -180,7 +180,7 @@ def parte2(D):
         ['Decisión', 'Ejecutar el piloto de seis meses (S/ 93,550) y escalar solo si H5 y H6 se cumplen y el VAN recalculado es positivo.'],
     ], note='Elaboración propia a partir de la tesis y del modelo financiero v5.', widths=[1.4, 5.1])
 
-    D.pb(); D.h('Apéndice I. Guion de las Tareas de Prueba', 1)
+    D.h('Apéndice J. Guion de las Tareas de Prueba', 1)
     D.where('Después del Apéndice H. Actualice el índice de apéndices.')
     D.p('Cada prueba se aplica a entre 5 y 8 personas antes del experimento principal, con un moderador y un observador. Se registra lo que hace la persona, lo que dice y dónde se detiene. No se explica la pantalla; se pide pensar en voz alta. Al final se piden permiso para usar sus respuestas y la grabación.')
     def guion(titulo, hip, perfil, tareas, preguntas, exito):
@@ -206,20 +206,3 @@ def parte2(D):
           ['¿Cómo preparó el café y qué le pareció?', '¿Qué lo haría comprar de nuevo?', '¿Compartió los videos con alguien? ¿Regalaría un paquete?', '¿Qué cambiaría del servicio?'],
           '60% recompra y 5% reserva tour; satisfacción de 4 o más.')
 
-    D.pb(); D.h('Textos para actualizar el resto de la tesis', 1)
-    D.where('Reemplazar o añadir en las secciones indicadas.')
-    D.h('Resumen Ejecutivo y Abstract (agregar una frase)', 3)
-    D.p(f"Español: «Una simulación Monte Carlo de 10,000 iteraciones da un VAN mediano de S/ {f0(R['van']['mediana'])} y una probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%, con la relación LTV/CAC por debajo de 3 en solo {R['p_lc_menor3']*100:.1f}% de los casos.»")
-    D.p(f"English: \"A 10,000-iteration Monte Carlo simulation yields a median NPV of S/ {f0(R['van']['mediana'])} and a {R['p_van_neg']*100:.1f}% probability of a negative NPV, with an LTV/CAC ratio below 3 in only {R['p_lc_menor3']*100:.1f}% of cases.\"")
-    D.h('Conclusiones (agregar al cuarto párrafo)', 3)
-    D.p(f"La simulación Monte Carlo confirma que el riesgo se concentra en el precio y en la escala: el VAN tiene una mediana de S/ {f0(R['van']['mediana'])}, un percentil 5 de S/ {f0(R['van']['p5'])} y una probabilidad de VAN negativo de {R['p_van_neg']*100:.1f}%. El aporte de los socios debe prever una necesidad máxima de caja de S/ 271,700 (S/ 326,040 con un colchón de 20%); con el precio de S/ 140 el flujo del año 1 es positivo.")
-    D.h('Recomendaciones (agregar)', 3)
-    D.p('Presupuestar el costo de las visitas calificadas del piloto con el costo del modelo (S/ 2.40 por visita) o medirlo antes de proyectar el año 1; priorizar las pruebas H5, H6, H8, H4 y H7, en ese orden; y actualizar la simulación Monte Carlo con los resultados del piloto.')
-    D.h('Referencias nuevas', 3)
-    D.p('Bland, D. J., & Osterwalder, A. (2019). Testing business ideas: A field guide for rapid experimentation. John Wiley & Sons.', size=11)
-    D.p('Osterwalder, A., Pigneur, Y., Bernarda, G., & Smith, A. (2014). Value proposition design: How to create products and services customers want. John Wiley & Sons.', size=11)
-    D.h('Pendientes de forma antes de entregar', 3)
-    D.bullets(['Completar [Nombre del asesor] en la portada.', 'Verificar que las imágenes de la portada y de las Figuras 1 a 5 se vean y tengan título y fuente.',
-               'Actualizar el índice y las listas de tablas y figuras, y renumerar tablas y figuras al insertar este contenido.', 'Corregir las referencias sin fecha (Cámara de Comercio de Lima, Caretas) y confirmar que cada cita esté en la lista.',
-               'Aplicar el cuestionario del Apéndice B (150 consumidores) y la guía del Apéndice C (30 productores) y reemplazar los campos [Completar] de las tarjetas.',
-               'Armar la página de preventa (PMV versión 2) y agregar capturas como evidencia.'])
